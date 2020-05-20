@@ -1,5 +1,6 @@
 <?php
 require('dbconnect.php');
+
  if (isset($_POST['deleteBtn'])) {
  
  
@@ -9,7 +10,7 @@ require('dbconnect.php');
             DELETE FROM posts
             WHERE id = :id;
             ";
-  
+ 
             $stmt = $dbconnect->prepare($query);
             $stmt->bindValue(':id', $_POST['id']);
             $stmt->execute();
