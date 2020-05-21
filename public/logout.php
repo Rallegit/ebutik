@@ -1,6 +1,6 @@
 <?php
-	require('../src/config.php');
+	session_start();
 	$_SESSION = [];
 	session_destroy();
-	redirect('login.php?logout');
-	
+	header('Location: login.php?logout');
+	exit;

@@ -2,22 +2,30 @@
     require('../src/config.php');
     require('../src/dbconnect.php');
 
-    $username  = '';
-    $email     = '';
-    $error     = '';
-    $msg       = '';
+    $first_name  = '';
+    $last_name   = '';
+    $phone       = '';
+    $street      = '';
+    $postal_code = '';
+    $city        = '';
+    $country     = '';
+    $username    = '';
+    $email       = '';
+    $error       = '';
+    $msg         = '';
     
     if (isset($_POST['signup'])) {
+        $username          = trim($_POST['username']);
         $first_name        = trim($_POST['first_name']);
-        $last_name        = trim($_POST['last_name']);
-        $email           = trim($_POST['email']);
-        $password        = trim($_POST['password']);
-        $confirmPassword = trim($_POST['confirmPassword']);
-        $phone        = trim($_POST['phone']);
-        $street        = trim($_POST['street']);
-        $postal_code        = trim($_POST['postal_code']);
-        $city        = trim($_POST['city']);
-        $country        = trim($_POST['country']);
+        $last_name         = trim($_POST['last_name']);
+        $email             = trim($_POST['email']);
+        $password          = trim($_POST['password']);
+        $confirmPassword   = trim($_POST['confirmPassword']);
+        $phone             = trim($_POST['phone']);
+        $street            = trim($_POST['street']);
+        $postal_code       = trim($_POST['postal_code']);
+        $city              = trim($_POST['city']);
+        $country           = trim($_POST['country']);
 
         if (empty($first_name)) {
             $error .= "<li>The first name is mandatory</li>";
@@ -71,27 +79,33 @@
             $msg = "<ul class='error_msg'>{$error}</ul>";
         }
 
-
         if (empty($error)) {
             try {
                 $query = "
-                    INSERT INTO users (username, password, email)
-                    VALUES (:username, :password, :email);
+                    INSERT INTO users (username, password, email, phone, street, postal_code, city, country, first_name, last_name)
+                    VALUES (:username, :password, :email, :phone, :street, :postal_code, :city, :country, :first_name, :last_name);
                 ";
 
                 $stmt = $dbconnect->prepare($query);
                 $stmt->bindValue(':username', $username);
                 $stmt->bindValue(':password', $password);
                 $stmt->bindValue(':email', $email);
+                $stmt->bindValue(':phone', $phone);
+                $stmt->bindValue(':street', $street);
+                $stmt->bindValue(':postal_code', $postal_code);
+                $stmt->bindValue(':city', $city);
+                $stmt->bindValue(':country', $country);
+                $stmt->bindValue(':first_name', $first_name);
+                $stmt->bindValue(':last_name', $last_name);
                 $result = $stmt->execute();
             } catch(\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int) $e->getCode());
             }
 
             if ($result) {
-                $msg = '<div class="success_msg">Ditt konto är nu skapat</div>';
+                $msg = '<div class="success_msg">Your account is successfully made. </div>';
             } else {
-                $msg = '<div class="error_msg">Registreringen misslyckades. Var snäll och försök igen senare!</div>';
+                $msg = '<div class="error_msg">The signup failed. Please try again.</div>';
             }
         }
     }
@@ -124,6 +138,44 @@
                 <label for="input2">Confirm password:</label> <br>
                 <input type="password" class="text" name="confirmPassword">
             </p>
+            
+            <p>
+                <label for="input3">First name:</label> <br>
+                <input type="text" class="text" name="first_name">
+            </p>
+            
+            <p>
+               <label for="input4">Last name:</label> <br>
+               <input type="text" class="text" name="last_name">
+           </p>
+           <p>
+                <label for="input8">Phone:</label> <br>
+                <input type="text" class="text" name="phone">
+            </p>  
+           <p>
+               <label for="input5">Street:</label> <br>
+               <input type="text" class="text" name="street">         
+           </p>
+
+            <p>
+                <label for="input6">City</label> <br>
+                <input type="text" class="text" name="city">
+            </p>  
+
+            <p>
+                <label for="input7">Postal code</label> <br>
+                <input type="text" class="text" name="postal_code">
+            </p>
+              
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="trump">TrumpNation</option>
+                <option value="norway">Norway</option>
+                <option value="denmark">Denmark</option>
+                <option value="finland">Finland</option>
+                <option value="sweden">Sweden</option>
+                
+            </select>
 
             <p>
                 <input type="submit" name="signup" value="Register">

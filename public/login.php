@@ -41,7 +41,7 @@
         // If user exists AND password is correct, will be considered true. Meaning you are logged in
         if ($user && $password === $user['password']) {
             $_SESSION['username'] = $user['username'];
-            header('Location: get.php');
+            header('Location: index.php');
             exit;
         } else {
             // If user doesnt Exist, will be considered false
