@@ -1,6 +1,5 @@
 <?php
 require('dbconnect.php');
-
  if (isset($_POST['deleteBtn'])) {
  
  
