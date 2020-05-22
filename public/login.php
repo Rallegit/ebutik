@@ -21,17 +21,17 @@
     }
 
     if (isset($_POST['doLogin'])) {
-        $email    = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
 
         try {
             $query = "
                 SELECT * FROM users
-                WHERE email = :email;
+                WHERE username = :username;
             ";
 
             $stmt = $dbconnect->prepare($query);
-            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':username', $username);
             $stmt->execute();
             $user = $stmt->fetch();
         } catch (\PDOException $e) {
@@ -59,8 +59,8 @@
             <?=$msg?>
             
             <p>
-                <label for="input1">E-mail Address:</label> <br>
-                <input type="text" class="text" name="email">
+                <label for="input1">Username:</label> <br>
+                <input type="text" class="text" name="username">
             </p>
 
             <p>
