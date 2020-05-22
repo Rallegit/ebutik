@@ -1,9 +1,9 @@
 <?php
 
-$host 	  = '';
-$database = '';
-$user     = '';
-$password = '';
+$host 	  = 'localhost';
+$database = 'ebutik';
+$user     = 'root';
+$password = 'mysql';
 $charset  = 'utf8mb4';
 
 $dns 	  = "mysql:host={$host};dbname={$database};charset={$charset}";
