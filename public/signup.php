@@ -131,40 +131,40 @@
 
             <p>
                 <label for="input2">Password:</label> <br>
-                <input type="password" class="text" name="password">
+                <input type="password" class="text" name="password" value="<?=htmlentities($password)?>">
             </p>
 
             <p>
                 <label for="input2">Confirm password:</label> <br>
-                <input type="password" class="text" name="confirmPassword">
+                <input type="password" class="text" name="confirmPassword" value="<?=htmlentities($confirmPassword)?>">
             </p>
             
             <p>
                 <label for="input3">First name:</label> <br>
-                <input type="text" class="text" name="first_name">
+                <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name)?>">
             </p>
             
             <p>
                <label for="input4">Last name:</label> <br>
-               <input type="text" class="text" name="last_name">
+               <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name)?>">
            </p>
            <p>
                 <label for="input8">Phone:</label> <br>
-                <input type="text" class="text" name="phone">
+                <input type="text" class="text" name="phone" value="<?=htmlentities($phone)?>">
             </p>  
            <p>
                <label for="input5">Street:</label> <br>
-               <input type="text" class="text" name="street">         
+               <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
            </p>
 
             <p>
                 <label for="input6">City</label> <br>
-                <input type="text" class="text" name="city">
+                <input type="text" class="text" name="city" value="<?=htmlentities($city)?>">
             </p>  
 
             <p>
                 <label for="input7">Postal code</label> <br>
-                <input type="text" class="text" name="postal_code">
+                <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
             </p>
               
             <label for="country">Country</label>
@@ -174,12 +174,10 @@
                 <option value="denmark">Denmark</option>
                 <option value="finland">Finland</option>
                 <option value="sweden">Sweden</option>
-                
             </select>
 
-            <p>
                 <input type="submit" name="signup" value="Register">
-            </p>
+            
         </form>
     </div>
 
