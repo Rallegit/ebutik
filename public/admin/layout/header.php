@@ -1,5 +1,5 @@
 <?php
-	require('../src/dbconnect.php');
+	require('../../src/dbconnect.php');
 
     try {
 		$query = "SELECT * FROM users;";
@@ -50,15 +50,15 @@
 	<!-- Navbar --> 
 	<ul class="navbar">
 	<header id="menu">
-		<form action="index.php?">
+		<form action="../index.php?">
 			<input type="submit" value="Home" class="btn">
 		</form>
 			
-		<form action="products.php?">
+		<form action="../products.php?">
 			<input type="submit" value="Products" class="btn">
 		</form>
 
-		<form action="admin/createproducts.php">
+		<form action="../createproducts.php?">
 			<input type="submit" value="Add Product" class="btn">
 		</form>
 
