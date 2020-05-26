@@ -151,8 +151,6 @@
     
 ?>
 
-
-
 <?php include('layout/header.php'); ?>
 
     <div id="form"> 
@@ -226,6 +224,7 @@
                     <input type="submit" name="deleteBtn" value="Delete user">
                 </form>
             <?php } ?>
+            
         </form>
     </div>
 
