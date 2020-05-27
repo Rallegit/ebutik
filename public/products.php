@@ -94,7 +94,7 @@
                     <br>
 
                     <p>
-                        <form action="" method="GET">
+                        <form action="show-content.php" method="GET">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
                             <button type="submit">Read More</button>
                         </form>

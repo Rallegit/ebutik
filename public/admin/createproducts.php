@@ -2,7 +2,7 @@
     require('../../src/config.php');
     
     if (!isset($_SESSION['username'])) {
-        header('Location: login.php?mustLogin');
+        header('Location: ../login.php?mustLogin');
         exit;
     }
 
@@ -85,46 +85,15 @@
     }
 
 ?>
-
-
-<?php include('layout/header.php'); ?>
-    <!-- <div class="addNewProduct">
-
-        
-        <form action="../products.php" method="POST">
-            <div class="inputOne">
-
-                <div class="file-upload-wrapper">
-                    <input type="file" id="input-file-now" class="file-upload" />
-                </div>
-                
-                <h5>Product Title</h5>
-                <input type="text" name="title" placeholder="Product Title" >
-
-                <br>
-
-                <textarea type="text" name="description" placeholder="Write here..." rows="5" cols="40"></textarea>
-
-                <br>
-
-                <h5>Price</h5>
-                <input type="text" name="price" placeholder="" >
-
-                <br>
-
-                <button class="btn1" name="send">Add Product</button>
-
-            </div>
-        </form>
-
-        <div class="display-container">
-            <form action="products.php" method="POST">
-                <input type="submit" name="backToProducts" value="Go Back to Products">
-            </form>
-        </div>
-    </div> -->
-
-
+	<div>
+		<form action="../edit.php?" method="GET">
+			<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
+			<input type="submit" value="My page" class="btn">
+		</form>
+	</div>
+    <form action="admin.php">
+        <button class="contentBtn">Back</button>
+    </form>
 
     <div class="box2">
         <div class="insidebox">
