@@ -23,23 +23,23 @@
 	<!-- Above header -->
     <header id="above">
 	    <nav class="login">
-			<?php foreach ($users as $key => $mypage) { ?>
-				<div>
-				
-						<form action="edit.php?" method="GET">
-							<input type="hidden" name="id" value="<?=$mypage['id']?>">
-							<input type="submit" value="My page" class="btn">
-						</form>
-				
-				</div>
-			<?php } ?>
+			<div>
+				<form action="../edit.php?" method="GET">
+					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
+					<input type="submit" value="My page" class="btn">
+				</form>
+			</div>
+
+			<form action="admin/admin.php">
+				<input type="submit" value="Admin" class="btn">
+			</form>
 
 	        <?php
 	          	if (isset($_SESSION['username'])) {
 	            	$loggedInUsername = htmlentities(ucfirst($_SESSION['username'])); 
-	            	$aboveNav = "Welcome $loggedInUsername | <a href='logout.php'>Log out</a>";
+	            	$aboveNav = "Welcome $loggedInUsername | <a href='../logout.php'>Log out</a>";
 	          	} else {
-	            	$aboveNav = "<a href='signup.php'>Sign up</a> | <a href='login.php'>Log in</a>";
+	            	$aboveNav = "<a href='../signup.php'>Sign up</a> | <a href='../login.php'>Log in</a>";
 	          	}
 	          echo $aboveNav;
 			?>
@@ -58,7 +58,7 @@
 			<input type="submit" value="Products" class="btn">
 		</form>
 
-		<form action="../createproducts.php?">
+		<form action="createproducts.php?">
 			<input type="submit" value="Add Product" class="btn">
 		</form>
 

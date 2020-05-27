@@ -1,11 +1,11 @@
 <?php 
-    require('../src/config.php');
+    require('../../src/config.php');
     if (!isset($_SESSION['username'])) {
         header('Location: login.php?mustLogin');
         exit;
     }
 
-    require('../src/dbconnect.php');
+    require('../../src/dbconnect.php');
 
     // $msg       = '';
     if (isset($_POST['deleteBtn'])) {
@@ -150,7 +150,9 @@
     }
 ?>
 
-<?php include('layout/header.php'); ?>
+    <form action="admin.php">
+        <button class="contentBtn">Back</button>
+    </form>
 
     <div id="form"> 
         <form action="#" method="POST">       
@@ -158,7 +160,7 @@
             <!-- Visa errormeddelanden -->
             <?=$msg?>
             
-            <h1>Edit info</h1>
+            <h1>Update user</h1>
             <p>
                 <label for="input1">Username:</label> <br>
                 <input type="text" class="text" name="username" value="<?=htmlentities($konto['username'])?>">
@@ -214,9 +216,8 @@
             </p>
             
             <p>
-                <input type="submit" name="signup" value="Uppdatera">
+                <input action="users.php?" type="submit" name="signup" value="Uppdatera">
             </p>
-
             
             <form action="index.php?" method="POST">
                 <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
@@ -226,5 +227,6 @@
         </form>
     </div>
     
-
 <?php include('layout/footer.php'); ?>
+
+
