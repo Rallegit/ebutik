@@ -29,15 +29,16 @@
     $title       = '';
     $description = '';
     $price       = '';
-    $img_url     = '';
     $error       = '';
     $msg         = '';
+    $img_url     = '';
     
     if (isset($_POST['add'])) {
         $title       = trim($_POST['title']);
         $description = trim($_POST['description']);
         $price       = trim($_POST['price']);
-
+        $img_url     = trim($_POST['img_url']);
+        
         if (empty($title)) {
             $error .= "<p>Title is mandatory</p>";
         }
@@ -58,14 +59,15 @@
 
             try {
                 $query = "
-                INSERT INTO products (title, description, price)
-                VALUES (:title, :description, :price);
+                INSERT INTO products (title, description, price, img_url)
+                VALUES (:title, :description, :price, :img_url);
                 ";
 
                 $stmt = $dbconnect->prepare($query);
                 $stmt->bindValue(':title', $title);
                 $stmt->bindValue(':description', $description);
                 $stmt->bindValue(':price', $price);
+                $stmt->bindValue(':img_url', $img_url);
                 $products = $stmt->execute();
             } catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
@@ -84,6 +86,67 @@
         throw new \PDOException($e->getMessage(), (int) $e->getCode());
     }
 
+    // UPLOAD IMAGE --->
+    //checking if the form has been submitted
+    // $msg            = "";
+    // $error          = "";
+    // $newPathAndName = "";
+    // $img_url        = '';
+    
+
+    // if(isset($_POST['add'])){
+
+    //     // Validation for file upload starts here
+    //     if(is_uploaded_file($_FILES['uploadedFile']['tmp_name'])) {
+    //         //this is the actual name of the file
+    //         $fileName = $_FILES['uploadedFile']['name'];
+    //         //this is the file type
+    //         $fileType = $_FILES['uploadedFile']['type'];
+    //         //this is the temporary name of the file
+    //         $fileTempName = $_FILES['uploadedFile']['tmp_name'];
+    //         //this is the path where you want to save the actual file
+    //         $path = "../img/";
+    //         //this is the actual path and actual name of the file
+    //         $newPathAndName = $path . $fileName;
+
+    //         // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
+    //         // Check MIME Type by yourself.
+    //         $allowedFileTypes = [
+    //             'image/jpg',
+    //             'image/jpeg',
+    //             'image/gif',
+    //             'image/png',
+    //         ];
+    //   //       echo "<pre>";
+    //         // var_dump( (bool) array_search($fileType, $allowedFileTypes, true));
+    //         // echo "</pre>";
+
+    //         $isFileTypeAllowed = (bool) array_search($fileType, $allowedFileTypes, true);
+    //         if ($isFileTypeAllowed == false) {
+    //             $error = "The file type is invalid. Allowed types are jpeg, png, gif.<br>";
+    //         } else {
+    //             // Will try to upload the file with the function 'move_uploaded_file'
+    //             // Returns true/false depending if it was successful or not
+    //             $isTheFileUploaded = move_uploaded_file($fileTempName, $newPathAndName);
+    //             if ($isTheFileUploaded == false) {
+    //                 // Otherwise, if upload unsuccessful, show errormessage
+    //                 $error = "Could not upload the file. Please try again<br>";
+    //             }
+    //         }
+    //     }
+
+    //     // Handle the rest of the form validation and save accordingly in DB
+
+    //     if (empty($error)) {
+    //         $msg = "Succefully submittet the form";
+    //         // Save the image url in DB here, along with other data
+    //         $img_url = $newPathAndName;
+    //     } else {
+    //         $msg = $error;
+    //     }
+    // }
+
+
 ?>
 	<div>
 		<form action="../edit.php?" method="GET">
@@ -98,17 +161,18 @@
     <div class="box2">
         <div class="insidebox">
 
-            <h1>Publish product</h1>
-            <form action="" method="POST">
+            <h1>Add product</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
 
                 <div class="inputone">
                     <input type="text" name="title" placeholder="Title">
 
                     <br>
-
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="input-file-now" class="file-upload" />
-                    </div>
+                        
+                <!-- <form action="products.php?" method="POST"> -->
+                <!-- file: <input type="file" name="uploadedFile" value=""/> -->
+                <!-- </form> -->
+                 <input type="text" name="img_url" id="add-img_url" placeholder="Bildens filnamn." >
 
                     <br>
 
@@ -123,17 +187,21 @@
             </form>
 
             <?=$msg?>
-        </div>
+        </div> 
     </div>
     
     <div class="box">
         <ul class="lists">
             <?php foreach ($products as $key => $article) { ?>
                 <li class="blogOne">
-                
+
+                    <img class="admin-image" src="<?=htmlentities(IMG_PATH . $article['img_url'])?>" alt="<?=htmlentities($article['title'])?>" style="height:200px; width:100px;">
+
+
                     <h2>
                         <?=htmlentities($article['title'])?>
                     </h2>
+                    
 
                     <br>
 
