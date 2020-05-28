@@ -1,7 +1,6 @@
 <?php
-    require('../src/config.php');
-    require('../src/app/users_functions.php');
-    require('../src/dbconnect.php');
+    require('../../src/config.php');
+    require('../../src/dbconnect.php');
 
     $first_name  = '';
     $last_name   = '';
@@ -81,35 +80,53 @@
         }
 
         if (empty($error)) {
-            $userData = [
-                'username'      => $username,
-                'password'      => $password,
-                'email'         => $email,
-                'phone'         => $phone,
-                'street'        => $street,
-                'postal_code'   => $postal_code,
-                'city'          => $city,
-                'country'       => $country,
-                'first_name'    => $first_name,
-                'last_name'     => $last_name,
-            ];
+            try {
+                $query = "
+                    INSERT INTO users (username, password, email, phone, street, postal_code, city, country, first_name, last_name)
+                    VALUES (:username, :password, :email, :phone, :street, :postal_code, :city, :country, :first_name, :last_name);
+                ";
 
-            $result = add($userData); // refakturerad å klar!!!!!
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':username', $username);
+                $stmt->bindValue(':password', $password);
+                $stmt->bindValue(':email', $email);
+                $stmt->bindValue(':phone', $phone);
+                $stmt->bindValue(':street', $street);
+                $stmt->bindValue(':postal_code', $postal_code);
+                $stmt->bindValue(':city', $city);
+                $stmt->bindValue(':country', $country); 
+                $stmt->bindValue(':first_name', $first_name);
+                $stmt->bindValue(':last_name', $last_name);
+                $result = $stmt->execute();
+            } catch(\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
 
             if ($result) {
-                $msg = '<div class="success_msg">The account was successfully created</div>';
+                $msg = '<div class="success_msg">Your account is successfully made. </div>';
             } else {
-                $msg = '<div class="error_msg">Failed to create an account. Please try again.</div>';
+                $msg = '<div class="error_msg">The signup failed. Please try again.</div>';
             }
         }
-
     }
 
 ?>
+    <form action="createproducts.php?">
+        <input type="submit" value="Add Product" class="btn">
+    </form>
 
-<?php include('layout/header.php'); ?>
-
-    <div id="form"> 
+    <form action="users.php">
+        <input type="submit" value="User-list" class="btn">
+    </form>
+    <form action="admincreate.php">
+        <input type="submit" value="Create user" class="btn">
+    </form>
+    <form action="admin.php">
+        <button class="contentBtn">Back</button>
+    </form>
+    <hr>
+     <div id="form"> 
+     
         <form method="POST" action="#">       
             
             <?=$msg?>
@@ -161,15 +178,13 @@
                 <label for="input7">Postal code</label> <br>
                 <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
             </p>
+
+            <p>
+                <label for="input9">Country</label> <br>
+                <input type="text" class="text" name="country"value="<?=htmlentities($country)?>">
+            </p>
               
-            <label for="country">Country</label>
-            <select id="country" name="country">
-                <option value="trump">TrumpNation</option>
-                <option value="norway">Norway</option>
-                <option value="denmark">Denmark</option>
-                <option value="finland">Finland</option>
-                <option value="sweden">Sweden</option>
-            </select>
+           
 
                 <input type="submit" name="signup" value="Register">
             
@@ -177,3 +192,4 @@
     </div>
 
 <?php include('layout/footer.php'); ?>
+

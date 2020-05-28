@@ -73,6 +73,13 @@
             
                 <?php foreach ($products as $key => $article) { ?>
                 <li class="blogOne">
+
+                    <!-- Image SKA VA HEEEEEEER -->
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="add">
+                        <img src="<?=$imgUrl?>">
+                    </form>
+
                     <h2>
                         <form action="#" method="GET">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
