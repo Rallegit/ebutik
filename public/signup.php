@@ -172,7 +172,6 @@
             </select>
 
                 <input type="submit" name="signup" value="Register">
-            
         </form>
     </div>
 
