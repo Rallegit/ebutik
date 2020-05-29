@@ -1,31 +1,13 @@
 <?php
     require('../src/dbconnect.php');
     require('../src/config.php');
+
 //echo "<pre>";
 //print_r($_POST);
 //echo "</pre>";
 
 // Content sida - här ska alla inlägg visas upp för besökare för att sedan 
 // klicka sig vidare till att se hela inlägget.
-
- if (isset($_POST['deleteBtn'])) {
- 
- 
-    if(empty($title)){
-        try {
-            $query = "
-            DELETE FROM products
-            WHERE id = :id;
-            ";
-  
-            $stmt = $dbconnect->prepare($query);
-            $stmt->bindValue(':id', $_POST['id']);
-            $stmt->execute();
-      }     catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int) $e->getCode());
-      }
-    }
-}
 
     
     $title          = '';
@@ -103,7 +85,9 @@
 
     <div class="box-content">
         <form action="#" method="POST">
-            <li class="blogOne">
+                <div class="article_img">
+                    <img src="<?=$products['img_url']?>">
+                </div>
                 <h1>
                  <?=htmlentities($products['title'])?>
                 </h1>
@@ -120,8 +104,7 @@
                     <?=htmlentities ($products['price'])?>
                 </p>
 
-                <br>
-            </li>          
+                <br>      
         </form>
     </div>
 
