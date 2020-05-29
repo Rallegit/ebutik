@@ -208,10 +208,28 @@
                 <input type="text" class="text" name="postal_code" value="<?=htmlentities($konto['postal_code'])?>">
             </p>
 
-            <p>
-                <label for="input9">Country</label> <br>
-                <input type="text" class="text" name="country" value="<?=htmlentities($konto['postal_code'])?>">
-            </p>
+            <?php print_r($konto['country']) ?>
+
+            <?php
+            $countries = [
+                'trump' => 'Trumpnation',
+                'norway' => 'Norway',
+                'denmark' => 'Denmark',
+                'finland' => 'Finland',
+                'sweden' => 'Sweden',
+            ];
+            ?>
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <?php foreach ($countries as $countryKey => $countryName) { ?> 
+                    if ($konto['country'] == $countryKey){
+                        <option selected value="<?=$countryKey?>"> <?=$countryName?></option> 
+                    } else {
+                        <option value="<?=$countryKey?>"> <?=$countryName?></option>
+                    }
+                <?php }  ?>
+            </select>
             
             <p>
                 <input type="submit" name="signup" value="Uppdatera">
