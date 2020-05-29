@@ -1,15 +1,11 @@
 <?php
     require('../../src/config.php');
     
-    if (!isset($_SESSION['username'])) {
-        header('Location: ../login.php?mustLogin');
-        exit;
-    }
+    checkLoginSession(); //refakturerad å klar
 
     require('../../src/dbconnect.php');
 
     if (isset($_POST['deleteBtn'])) {
- 
         if(empty($title)){
             try {
                 $query = "
@@ -26,74 +22,22 @@
         }
     }
 
-    $title       = '';
-    $description = '';
-    $price       = '';
-    $error       = '';
-    $msg         = '';
-    // $img_url     = '';
+    $title          = '';
+    $description    = '';
+    $price          = '';
+    $error          = '';
+    $msg            = '';
+    $newPathAndName = "";
+    $img_url        = "";
     
     if (isset($_POST['add'])) {
         $title       = trim($_POST['title']);
         $description = trim($_POST['description']);
         $price       = trim($_POST['price']);
-    // $img_url     = trim($_POST['img_url']);
-        
-        if (empty($title)) {
-            $error .= "<p>Title is mandatory</p>";
-        }
 
-        if (empty($description)) {
-            $error .= "<p>Description is mandatory</p>";
-        }
 
-        if (empty($price)) {
-            $error .= "<p>Price is mandatory</p>";
-        }
-
-        if ($error) {
-            $msg = "<div class='errors'>{$error}</div>";
-        }
-
-        if (empty($error)) {
-
-            try {
-                $query = "
-                 INSERT INTO products (title, description, price)
-                 VALUES (:title, :description, :price);
-                ";
-
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':title', $title);
-                $stmt->bindValue(':description', $description);
-                $stmt->bindValue(':price', $price);
-                // $stmt->bindValue(':img_url', $img_url);
-                $products = $stmt->execute();
-            } catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
-            }
-            if ($products) {
-                $msg = '<p class="success">Your product are now posted. </p>';
-            } 
-        }
-    }
-        
-    try {
-        $query = "SELECT * FROM products;";
-        $stmt = $dbconnect->query($query);
-        $products = $stmt->fetchAll();
-    }      catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
-
-    // UPLOAD IMAGE --->
+            // UPLOAD IMAGE --->
     // checking if the form has been submitted
-    $msg            = "";
-    $error          = "";
-    $newPathAndName = "";
-    $img_url        = "";
-
-    if(isset($_POST['add'])){
 
         // Validation for file upload starts here
         if(is_uploaded_file($_FILES['upload']['tmp_name'])) {
@@ -144,6 +88,55 @@
     }
 
 
+        if (empty($title)) {
+            $error .= "<p>Title is mandatory</p>";
+        }
+
+        if (empty($description)) {
+            $error .= "<p>Description is mandatory</p>";
+        }
+
+        if (empty($price)) {
+            $error .= "<p>Price is mandatory</p>";
+        }
+
+        if ($error) {
+            $msg = "<div class='errors'>{$error}</div>";
+        }
+
+        if (empty($error)) {
+
+            try {
+                $query = "
+                 INSERT INTO products (title, description, price, img_url)
+                 VALUES (:title, :description, :price, :img_url);
+                ";
+
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':title', $title);
+                $stmt->bindValue(':description', $description);
+                $stmt->bindValue(':price', $price);
+                $stmt->bindValue(':img_url', $img_url);
+                $products = $stmt->execute();
+            } catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
+            }
+            if ($products) {
+                $msg = '<p class="success">Your product are now posted. </p>';
+            } 
+        }
+    
+        
+    try {
+        $query = "SELECT * FROM products;";
+        $stmt = $dbconnect->query($query);
+        $products = $stmt->fetchAll();
+    }      catch (\PDOException $e) {
+        throw new \PDOException($e->getMessage(), (int) $e->getCode());
+    }
+
+
+
 ?>
 	<div>
 		<form action="../edit.php?" method="GET">
@@ -169,8 +162,7 @@
                     <form action="products.php?" method="POST">
                     file: <input type="file" name="upload" value=""/> 
                     </form> 
-                    <!-- <input type="text" name="img_url" id="add-img_url" placeholder="Bildens filnamn." > -->
-
+                    
                     <br>
 
                     <textarea type="text" name="description" placeholder="Description" rows="10" cols="60" style="resize:none"></textarea>
@@ -191,10 +183,10 @@
     <div class="box">
         <ul class="lists">
             <?php foreach ($products as $key => $article) { ?>
-                <li class="articles">
+                <li class="articlelist">
 
                     <div class="article_img">
-                        <img src="<?=$img_url?>">
+                        <img src="<?=$article['img_url']?>">
                    </div>
 
                     <h2>

@@ -1,10 +1,7 @@
 <?php
     require('../../src/config.php');
 
-    if (!isset($_SESSION['username'])) {
-        header('Location: login.php?mustLogin');
-        exit;
-    }
+    checkLoginSession(); //refakturerad å klar!
 
     require('../../src/dbconnect.php');
 
