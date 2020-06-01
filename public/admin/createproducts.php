@@ -1,25 +1,12 @@
 <?php
     require('../../src/config.php');
     
-    checkLoginSession(); //refakturerad å klar
+    checkLoginSession(); //refakturerad
 
     require('../../src/dbconnect.php');
 
     if (isset($_POST['deleteBtn'])) {
-        if(empty($title)){
-            try {
-                $query = "
-                DELETE FROM products
-                WHERE id = :id;
-                ";
-      
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':id', $_POST['id']);
-                $stmt->execute();
-            }     catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode());
-            }
-        }
+        deleteProduct($_POST['id']); //refakturerad
     }
 
     $title          = '';
@@ -35,8 +22,50 @@
         $description = trim($_POST['description']);
         $price       = trim($_POST['price']);
 
+        if (empty($title)) {
+            $error .= "<p>Title is mandatory</p>";
+        }
 
-            // UPLOAD IMAGE --->
+        if (empty($description)) {
+            $error .= "<p>Description is mandatory</p>";
+        }
+
+        if (empty($price)) {
+            $error .= "<p>Price is mandatory</p>";
+        }
+
+        if ($error) {
+            $msg = "<div class='errors'>{$error}</div>";
+        }
+
+        if (empty($error)) {
+
+            try {
+                $query = "
+                 INSERT INTO products (title, description, price)
+                 VALUES (:title, :description, :price);
+                ";
+
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':title', $title);
+                $stmt->bindValue(':description', $description);
+                $stmt->bindValue(':price', $price);
+                // $stmt->bindValue(':img_url', $img_url);
+                $products = $stmt->execute();
+            } catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
+            }
+            if ($products) {
+                $msg = '<p class="success">Your product are now posted. </p>';
+            } 
+        }
+    }
+        
+    $products = fetchAllProducts(); // refakturerat
+
+    // UPLOAD IMAGE --->
+    // UPLOAD IMAGE --->
+
     // checking if the form has been submitted
 
         // Validation for file upload starts here

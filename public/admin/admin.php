@@ -1,10 +1,11 @@
 <?php
     require('../../src/dbconnect.php');
     require('../../src/config.php');
-    
-    checkLoginSession(); //refakturerad å klar!
+
+    checkLoginSession(); //refakturerad
 
 ?>
+
 
     <form action="createproducts.php?">
         <input type="submit" value="Add Product" class="btn">

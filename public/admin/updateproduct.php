@@ -1,7 +1,7 @@
 <?php
     require('../../src/config.php');
 
-    checkLoginSession(); //refakturerad å klar!
+    checkLoginSession(); //refakturerad
 
     require('../../src/dbconnect.php');
 
@@ -59,22 +59,10 @@
         }
     }
 
-    try {
-        $query = "
-            SELECT * FROM products
-            WHERE id = :id;
-        ";
-        
-        $stmt = $dbconnect->prepare($query);
-        $stmt->bindvalue(':id', $_GET['id']);
-        $stmt->execute();
-        $products = $stmt->fetch();
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
-    
-
+    $product = fetchProductById($_GET['id']); // refakturerat
+   
 ?>
+
 
 
 <?php include('layout/header.php'); ?>
@@ -84,11 +72,11 @@
     <div class="insidebox">
         <h1>Update</h1>
         <form action="#" method="POST">
-            <input type="text" name="title" value="<?=htmlentities($products['title'])?>">
+            <input type="text" name="title" value="<?=htmlentities($product['title'])?>">
             <br>
-            <textarea type="text" name="description" rows="10" cols="60" style="resize:none"><?=htmlentities($products['description'])?></textarea>
+            <textarea type="text" name="description" rows="10" cols="60" style="resize:none"><?=htmlentities($product['description'])?></textarea>
             <br>
-            <input type="text" name="price" value="<?=htmlentities($products['price'])?>">
+            <input type="text" name="price" value="<?=htmlentities($product['price'])?>">
             <br>
             <button class="btn" name="add">Update</button>
             <a href="../index.php">Back</a>

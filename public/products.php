@@ -2,9 +2,6 @@
     require('../src/config.php');
     require('../src/dbconnect.php');
 
-    // Content sida - här ska alla inlägg visas upp för besökare för att sedan 
-    // klicka sig vidare till att se hela inlägget.
-
     $title       = '';
     $description = '';
     $price       = '';
@@ -13,13 +10,11 @@
     $msg         = '';
 
     if (isset($_POST['add'])) {
-        $title  = trim($_POST['title']);
+        $img_url     = trim($_POST['img_url']);
+        $title       = trim($_POST['title']);
         $description = trim(($_POST['description']));
-        $price = trim($_POST['price']);
-
-
-        
-
+        $price       = trim($_POST['price']);
+  
         if (empty($title)) {
             $error .= "<li>Rubrik är obligatoriskt</li>";
         }
@@ -56,16 +51,9 @@
         }
     }
 
-    try {
-        $query = "SELECT * FROM products;";
-        $stmt = $dbconnect->query($query);
-        $products= $stmt->fetchAll();
-    }         catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
+    $products = fetchAllProducts(); // refakturerat
    
 ?>
-
 
 <?php include('layout/header.php'); ?>
     

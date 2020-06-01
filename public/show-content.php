@@ -2,13 +2,13 @@
     require('../src/dbconnect.php');
     require('../src/config.php');
 
-//echo "<pre>";
-//print_r($_POST);
-//echo "</pre>";
+    //echo "<pre>";
+    //print_r($_POST);
+    //echo "</pre>";
 
-// Content sida - här ska alla inlägg visas upp för besökare för att sedan 
-// klicka sig vidare till att se hela inlägget.
-
+    if (isset($_POST['deleteBtn'])) {
+        deleteProduct($_POST['id']); //refakturerad
+    }
     
     $title          = '';
     $description    = '';
@@ -54,30 +54,11 @@
                 $stmt->execute();
             } catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
-            }
-
-            
+            }  
         }
     }
-    try {
-        $query = "
-            SELECT * FROM products
-            WHERE id = :id;
-        ";
-
-
-        $stmt = $dbconnect->prepare($query);
-        $stmt->bindvalue(':id', $_GET['id']);
-        $stmt->execute();
-        $products = $stmt->fetch();
-    }   catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
     
-
-
-
-
+    $product = fetchProductById($_GET['id']);//refakturerad
     
 ?>
 
@@ -89,19 +70,19 @@
                     <img src="<?=$products['img_url']?>">
                 </div>
                 <h1>
-                 <?=htmlentities($products['title'])?>
+                 <?=htmlentities($product['title'])?>
                 </h1>
 
                 <br>
 
                 <section>
-                    <?=htmlentities($products['description'])?>
+                    <?=htmlentities($product['description'])?>
                 </section>
                 
                 <br>
 
                 <p>
-                    <?=htmlentities ($products['price'])?>
+                    <?=htmlentities ($product['price'])?>
                 </p>
 
                 <br>      

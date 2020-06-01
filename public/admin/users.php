@@ -131,13 +131,7 @@
         }
     }
         
-    try {
-        $query = "SELECT * FROM users;";
-        $stmt = $dbconnect->query($query);
-        $users = $stmt->fetchAll();
-    }      catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
+    $users = fetchAllUsers(); //refakturerad 
 
 ?>
 
