@@ -71,7 +71,7 @@
 
 
                     <div class="article_img">
-                        <img src="<?=$article['img_url']?>">
+                        <img src="admin/<?=$article['img_url']?>">
                     </div>
 
                     <h2>
@@ -98,6 +98,10 @@
                             <button type="submit">Read More</button>
                         </form>
                     </p>
+                        <form action="#" method="GET">
+                            <input type="hidden" name="id" value="<?=$article['id']?>">
+                            <button type="submit">Add to cart</button>
+                        </form>
                 <?php } ?>
             </div>
         

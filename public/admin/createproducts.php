@@ -1,12 +1,25 @@
 <?php
     require('../../src/config.php');
     
-    checkLoginSession(); //refakturerad
+    checkLoginSession(); //refakturerad å klar
 
     require('../../src/dbconnect.php');
 
     if (isset($_POST['deleteBtn'])) {
-        deleteProduct($_POST['id']); //refakturerad
+        if(empty($title)){
+            try {
+                $query = "
+                DELETE FROM products
+                WHERE id = :id;
+                ";
+      
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':id', $_POST['id']);
+                $stmt->execute();
+            }     catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
+        }
     }
 
     $title          = '';
@@ -22,50 +35,8 @@
         $description = trim($_POST['description']);
         $price       = trim($_POST['price']);
 
-        if (empty($title)) {
-            $error .= "<p>Title is mandatory</p>";
-        }
 
-        if (empty($description)) {
-            $error .= "<p>Description is mandatory</p>";
-        }
-
-        if (empty($price)) {
-            $error .= "<p>Price is mandatory</p>";
-        }
-
-        if ($error) {
-            $msg = "<div class='errors'>{$error}</div>";
-        }
-
-        if (empty($error)) {
-
-            try {
-                $query = "
-                 INSERT INTO products (title, description, price)
-                 VALUES (:title, :description, :price);
-                ";
-
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':title', $title);
-                $stmt->bindValue(':description', $description);
-                $stmt->bindValue(':price', $price);
-                // $stmt->bindValue(':img_url', $img_url);
-                $products = $stmt->execute();
-            } catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
-            }
-            if ($products) {
-                $msg = '<p class="success">Your product are now posted. </p>';
-            } 
-        }
-    }
-        
-    $products = fetchAllProducts(); // refakturerat
-
-    // UPLOAD IMAGE --->
-    // UPLOAD IMAGE --->
-
+            // UPLOAD IMAGE --->
     // checking if the form has been submitted
 
         // Validation for file upload starts here
@@ -117,66 +88,57 @@
     }
 
 
-        if (empty($title)) {
-            $error .= "<p>Title is mandatory</p>";
-        }
-
-        if (empty($description)) {
-            $error .= "<p>Description is mandatory</p>";
-        }
-
-        if (empty($price)) {
-            $error .= "<p>Price is mandatory</p>";
-        }
-
-        if ($error) {
-            $msg = "<div class='errors'>{$error}</div>";
-        }
-
-        if (empty($error)) {
-
-            try {
-                $query = "
-                 INSERT INTO products (title, description, price, img_url)
-                 VALUES (:title, :description, :price, :img_url);
-                ";
-
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':title', $title);
-                $stmt->bindValue(':description', $description);
-                $stmt->bindValue(':price', $price);
-                $stmt->bindValue(':img_url', $img_url);
-                $products = $stmt->execute();
-            } catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
-            }
-            if ($products) {
-                $msg = '<p class="success">Your product are now posted. </p>';
-            } 
-        }
-    
-        
-    try {
-        $query = "SELECT * FROM products;";
-        $stmt = $dbconnect->query($query);
-        $products = $stmt->fetchAll();
-    }      catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
+    if (empty($title)) {
+        $error .= "<p>Title is mandatory</p>";
     }
 
+    if (empty($description)) {
+        $error .= "<p>Description is mandatory</p>";
+    }
 
+    if (empty($price)) {
+        $error .= "<p>Price is mandatory</p>";
+    }
+
+    if ($error) {
+        $msg = "<div class='errors'>{$error}</div>";
+    }
+
+    if (empty($error)) {
+
+        try {
+            $query = "
+                INSERT INTO products (title, description, price, img_url)
+                VALUES (:title, :description, :price, :img_url);
+            ";
+
+            $stmt = $dbconnect->prepare($query);
+            $stmt->bindValue(':title', $title);
+            $stmt->bindValue(':description', $description);
+            $stmt->bindValue(':price', $price);
+            $stmt->bindValue(':img_url', $img_url);
+            $products = $stmt->execute();
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int) $e->getCode()); 
+        }
+        if ($products) {
+            $msg = '<p class="success">Your product are now posted. </p>';
+        } 
+    }
+    
+    $products = fetchAllProducts(); // refakturerat
 
 ?>
-	<div>
+	<!-- <div>
 		<form action="../edit.php?" method="GET">
 			<input type="submit" value="My page" class="btn">
 		</form>
-	</div>
+	</div> -->
     <form action="admin.php">
         <button class="contentBtn">Back</button>
     </form>
-<!-- Lägg till nya artiklar -->
-<!-- Lägg till nya artiklar -->
+    <!-- Lägg till nya artiklar -->
+    <!-- Lägg till nya artiklar -->
     <div class="box2">
         <div class="insidebox">
 
@@ -203,7 +165,6 @@
                 </div>
 
             </form>
-
             <?=$msg?>
         </div> 
     </div>
@@ -255,8 +216,6 @@
                 <div class="bordertext"></div>
             <?php } ?> 
         </ul> 
-    
     </div>
-
 
 <?php include('layout/footer.php'); ?>

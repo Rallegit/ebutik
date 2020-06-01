@@ -67,7 +67,7 @@
     <div class="box-content">
         <form action="#" method="POST">
                 <div class="article_img">
-                    <img src="<?=$products['img_url']?>">
+                    <img src="admin/<?=$product['img_url']?>">
                 </div>
                 <h1>
                  <?=htmlentities($product['title'])?>
