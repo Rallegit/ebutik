@@ -1,9 +1,7 @@
 <?php 
     require('../../src/config.php');
-    if (!isset($_SESSION['username'])) {
-        header('Location: login.php?mustLogin');
-        exit;
-    }
+    
+    checkLoginSession();
 
     require('../../src/dbconnect.php');
 
@@ -135,19 +133,9 @@
                 $msg = '<div class="success">User updated</div>';
                 } 
     }
-        try {
-        $query = "
-            SELECT * FROM users
-            WHERE id = :id;
-        ";
 
-        $stmt = $dbconnect->prepare($query);
-        $stmt->bindvalue(':id', $_GET['id']);
-        $stmt->execute();
-        $konto = $stmt->fetch();
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
+    $account = fetchUserById($_GET['id']); //refakturerad
+
 ?>
 
     <form action="admin.php">
@@ -163,56 +151,56 @@
             <h1>Update user</h1>
             <p>
                 <label for="input1">Username:</label> <br>
-                <input type="text" class="text" name="username" value="<?=htmlentities($konto['username'])?>">
+                <input type="text" class="text" name="username" value="<?=htmlentities($account['username'])?>">
             </p>
 
             <p>
                 <label for="input1">E-mail address:</label> <br>
-                <input type="texter" class="texter" name="email" value="<?=htmlentities($konto['email'])?>">
+                <input type="texter" class="texter" name="email" value="<?=htmlentities($account['email'])?>">
             </p>
 
             <p>
                 <label for="input1">Password:</label> <br>
-                <input type="password" class="text" name="password" value="<?=htmlentities($konto['password'])?>"
+                <input type="password" class="text" name="password" value="<?=htmlentities($account['password'])?>"
                 >
             </p>
 
             <p>
                 <label for="input2">Confirm password:</label> <br>
-                <input type="password" class="text" name="confirmPassword" value="<?=htmlentities($konto['password'])?>">
+                <input type="password" class="text" name="confirmPassword" value="<?=htmlentities($account['password'])?>">
             </p>
             
             <p>
                 <label for="input3">First name:</label> <br>
-                <input type="text" class="text" name="first_name" value="<?=htmlentities($konto['first_name'])?>">
+                <input type="text" class="text" name="first_name" value="<?=htmlentities($account['first_name'])?>">
             </p>
             
             <p>
                 <label for="input4">Last name:</label> <br>
-                <input type="text" class="text" name="last_name" value="<?=htmlentities($konto['last_name'])?>">
+                <input type="text" class="text" name="last_name" value="<?=htmlentities($account['last_name'])?>">
             </p>
             <p>
                 <label for="input5">Phone:</label> <br>
-                <input type="text" class="text" name="phone" value="<?=htmlentities($konto['phone'])?>">
+                <input type="text" class="text" name="phone" value="<?=htmlentities($account['phone'])?>">
             </p>  
             <p>
                 <label for="input6">Street:</label> <br>
-                <input type="text" class="text" name="street" value="<?=htmlentities($konto['street'])?>">     
+                <input type="text" class="text" name="street" value="<?=htmlentities($account['street'])?>">     
             </p>
 
             <p>
                 <label for="input7">City</label> <br>
-                <input type="text" class="text" name="city" value="<?=htmlentities($konto['city'])?>">
+                <input type="text" class="text" name="city" value="<?=htmlentities($account['city'])?>">
             </p>  
 
             <p>
                 <label for="input8">Postal code</label> <br>
-                <input type="text" class="text" name="postal_code" value="<?=htmlentities($konto['postal_code'])?>">
+                <input type="text" class="text" name="postal_code" value="<?=htmlentities($account['postal_code'])?>">
             </p>
 
             <p>
                 <label for="input9">Country</label> <br>
-                <input type="text" class="text" name="country" value="<?=htmlentities($konto['postal_code'])?>">
+                <input type="text" class="text" name="country" value="<?=htmlentities($account['postal_code'])?>">
             </p>
             
             <p>

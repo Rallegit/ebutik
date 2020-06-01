@@ -1,9 +1,7 @@
 <?php 
     require('../src/config.php');
-    if (!isset($_SESSION['username'])) {
-        header('Location: login.php?mustLogin');
-        exit;
-    }
+    
+    checkLoginSession(); //refakturerad
 
     require('../src/dbconnect.php');
 
@@ -135,19 +133,9 @@
                 $msg = '<div class="success">User updated</div>';
                 } 
     }
-        try {
-        $query = "
-            SELECT * FROM users
-            WHERE id = :id;
-        ";
+    
+    $konto = fetchAccountById($_GET['id']); // refakturerad
 
-        $stmt = $dbconnect->prepare($query);
-        $stmt->bindvalue(':id', $_GET['id']);
-        $stmt->execute();
-        $konto = $stmt->fetch();
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    }
 ?>
 
 <?php include('layout/header.php'); ?>

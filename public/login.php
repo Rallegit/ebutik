@@ -24,29 +24,14 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        try {
-            $query = "
-                SELECT * FROM users
-                WHERE username = :username;
-            ";
+        $user = fetchByUsername($username); //refakturerad
 
-            $stmt = $dbconnect->prepare($query);
-            $stmt->bindValue(':username', $username);
-            $stmt->execute();
-            $user = $stmt->fetch();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int) $e->getCode());
-        }
-
-        // If user exists AND password is correct, will be considered true. Meaning you are logged in
         if ($user && $password === $user['password']) {
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            header('Location: index.php');
-            exit;
+            redirect('index.php'); // refakturerad å KLAR!!! 
+
         } else {
-            // If user doesnt Exist, will be considered false
-            // OR if user exists but password is wrong. will also be considered false
             $msg = '<div class="error_msg">Fel inloggningsuppgifter. Var snäll och försök igen.</div>';
         }
     }

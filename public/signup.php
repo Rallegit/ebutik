@@ -1,6 +1,5 @@
 <?php
     require('../src/config.php');
-    require('../src/app/users_functions.php');
     require('../src/dbconnect.php');
 
     $first_name  = '';
@@ -94,7 +93,7 @@
                 'last_name'     => $last_name,
             ];
 
-            $result = add($userData); // refakturerad å klar!!!!!
+            $result = add($userData); // refakturerad
 
             if ($result) {
                 $msg = '<div class="success_msg">The account was successfully created</div>';
