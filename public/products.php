@@ -14,7 +14,7 @@
         $title       = trim($_POST['title']);
         $description = trim(($_POST['description']));
         $price       = trim($_POST['price']);
-        
+  
         if (empty($title)) {
             $error .= "<li>Rubrik är obligatoriskt</li>";
         }
@@ -35,8 +35,8 @@
 
             try {
                 $query = "
-                INSERT INTO products (img_url, title, description, price)
-                VALUES (:img_url, :title, :description, :price);
+                INSERT INTO products (title, description, price, img_url)
+                VALUES (:title, :description, :price, :img_url);
                 ";
 
                 $stmt = $dbconnect->prepare($query);
@@ -58,23 +58,25 @@
 <?php include('layout/header.php'); ?>
     
     <div class="box-content">
-        <ul class="lists">
+      
             <div class="box2">
             
                 <?php foreach ($products as $key => $article) { ?>
-                <li class="blogOne">
+                
 
-                    <!-- Image SKA VA HEEEEEEER -->
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="add">
-                        <img src="<?=$imgUrl?>">
+                    
+                    <form action="#" method="GET">
+                            <input type="hidden" name="id" value="<?=$article['id']?>">
                     </form>
 
+
+                    <div class="article_img">
+                        <img src="<?=$article['img_url']?>">
+                    </div>
+
                     <h2>
-                        <form action="#" method="GET">
-                            <input type="hidden" name="id" value="<?=$article['id']?>">
-                            <?=htmlentities($article['title'])?>
-                        </form>
+                        <?=htmlentities($article['title'])?>
+                       
                     </h2>
 
                     <br>
@@ -98,7 +100,7 @@
                     </p>
                 <?php } ?>
             </div>
-        </ul>
+        
     </div>
     
 <?php include('layout/footer.php'); ?>

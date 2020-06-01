@@ -66,7 +66,9 @@
 
     <div class="box-content">
         <form action="#" method="POST">
-            <li class="blogOne">
+                <div class="article_img">
+                    <img src="<?=$products['img_url']?>">
+                </div>
                 <h1>
                  <?=htmlentities($product['title'])?>
                 </h1>
@@ -83,8 +85,7 @@
                     <?=htmlentities ($product['price'])?>
                 </p>
 
-                <br>
-            </li>          
+                <br>      
         </form>
     </div>
 

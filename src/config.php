@@ -14,7 +14,6 @@ define('SRC_PATH',  __DIR__ . '/'); // path to 'my-page-3/src/'
 
 
 
-
 // Image
 
 define('APP_URL', 'http://localhost/PHP/ebutik/');

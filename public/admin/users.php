@@ -1,7 +1,7 @@
 <?php
     require('../../src/config.php');
     
-    redirect('index.php'); // refakturerad
+    checkLoginSession();
 
     require('../../src/dbconnect.php');
 

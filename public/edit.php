@@ -196,8 +196,6 @@
                 <input type="text" class="text" name="postal_code" value="<?=htmlentities($konto['postal_code'])?>">
             </p>
 
-            <?php print_r($konto['country']) ?>
-
             <?php
             $countries = [
                 'trump' => 'Trumpnation',
@@ -211,11 +209,11 @@
             <label for="country">Country</label>
             <select id="country" name="country">
                 <?php foreach ($countries as $countryKey => $countryName) { ?> 
-                    if ($konto['country'] == $countryKey){
+                   <?php if ($konto['country'] == $countryKey){ ?>
                         <option selected value="<?=$countryKey?>"> <?=$countryName?></option> 
-                    } else {
+                   <?php } else { ?>
                         <option value="<?=$countryKey?>"> <?=$countryName?></option>
-                    }
+                 <?php   } ?>
                 <?php }  ?>
             </select>
             

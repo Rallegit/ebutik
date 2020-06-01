@@ -1,7 +1,7 @@
 <?php
     require('../../src/dbconnect.php');
     require('../../src/config.php');
-    
+
     checkLoginSession(); //refakturerad
 
 ?>
