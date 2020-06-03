@@ -1,6 +1,8 @@
-	<footer>
-	</footer>
 
+        <footer>
+	   </footer>
+    </div>
+    
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

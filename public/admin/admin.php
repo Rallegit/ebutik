@@ -6,17 +6,29 @@
 
 ?>
 
+    <?php include('layout/header.php'); ?>
 
-    <form action="createproducts.php?">
-        <input type="submit" value="Add Product" class="btn">
-    </form>
+    <div class="d-flex justify-content-around text-center bg-light">
+        <div class="col">
+            <form action="createproducts.php?">
+                <input type="submit" value="Add Product" class="btn">
+            </form>
+        </div>
+        <div class="col">
+            <form action="users.php">
+                <input type="submit" value="User-list" class="btn">
+            </form>
+        </div>
+        <div class="col">
+            <form action="admincreate.php">
+                <input type="submit" value="Create user" class="btn">
+            </form>
+        </div>
+        <div class="col">
+            <form action="../index.php">
+                <button class="contentBtn">Back</button>
+            </form>
+        </div>
+    </div>
 
-    <form action="users.php">
-        <input type="submit" value="User-list" class="btn">
-    </form>
-    <form action="admincreate.php">
-        <input type="submit" value="Create user" class="btn">
-    </form>
-    <form action="../index.php">
-        <button class="contentBtn">Back</button>
-    </form>
+    <?php include('layout/footer.php'); ?>

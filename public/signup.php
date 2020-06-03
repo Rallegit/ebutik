@@ -96,9 +96,9 @@
             $result = add($userData); // refakturerad
 
             if ($result) {
-                $msg = '<div class="success_msg">The account was successfully created</div>';
+                $msg = '<div class="alert alert-success" role="alert">The account was successfully created</div>';
             } else {
-                $msg = '<div class="error_msg">Failed to create an account. Please try again.</div>';
+                $msg = '<div class="alert alert-danger" role="alert">Failed to create an account. Please try again.</div>';
             }
         }
 
@@ -108,70 +108,74 @@
 
 <?php include('layout/header.php'); ?>
 
-    <div id="form"> 
-        <form method="POST" action="#">       
-            
-            <?=$msg?>
-            
-            <p>
-                <label for="input1">Username:</label> <br>
-                <input type="text" class="text" name="username" value="<?=htmlentities($username)?>">
-            </p>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="row">
+            <form method="POST" action="#">       
+                
+                <?=$msg?>
+                
+                <p>
+                    <label for="input1">Username:</label><br>
+                    <input type="text" class="text" name="username" value="<?=htmlentities($username)?>">
+                </p>
 
-            <p>
-                <label for="input1">E-mail address:</label> <br>
-                <input type="text" class="text" name="email" value="<?=htmlentities($email)?>">
-            </p>
+                <p>
+                    <label for="input2">E-mail address:</label><br>
+                    <input type="text" class="text" name="email" value="<?=htmlentities($email)?>">
+                </p>
 
-            <p>
-                <label for="input2">Lösenord:</label> <br>
-                <input type="password" class="text" name="password">
-            </p>
+                <p>
+                    <label for="input3">Lösenord:</label><br>
+                    <input type="password" class="text" name="password">
+                </p>
 
-            <p>
-                <label for="input2">Bekräfta lösenord:</label> <br>
-                <input type="password" class="text" name="confirmPassword">
-            </p>
-            
-            <p>
-                <label for="input3">First name:</label> <br>
-                <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name)?>">
-            </p>
-            
-            <p>
-               <label for="input4">Last name:</label> <br>
-               <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name)?>">
-           </p>
-           <p>
-                <label for="input8">Phone:</label> <br>
-                <input type="text" class="text" name="phone" value="<?=htmlentities($phone)?>">
-            </p>  
-           <p>
-               <label for="input5">Street:</label> <br>
-               <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
-           </p>
+                <p>
+                    <label for="input4">Bekräfta lösenord:</label><br>
+                    <input type="password" class="text" name="confirmPassword">
+                </p>
+                
+                <p>
+                    <label for="input5">First name:</label><br>
+                    <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name)?>">
+                </p>
+                
+                <p>
+                   <label for="input6">Last name:</label><br>
+                   <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name)?>">
+               </p>
 
-            <p>
-                <label for="input6">City</label> <br>
-                <input type="text" class="text" name="city" value="<?=htmlentities($city)?>">
-            </p>  
+               <p>
+                    <label for="input7">Phone:</label><br>
+                    <input type="text" class="text" name="phone" value="<?=htmlentities($phone)?>">
+                </p>
 
-            <p>
-                <label for="input7">Postal code</label> <br>
-                <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
-            </p>
-              
-            <label for="country">Country</label>
-            <select id="country" name="country">
-                <option value="trump">TrumpNation</option>
-                <option value="norway">Norway</option>
-                <option value="denmark">Denmark</option>
-                <option value="finland">Finland</option>
-                <option value="sweden">Sweden</option>
-            </select>
+               <p>
+                   <label for="input8">Street:</label><br>
+                   <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
+               </p>>
 
-                <input type="submit" name="signup" value="Register">
-        </form>
+                <p>
+                    <label for="input9">City</label><br>
+                    <input type="text" class="text" name="city" value="<?=htmlentities($city)?>">
+                </p> 
+
+                <p>
+                    <label for="input7">Postal code</label><br>
+                    <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
+                </p>>
+                  
+                <label for="country">Country</label><br>
+                <select id="country" name="country">
+                    <option value="trump">TrumpNation</option>
+                    <option value="norway">Norway</option>
+                    <option value="denmark">Denmark</option>
+                    <option value="finland">Finland</option>
+                    <option value="sweden">Sweden</option>
+                </select>
+
+                <input type="submit" name="signup" value="Sign Up">
+            </form>
+        </div>
     </div>
 
 <?php include('layout/footer.php'); ?>
