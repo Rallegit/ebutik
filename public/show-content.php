@@ -62,37 +62,40 @@
     
 ?>
 
-<?php include('layout/header.php'); ?>
+    <?php include('layout/header.php'); ?>
 
-    <div class="box-content">
+   <div class="d-flex flex-column">
         <form action="#" method="POST">
-                <div class="article_img">
-                    <img src="admin/<?=$product['img_url']?>">
+                <div class="col">
+                    <img src="admin/<?=$article['img_url']?>" style="width:200px;height:auto;">
                 </div>
-                <h1>
+
+                <div class="col">
                  <?=htmlentities($product['title'])?>
-                </h1>
+                </div>
 
                 <br>
 
-                <section>
+                <div class="col">
                     <?=htmlentities($product['description'])?>
-                </section>
+                </div>
                 
                 <br>
 
-                <p>
+                <div class="col">
                     <?=htmlentities ($product['price'])?>
-                </p>
+                </div>
 
                 <br>      
         </form>
-    </div>
 
-    <div class="box2">
         <form action="products.php">
-            <button class="contentBtn">Back to products</button>
+            <div class="col-2">
+                <!-- <button class="contentBtn">Back to products</button> -->
+                <input type="submit" class="form-control" value="Back to products">
+            </div>
         </form>
     </div>
+
 
 <?php include('layout/footer.php'); ?>

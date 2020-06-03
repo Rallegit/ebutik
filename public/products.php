@@ -54,57 +54,46 @@
     $products = fetchAllProducts(); // refakturerat
    
 ?>
-
-<?php include('layout/header.php'); ?>
+    <?php include('layout/header.php'); ?>
     
-    <div class="box-content">
-      
-            <div class="box2">
-            
-                <?php foreach ($products as $key => $article) { ?>
+    <div class="d-flex mt-5">
+        <?php foreach ($products as $key => $article) { ?>
+            <div class="col">
+                <form action="#" method="GET">
+                    <input type="hidden" name="id" value="<?=$article['id']?>">
+                </form>
                 
+                <img src="admin/<?=$article['img_url']?>" style="width:200px;height:auto;">
 
-                    
-                    <form action="#" method="GET">
-                            <input type="hidden" name="id" value="<?=$article['id']?>">
-                    </form>
+                <p><?=htmlentities($article['title'])?></p>
+               
+                <p> <?=substr(htmlentities ($article['description']),0, 30)?></p>
 
+                <p><?=htmlentities ($article['price'])?></p>
+ 
+                <form action="show-content.php" method="GET">
+                    <input type="hidden" name="id" value="<?=$article['id']?>">
+                    <!-- <button type="submit">Read More</button> -->
+                    <input type="submit" class="form-control mt-3" value="Read more">
+                </form>
+   
+                <form action="add-cart-item.php" method="POST">
+                    <input type="hidden" name="articleId" value="<?=$article['id']?>">
+                    <input type="number" name="quantity" class="form-control mb-3" value="1" min="0">
+                    <input type="submit" name="addToCart" class="form-control" value="Add to cart">
+                </form>
 
-                    <div class="article_img">
-                        <img src="admin/<?=$article['img_url']?>">
+                <!-- <div class="form-group row">
+                    <label for="example-number-input" class="col-2 col-form-label">Number</label>
+                    <div class="col-10">
+                        <input class="form-control" type="number" value="1" min="0">
                     </div>
-
-                    <h2>
-                        <?=htmlentities($article['title'])?>
-                       
-                    </h2>
-
-                    <br>
-
-                    <p>
-                        <?=substr(htmlentities ($article['description']),0, 30)?>
-                    </p>
-
-                    <br>
-                    <p>
-                        <?=htmlentities ($article['price'])?>
-                    </p>
-
-                    <br>
-
-                    <p>
-                        <form action="show-content.php" method="GET">
-                            <input type="hidden" name="id" value="<?=$article['id']?>">
-                            <button type="submit">Read More</button>
-                        </form>
-                    </p>
-                        <form action="#" method="GET">
-                            <input type="hidden" name="id" value="<?=$article['id']?>">
-                            <button type="submit">Add to cart</button>
-                        </form>
-                <?php } ?>
+                </div> -->
             </div>
-        
+
+            <div class="w-100"></div>
+
+        <?php } ?>
     </div>
     
-<?php include('layout/footer.php'); ?>
+    <?php include('layout/footer.php'); ?>

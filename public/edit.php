@@ -140,13 +140,13 @@
 
 <?php include('layout/header.php'); ?>
 
-    <div id="form"> 
+    <div class="d-flex justify-content-center mt-5">
         <form action="#" method="POST">       
         
             <!-- Visa errormeddelanden -->
             <?=$msg?>
             
-            <h1>Edit info</h1>
+            <h1 class="text-center">Edit info</h1>
             <p>
                 <label for="input1">Username:</label> <br>
                 <input type="text" class="text" name="username" value="<?=htmlentities($konto['username'])?>">
