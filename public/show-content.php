@@ -64,29 +64,33 @@
 
     <?php include('layout/header.php'); ?>
 
-   <div class="d-flex flex-column">
+    <div class="d-flex flex-column pt-4 pb-4 border">
         <form action="#" method="POST">
-                <div class="col">
+            <div class="d-flex align-content-center shadow-sm p-3 bg-white rounded">
+                <div class="col-2">
                     <img src="admin/<?=$article['img_url']?>" style="width:200px;height:auto;">
                 </div>
 
-                <div class="col">
+                <div class="col-2">
                  <?=htmlentities($product['title'])?>
                 </div>
 
-                <br>
+                <div class="wp-100"></div>
 
-                <div class="col">
+                <div class="col-4">
                     <?=htmlentities($product['description'])?>
                 </div>
                 
-                <br>
+                <div class="wp-100"></div>
+                
 
-                <div class="col">
+                <div class="col-2">
                     <?=htmlentities ($product['price'])?>
                 </div>
 
-                <br>      
+                <div class="wp-100"></div>
+
+            </div>   
         </form>
 
         <form action="products.php">

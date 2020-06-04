@@ -1,5 +1,5 @@
 <?php
-	// unset($_SESSION['items']);
+	//unset($_SESSION['items']);
 	if(!isset($_SESSION['items'])) {
 		$_SESSION['items'] = [];
 	}
@@ -26,9 +26,7 @@
 	foreach ($_SESSION['items'] as $articleId => $articleItem) {
  		$articleTotalSum += $articleItem['price'] * $articleItem['quantity'];
 	}	
- 
-	//$products = fetchAllProducts(); // refakturerat
-	
+ 	
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +46,7 @@
 <body>
 	<div class="container">
 
-		<!-- Above header -->
+		<!-- Header -->
 		<div class="d-flex justify-content-end">
 			<div class="p-2">
 				<form action="edit.php?" method="GET">
@@ -98,49 +96,42 @@
 			</div>
       	</div>
 
-		<div class="row">
-			<div class="col-lg-12 col-sm-12 col-12 main-section">
-				<a href="products.php" data-toggle="dropdown" role="button" aria-expanded="false"> 
-					<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown-toggle">
-						<span class="fa fa-gift bigicon">View Cart</span>
-						<span class="badge badge-pill badge-danger"><?=$articleItem['quantity']?></span>
-						<!-- <span class="caret"></span> -->
-					</button>
-				</a>
+		<!-- Cart -->
+		<div class="d-flex justify-content-end">
+			<div class="d-flex">
+				<a href="products.php" data-toggle="dropdown" role="button" aria-expanded="false">
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown-toggle">
+					<span class="fa fa-gift bigicon">View Cart</span>
+					<span class="badge badge-pill badge-danger"><?=$articleItemCount?></span>
+				</button>
 				
+				</a>
+
+				<!-- Dropdown Menu -->
 				<div class="dropdown-menu">
 					<div class="d-flex flex-column">
 					  	<div class="col">
 					  		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 						</div>
 
-						<?php foreach ($products as $key => $article) { ?>
-							<div class="article">
-								<img src="admin/<?=$article['img_url']?>" style="width:50px;height:auto;">
-								<br>
-								<h1> <?=htmlentities($article['title'])?></h1>
-								<br>
-								<p><?=htmlentities ($article['price'])?> $ </p>
-
-								<p>Quantity:
-									<span class="text-info"><?=$articleItem['quantity']?></span>
-								</p>
-							</div>
-						<?php } ?>
-
 						<div class="col total-section text-left">
 							<?php foreach ($_SESSION['items'] as $articleId => $articleItem) { ?>
 								<div class="row cart-detail">
 									<div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+										<img src="admin/<?=$articleItem['img_url']?>" style="width:50px;height:auto;">
 									</div>
-									<div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-										<p><?$articleItem['title']?></p>
-										<span class="count">Total: <?=$articleTotalSum?>$</span>
+									<div class="col">
+										<?=$articleItem['title']?>
+									</div>
+									<div class="col">
+										Antal:<?=$articleItem['quantity']?>
 									</div>
 								</div>
 							<?php } ?>
+							<span class="count">Total: <?=$articleTotalSum?>$</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	
