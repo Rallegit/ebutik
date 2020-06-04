@@ -2,8 +2,6 @@
     echo "<pre>";
     print_r($_SESSION['items']);
     echo "</pre>";
-
-
 ?>
 	
 	<!-- Varukorg -->

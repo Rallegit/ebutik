@@ -47,7 +47,7 @@
                 WHERE id = :id
                 ";
 
-                $stmt = $dbconnect->prepare($query);
+                $stmt = $dbconnect->prepare($query);   
                 $stmt->bindValue(':title', $title);
                 $stmt->bindValue(':description', $description);
                 $stmt->bindValue(':price', $price);

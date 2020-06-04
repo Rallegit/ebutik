@@ -69,7 +69,7 @@
                
                 <p> <?=substr(htmlentities ($article['description']),0, 30)?></p>
 
-                <p><?=htmlentities ($article['price'])?></p>
+                <p><?=htmlentities ($article['price'])?>$</p>
  
                 <form action="show-content.php" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
