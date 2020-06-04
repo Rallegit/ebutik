@@ -56,9 +56,9 @@
 ?>
     <?php include('layout/header.php'); ?>
     
-    <div class="d-flex mt-5">
+    <div class="d-flex flex-wrap mt-5">
         <?php foreach ($products as $key => $article) { ?>
-            <div class="col">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-5">
                 <form action="#" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
                 </form>
@@ -73,7 +73,6 @@
  
                 <form action="show-content.php" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
-                    <!-- <button type="submit">Read More</button> -->
                     <input type="submit" class="form-control mt-3" value="Read more">
                 </form>
    
@@ -82,17 +81,7 @@
                     <input type="number" name="quantity" class="form-control mb-3" value="1" min="0">
                     <input type="submit" name="addToCart" class="form-control" value="Add to cart">
                 </form>
-
-                <!-- <div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label">Number</label>
-                    <div class="col-10">
-                        <input class="form-control" type="number" value="1" min="0">
-                    </div>
-                </div> -->
             </div>
-
-            <div class="w-100"></div>
-
         <?php } ?>
     </div>
     

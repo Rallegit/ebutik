@@ -36,8 +36,8 @@
         $price       = trim($_POST['price']);
 
 
-            // UPLOAD IMAGE --->
-    // checking if the form has been submitted
+        // UPLOAD IMAGE --->
+        // checking if the form has been submitted
 
         // Validation for file upload starts here
         if(is_uploaded_file($_FILES['upload']['tmp_name'])) {
@@ -129,93 +129,86 @@
     $products = fetchAllProducts(); // refakturerat
 
 ?>
-	<!-- <div>
-		<form action="../edit.php?" method="GET">
-			<input type="submit" value="My page" class="btn">
-		</form>
-	</div> -->
-    <form action="admin.php">
-        <button class="contentBtn">Back</button>
-    </form>
-    <!-- Lägg till nya artiklar -->
-    <!-- Lägg till nya artiklar -->
-    <div class="box2">
-        <div class="insidebox">
+	<?php include('layout/header.php'); ?>
 
-            <h1>Add product</h1>
-            <form action="" method="POST" enctype="multipart/form-data">
+    <!-- Add new products -->
+    <div class="d-flex flex-column ml-5 mt-5">
+        <form action="" method="POST" enctype="multipart/form-data">
 
-                <div class="inputone">
-                    <input type="text" name="title" placeholder="Title">
+            <div class="col">
+                <h5>Add new product</h5>
+                <input type="text" name="title" placeholder="Title">
+            </div>
 
-                    <br>
-                        
-                    <form action="products.php?" method="POST">
-                    file: <input type="file" name="upload" value=""/> 
-                    </form> 
-                    
-                    <br>
+            <div class="wp-100"></div>
 
-                    <textarea type="text" name="description" placeholder="Description" rows="10" cols="60" style="resize:none"></textarea>
+            <div class="col">
+                <form action="products.php?" method="POST">
+                    <input type="file" name="upload" value=""/> 
+                </form> 
+            </div>
 
-                    <br>
-                    
-                    <input type="text" name="price" placeholder="Price">
-                    <button class="btn1" name="add">Add Product</button>
+            <div class="wp-100"></div>
+
+            <div class="col">
+                <textarea type="text" name="description" placeholder="Description" rows="5" cols="60" style="resize:none"></textarea>
+            </div>
+
+            <div class="wp-100"></div>
+
+            <div class="col">
+                <input type="text" name="price" placeholder="Price">
+                <button class="btn1" name="add">Add product</button>
+            </div>
+        </form>
+
+        <div class="col">
+            <?=$msg?>
+        </div>
+    </div> 
+
+    <!-- Artiklar börjar här -->
+    <div class="d-flex flex-column pt-4 pb-4 border">
+        <?php foreach ($products as $key => $article) { ?>
+            <div class="d-flex align-content-center shadow-sm p-3 bg-white rounded">
+                <div class="col-2">
+                    <img src="<?=$article['img_url']?>" style="width:100px;height:auto;">
                 </div>
 
-            </form>
-            <?=$msg?>
-        </div> 
-    </div>
-    <!-- Artiklar börjar här  -->
-    <!-- Artiklar börjar här  -->
-    <div class="box">
-        <ul class="lists">
-            <?php foreach ($products as $key => $article) { ?>
-                <li class="articlelist">
+                <div class="col-2 d-flex align-self-center">
+                    <?=htmlentities($article['title'])?>
+                </div>
+                
+                <div class="wp-100"></div>
 
-                    <div class="article_img">
-                        <img src="<?=$article['img_url']?>">
-                   </div>
+                <div class="col-4 d-flex align-self-center">
+                    <?=htmlentities($article['description'])?>
+                </div>
 
-                    <h2>
-                        <?=htmlentities($article['title'])?>
-                    </h2>
-                    
+                <div class="wp-100"></div>
 
-                    <br>
+                <div class="col-2 d-flex align-self-center">
+                    <?=htmlentities($article['price'])?>
+                </div>
 
-                    <section>
-                        <?=htmlentities($article['description'])?>
-                    </section>
-
-                    <br>
-
-                    <h3>
-                        <?=htmlentities($article['price'])?>
-                    </h3>
-
-                    <br>
-                    
+                <div class="wp-100"></div>
+                
+                <div class="col-2 d-flex align-self-center">
                     <form action="" method="POST">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
                         <input type="submit" name="deleteBtn" value="Ta Bort" class="btn">
                     </form>
-                    
+                
                     <form action="updateproduct.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
                         <input type="submit" value="Uppdatera" class="btn">
                     </form>
-                
-                </li>
-                
-                <br>
-                <br>
-                
-                <div class="bordertext"></div>
-            <?php } ?> 
-        </ul> 
+                </div>   
+            </div>
+            
+            <div class="wp-100"></div>
+            
+        <?php } ?> 
     </div>
 
 <?php include('layout/footer.php'); ?>
