@@ -54,6 +54,7 @@
     $products = fetchAllProducts(); // refakturerat
    
 ?>
+
     <?php include('layout/header.php'); ?>
     
     <div class="d-flex flex-wrap mt-5">

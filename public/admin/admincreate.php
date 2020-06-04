@@ -28,51 +28,51 @@
         $country           = trim($_POST['country']);
 
         if (empty($first_name)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The first name is mandatory</div></li>";
+            $error .= "<li>The first name is mandatory</li>";
         }
 
         if (empty($last_name)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The last name is mandatory</div></li>";
+            $error .= "<li>The last name is mandatory</li>";
         }
 
         if (empty($email)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The e-mail address is mandatory</div></li>";
+            $error .= "<li>The e-mail address is mandatory</li>";
         }
 
         if (empty($password)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The password is mandatory</div></li>";
+            $error .= "<li>The password is mandatory</li>";
         }
 
         if (empty($phone)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The phone is mandatory</div></li>";
+            $error .= "<li>The phone is mandatory</li>";
         }
 
         if (empty($street)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The street is mandatory</div></li>";
+            $error .= "<li>The street is mandatory</li>";
         }
 
         if (empty($postal_code)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The postal code is mandatory</div></li>";
+            $error .= "<li>The postal code is mandatory</li>";
         }
 
         if (empty($city)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The city is mandatory</div></li>";
+            $error .= "<li>The city is mandatory</li>";
         }
 
         if (empty($country)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The country is mandatory</div></li>";
+            $error .= "<li>The country is mandatory</li>";
         }
 
         if (!empty($password) && strlen($password) < 6) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The password cant be less than 6 characters</div></li>";
+            $error .= "<li>The password cant be less than 6 characters</li>";
         }
 
         if ($confirmPassword !== $password) {
-            $error .= "<li><div class="alert alert-danger" role="alert">The confirmed password doesnt match</div></li>";
+            $error .= "<li>The confirmed password doesnt match</li>";
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error .= "<li><div class="alert alert-danger" role="alert">Unvalid e-mail address</div></li>";
+            $error .= "<li>Unvalid e-mail address</li>";
         }
 
         if ($error) {
