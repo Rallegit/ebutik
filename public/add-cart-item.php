@@ -25,9 +25,9 @@
         
         if ($article) {
             $article = array_merge($article, ['quantity' => $quantity]);
-            // echo"<pre>";
-            // print_r($article);
-            // echo"<pre>";
+            echo"<pre>";
+            print_r($article);
+            echo"<pre>";
             $articleItem = [$articleId => $article];
         }
 
@@ -41,11 +41,6 @@
             }
         } 
     }
-
-    // echo "<pre>";
-    // print_r($_SERVER);
-    // echo "<pre>";
-    // exit;
 
     header('Location: products.php');
     exit;

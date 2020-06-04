@@ -128,35 +128,30 @@
     
     $products = fetchAllProducts(); // refakturerat
 
-?>
-	<?php include('layout/header.php'); ?>
+?>  
+
+    <?php include('layout/header.php'); ?>
 
     <!-- Add new products -->
-    <div class="d-flex flex-column ml-5 mt-5">
+    <div class="d-flex flex-column">
         <form action="" method="POST" enctype="multipart/form-data">
 
             <div class="col">
-                <h5>Add new product</h5>
+                <h5>Add product</h5>
                 <input type="text" name="title" placeholder="Title">
-            </div>
 
-            <div class="wp-100"></div>
+                <div class="wp-100"></div>
 
-            <div class="col">
                 <form action="products.php?" method="POST">
                     <input type="file" name="upload" value=""/> 
-                </form> 
-            </div>
+                </form>
 
-            <div class="wp-100"></div>
+                <div class="wp-100"></div>
 
-            <div class="col">
                 <textarea type="text" name="description" placeholder="Description" rows="5" cols="60" style="resize:none"></textarea>
-            </div>
 
-            <div class="wp-100"></div>
+                <div class="wp-100"></div>
 
-            <div class="col">
                 <input type="text" name="price" placeholder="Price">
                 <button class="btn1" name="add">Add product</button>
             </div>
@@ -167,48 +162,53 @@
         </div>
     </div> 
 
-    <!-- Artiklar börjar här -->
-    <div class="d-flex flex-column pt-4 pb-4 border">
-        <?php foreach ($products as $key => $article) { ?>
-            <div class="d-flex align-content-center shadow-sm p-3 bg-white rounded">
-                <div class="col-2">
-                    <img src="<?=$article['img_url']?>" style="width:100px;height:auto;">
-                </div>
+    <!-- Artiklar börjar här  -->
+    <div class="box">
+        <ul class="lists">
+            <?php foreach ($products as $key => $article) { ?>
+                <li class="articlelist">
 
-                <div class="col-2 d-flex align-self-center">
-                    <?=htmlentities($article['title'])?>
-                </div>
-                
-                <div class="wp-100"></div>
+                    <div class="article_img">
+                        <img src="<?=$article['img_url']?>">
+                   </div>
 
-                <div class="col-4 d-flex align-self-center">
-                    <?=htmlentities($article['description'])?>
-                </div>
+                    <h2>
+                        <?=htmlentities($article['title'])?>
+                    </h2>
+                    
 
-                <div class="wp-100"></div>
+                    <br>
 
-                <div class="col-2 d-flex align-self-center">
-                    <?=htmlentities($article['price'])?>
-                </div>
+                    <section>
+                        <?=htmlentities($article['description'])?>
+                    </section>
 
-                <div class="wp-100"></div>
-                
-                <div class="col-2 d-flex align-self-center">
+                    <br>
+
+                    <h3>
+                        <?=htmlentities($article['price'])?>
+                    </h3>
+
+                    <br>
+                    
                     <form action="" method="POST">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
                         <input type="submit" name="deleteBtn" value="Ta Bort" class="btn">
                     </form>
-                
+                    
                     <form action="updateproduct.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
                         <input type="submit" value="Uppdatera" class="btn">
                     </form>
-                </div>   
-            </div>
-            
-            <div class="wp-100"></div>
-            
-        <?php } ?> 
+                
+                </li>
+                
+                <br>
+                <br>
+                
+                <div class="bordertext"></div>
+            <?php } ?> 
+        </ul> 
     </div>
 
-<?php include('layout/footer.php'); ?>
+    <?php include('layout/footer.php'); ?>
