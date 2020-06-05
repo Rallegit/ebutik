@@ -127,6 +127,9 @@
 								</div>
 							<?php } ?>
 							<span class="count">Total: <?=$articleTotalSum?>$</span>
+							<form action="checkout.php" method="POST">
+								<input type="submit" name="" value="Checkout" class="btn btn-primary">
+							</form>
 						</div>
 					</div>
 				</div>
