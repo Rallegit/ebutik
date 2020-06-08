@@ -48,7 +48,7 @@
             //this is the temporary name of the file
             $fileTempName = $_FILES['upload']['tmp_name'];
             //this is the path where you want to save the actual file
-            $path = "img/";
+            $path = "../img/";
             //this is the actual path and actual name of the file
             $newPathAndName = $path . $fileName;
 

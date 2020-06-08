@@ -2,9 +2,13 @@
 /**
  * When refactoring to functions, you need to consider the following:
  *
- * 1. Make sure all necessary variables are availabe in the function scope
+ * 1. Make sure all necessary variables are available in the function scope
  * 2. Make sure to return the value, if its needed for the particular code
- */	
+ */
+
+/*------------------------------------------------------------*/
+// Används på products.php
+// Används på createproducts.php
 
 	function fetchAllProducts() {
         global $dbconnect;
@@ -20,6 +24,7 @@
 	}
 
 /*------------------------------------------------------------*/
+// Används på users.php
 
     function fetchAllUsers() {
         global $dbconnect;
@@ -35,6 +40,8 @@
     }
 
 /*------------------------------------------------------------*/
+// Används på show-content.php
+// Används på updateproduct.php
 
 	function fetchProductById($id) {
         global $dbconnect;
@@ -56,6 +63,7 @@
 	}
 
 /*------------------------------------------------------------*/
+// Används på updateuser.php
 
     function fetchUserById($id) {
         global $dbconnect;
@@ -67,7 +75,7 @@
             ";
 
             $stmt = $dbconnect->prepare($query);
-            $stmt->bindvalue(':id', $_GET['id']);
+            $stmt->bindValue(':id', $_GET['id']);
             $stmt->execute();
             $account = $stmt->fetch();
         } catch (\PDOException $e) {
@@ -77,7 +85,7 @@
     }
 
 /*------------------------------------------------------------*/
-
+// Används på edit.php
     function fetchAccountById() {
         global $dbconnect;
 
@@ -88,7 +96,7 @@
             ";
 
             $stmt = $dbconnect->prepare($query);
-            $stmt->bindvalue(':id', $_GET['id']);
+            $stmt->bindValue(':id', $_GET['id']);
             $stmt->execute();
             $konto = $stmt->fetch();
         } catch (\PDOException $e) {
@@ -98,6 +106,7 @@
     }
 
 /*------------------------------------------------------------*/
+// Används på login.php
 
 	function fetchByUsername($username) {
 		global $dbconnect;
@@ -139,11 +148,12 @@
     //         session_start();
     //         $_SESSION["successmsg"]='User deleted!';
     //         session_destroy();
-    //         redirect('../index.php'); /// hittat inte sökväg om users -> deleteBtn // mypage --> users deleteknapp
+    //         redirect('../index.php'); /// hittar inte sökväg om users -> deleteBtn // mypage --> users deleteknapp
     //     }
-	// } // FIXA SENENNESNSENSENESNSNE
+	// } // FIXA OCH REFAKTURERA SEN, troligtvis enkel lösning att separera funktionerna från stycket "session_start();"
 
 /*------------------------------------------------------------*/
+// Används på show-content.php
 
     function deleteProduct($id) {
         global $dbconnect;
@@ -171,6 +181,7 @@
 	// }
 
 /*------------------------------------------------------------*/
+// Används på signup.php
 
 	function add($userData) {
 	    global $dbconnect;

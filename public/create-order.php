@@ -2,10 +2,10 @@
 	require('../src/dbconnect.php');
 	// require('../src/config.php');
 	
-	  echo "<pre>";
-	  print_r($_POST);
-	  echo "<pre>";
-	//exit;
+	echo "<pre>";
+	print_r($_POST);
+	echo "<pre>";
+	exit;
 
 	if (isset($_POST['createOrderBtn'])) {
 		$firstName 		= trim($_POST['firstName']);
