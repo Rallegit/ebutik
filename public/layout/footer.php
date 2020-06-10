@@ -1,6 +1,6 @@
 
         <footer>
-	   </footer>
+	    </footer>
     </div>
     
 	<!-- Optional JavaScript -->
@@ -11,6 +11,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- CUSTOM JavaScript -->
-   	<!-- <script src="js/main.js"></script> -->
+   	<script type="text/javascript">
+        $('.update-cart-form input[name="quantity"]').on('change', function() {
+
+            let quantity = $(this).val();
+            let cartId = $(this).data('id');
+
+            $.ajax({
+                method: 'POST',
+                url: 'update-cart-item.php',
+                date: {quantity: quantity, cartId: cartId},
+                success: function() {
+
+                };
+            })
+        });
+    </script>
   </body>
 </html>

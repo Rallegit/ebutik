@@ -1,14 +1,14 @@
 <?php
-    // require('../src/config.php');
-    // require('../src/dbconnect.php');
+    require('../src/config.php');
+    require('../src/dbconnect.php');
 
     // if (empty($_SESSION['articleItems'])) {
-    //     header('Location: products.php');
+    //     header('Location: index.php'); 
     //     exit;
     // }
 
-    // $articleItems = $_SESSION['articleItems'];
-    // unset($_SESSION['articleItems']);
+    //$articleItems = $_SESSION['articleItems'];
+    //unset($_SESSION['articleItems']);
 ?>
 
 <?php include('layout/header.php'); ?>
