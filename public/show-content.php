@@ -68,17 +68,14 @@
         <form action="#" method="POST">
             <div class="d-flex align-content-center shadow-sm p-3 bg-white rounded">
                 <div class="col-2">
-                    <img src="admin/<?=$article['img_url']?>" style="width:200px;height:auto;">
+                    <img src="admin/<?=$product['img_url']?>" style="width:90px;height:auto;">
                 </div>
 
-                <div class="col-2">
-                 <?=htmlentities($product['title'])?>
-                </div>
-
-                <div class="wp-100"></div>
-
-                <div class="col-4">
-                    <?=htmlentities($product['description'])?>
+                <div class="d-flex ">
+                    <div class="col-10">
+                        <h1><?=htmlentities($product['title'])?></h1> <br>
+                        <p><?=htmlentities($product['description'])?></p>
+                    </div>
                 </div>
                 
                 <div class="wp-100"></div>

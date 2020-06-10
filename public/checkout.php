@@ -2,9 +2,40 @@
     require('../src/config.php');
     require('../src/dbconnect.php');
     
-   // echo "<pre>";
-   // print_r($_POST);
-   // echo "<pre>";
+    checkLoginSession(); //refakturerad 
+
+    try {
+        $query = "
+            SELECT * FROM users
+            WHERE id = :id;
+        ";
+        
+        $stmt = $dbconnect->prepare($query);
+        $stmt->bindValue(':id', $_SESSION['id']);
+        $stmt->execute();
+        $user = $stmt->fetch();
+    } catch (\PDOException $e) {
+        throw new \PDOException($e->getMessage(), (int) $e->getCode());
+    }
+     
+    $msg = '';
+    if (isset($_POST['deleteBtn'])) {
+        if(empty($title)){
+            try {
+                $query = "
+                DELETE FROM products
+                WHERE id = :id;
+                ";
+    
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':id', $_POST['id']);
+                $stmt->execute();
+            }     catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
+        }
+    }
+
 ?>
 
 <?php include('layout/header.php'); ?>
@@ -16,13 +47,13 @@
             <th style="width: 50%">Description</th>
             <th style="width: 10%"></th>
             <th style="width: 15%">Quantity</th>
-            <th style="width: 15%">Unit price</th>
+            <th style="width: 15%">Price</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($_SESSION['items'] as $articleId => $articleItem) {?>
             <tr>
-                <td><img src="<?=$articleItem['img_url']?>" style="width:50px;height:auto;"></td>
+                <td><img src="img/<?=$articleItem['img_url']?>" style="width:50px;height:auto;"></td>
                 <td><?=$articleItem['description']?></td>
                 <td>
                     <form action="delete-cart-item.php" method="POST">
@@ -36,9 +67,8 @@
                     </form>
                 </td>
                 <td>
-                    <form action="update-cart-item.php" class="update-cart-form" method="">
-                        <input type="hidden" name="articleId" value="<?=$articleId?>">
-                        <input type="number" name="quantity" value="<?=$articleItem['quantity']?>">
+                    <form class="update-cart-form" method="POST">
+                        <input data-id="<?=$articleId?>" type="number" name="quantity" value="<?=$articleItem['quantity']?>" min="0">
                     </form>
                 </td>
                 <td><?=$articleItem['price']?> kr</td>
@@ -55,61 +85,85 @@
     </tbody>
 </table>
 
-
-
-
 <form action="create-order.php" method="POST">
     <input type="hidden" name="totalPrice" value="<?=$articleTotalSum?>">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputFirstName">First name</label>
-                <input type="text" class="form-control" name="firstName" id="inputFirstName">
+                <input type="text" class="form-control" name="firstName" id="inputFirstName" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['first_name']) ? htmlentities($user['first_name']) : ''?>">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputLastName">Last name</label>
-                <input type="text" class="form-control" name="lastName" id="inputLastName">
+                <input type="text" class="form-control" name="lastName" id="inputLastName"<?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['last_name']) ? htmlentities($user['last_name']) : ''?>">
             </div>
         </div>
-        <div class="form-group">
+         <div class="form-group">
             <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" id="inputUsername" name="username">
+            <input type="text" class="form-control" id="inputUsername" name="username" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['username']) ? htmlentities($user['username']) : ''?>">
+        </div> 
+         <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" name="password" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['password']) ? htmlentities($user['password']) : ''?>"> 
         </div>
         <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="text" class="form-control" id="inputEmail" name="email">
+            <input type="text" class="form-control" id="inputEmail" name="email" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['email']) ? htmlentities($user['email']) : ''?>">
         </div>
         <div class="form-group">
             <label for="inputPhone">Phone</label>
-            <input type="text" class="form-control" id="inputPhone" name="phone">
+            <input type="text" class="form-control" id="inputPhone" name="phone" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['phone']) ? htmlentities($user['phone']) : ''?>">
         </div>
         <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" name="street" placeholder="1234 Main St">
-        </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" name="password" >
+            <input type="text" class="form-control" id="inputAddress" name="street" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['street']) ? htmlentities($user['street']) : ''?>">
         </div>
         <div class="form-group col-md-2">
                 <label for="inputZipcode">Zip code</label>
-                <input type="text" class="form-control" name="postalCode" id="inputZipcode">
+                <input type="text" class="form-control" name="postalCode" id="inputZipcode"<?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['postal_code']) ? htmlentities($user['postal_code']) : ''?>">
         </div>
         <div class="form-group">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" name="city" id="inputCity">
+            <input type="text" class="form-control" name="city" id="inputCity" <?= !empty($user) ? 'readonly' : '' ?> value="<?= isset($user['city']) ? htmlentities($user['city']) : ''?>">
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
+            
+
+            <?php
+                        $countries = [
+                            'trump' => 'Trumpnation',
+                            'norway' => 'Norway',
+                            'denmark' => 'Denmark',
+                            'finland' => 'Finland',
+                            'sweden' => 'Sweden',
+                        ];
+                        ?>
                 <label for="inputCountry">Country</label>
-                <select id="inputCountry" name="country" class="form-control">
+                <select id="country" name="country" >
+                            <?php foreach ($countries as $countryKey => $countryName) { ?> 
+                               <?php if ($user['country'] == $countryKey){ ?>
+                                    <option selected value="<?=$countryKey?>"> <?=$countryName?></option> 
+                               <?php } else { ?>
+                                    <option value="<?=$countryKey?>"> <?=$countryName?></option>
+                             <?php   } ?>
+                            <?php }  ?>
+                        </select>
+
+
+
+
+
+
+             <!-- <select id="inputCountry" name="country" class="form-control">
                     <option selected>Choose...</option>
                     <option>Sweden</option>
                     <option>Finland</option>
                     <option>Denmark</option>
                     <option>Norway</option>
-                </select>
+            </select> -->
             </div>
         </div>
+        
         <div class="form-group">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -122,10 +176,3 @@
 </form>
 
 <?php include('layout/footer.php'); ?>
-    
-
-
-
-
-
-

@@ -1,11 +1,11 @@
 <?php
 	require('../src/dbconnect.php');
-	// require('../src/config.php');
+	require('../src/config.php');
 	
-	  echo "<pre>";
-	  print_r($_POST);
-	  echo "<pre>";
-	//exit;
+	// echo "<pre>";
+	// print_r($_POST);
+	// echo "<pre>";
+	// exit;
 
 	if (isset($_POST['createOrderBtn'])) {
 		$firstName 		= trim($_POST['firstName']);
@@ -36,8 +36,8 @@
 		}
 	}
 	
-	if ($user) { //If users exists already in our DB
-		$userId = $users['id'];
+	if ($user) { //If users already exists in our DB
+		$userId = $user['id'];
 	} else {
 		try {
 	        $query = "
@@ -63,6 +63,21 @@
 	    }
 	}
 
+	// echo "<pre>";
+	// print_r($_POST);
+	// echo "<pre>";
+
+	//  echo "<pre>";
+	//  print_r($user);
+	//  echo "<pre>";
+
+
+	//  echo "<pre>";
+	//  print_r($userId);
+	//  echo "<pre>";
+	//  exit;
+	
+
 	// Create order
 	try {
 		$query = "
@@ -84,11 +99,13 @@
 		throw new \PDOException($e->getMessage(), (int) $e->getCode());
 	}
 
-	foreach($_SESSION['items'] as $articleId => $articleItem){
+
+	// Create order_items
+	foreach ($_SESSION['items'] as $articleId => $articleItem) {
 		try {
 			$query = "
-				INSERT INTO orders_items (order_id, product_id, quantity, unit_price, product_title)
-				VALUES (:order_id :productId :quantity :price :title);
+				INSERT INTO order_items (order_id, product_id, quantity, unit_price, product_title)
+				VALUES (:orderId, :productId, :quantity, :price, :title);
 			";
 			
 			$stmt = $dbconnect->prepare($query);
@@ -102,6 +119,11 @@
 			throw new \PDOException($e->getMessage(), (int) $e->getCode());
 		}
 	}
+	//echo "<pre>";
+	//print_r($_SESSION);
+	//echo "<pre>";
+	//exit;
+
 	//unset($_SESSION['items']);
 	header('Location: order-confirmation.php');
 	exit;

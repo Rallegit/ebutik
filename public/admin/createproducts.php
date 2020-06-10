@@ -35,7 +35,6 @@
         $description = trim($_POST['description']);
         $price       = trim($_POST['price']);
 
-
         // UPLOAD IMAGE --->
         // checking if the form has been submitted
 
@@ -48,7 +47,7 @@
             //this is the temporary name of the file
             $fileTempName = $_FILES['upload']['tmp_name'];
             //this is the path where you want to save the actual file
-            $path = "img/";
+            $path = "../img/";
             //this is the actual path and actual name of the file
             $newPathAndName = $path . $fileName;
 
@@ -86,7 +85,6 @@
             $msg = $error;
         }
     }
-
 
     if (empty($title)) {
         $error .= "<p>Title is mandatory</p>";
@@ -135,7 +133,6 @@
     <!-- Add new products -->
     <div class="d-flex flex-column">
         <form action="" method="POST" enctype="multipart/form-data">
-
             <div class="col">
                 <h5>Add product</h5>
                 <input type="text" name="title" placeholder="Title">
@@ -169,7 +166,7 @@
                 <li class="articlelist">
 
                     <div class="article_img">
-                        <img src="<?=$article['img_url']?>">
+                        <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
                    </div>
 
                     <h2>

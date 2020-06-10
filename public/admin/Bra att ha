@@ -1,1 +1,0 @@
-<img class="admin-image" src="<?=htmlentities(IMG_PATH . $article['img_url'])?>" alt="<?=htmlentities($article['title'])?>" style="height:200px; width:100px;"> asdasdASDsdfsdf

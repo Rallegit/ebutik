@@ -152,7 +152,7 @@
                <p>
                    <label for="input8">Street:</label><br>
                    <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
-               </p>>
+               </p>
 
                 <p>
                     <label for="input9">City</label><br>
@@ -162,7 +162,7 @@
                 <p>
                     <label for="input7">Postal code</label><br>
                     <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
-                </p>>
+                </p>
                   
                 <label for="country">Country</label><br>
                 <select id="country" name="country">
