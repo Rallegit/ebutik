@@ -64,7 +64,7 @@
                     <input type="hidden" name="id" value="<?=$article['id']?>">
                 </form>
                 
-                <img src="admin/<?=$article['img_url']?>" style="width:200px;height:auto;">
+                <img src="admin/<?=$article['img_url']?>" style="width:100px;height:auto;">
 
                 <p><?=htmlentities($article['title'])?></p>
                
