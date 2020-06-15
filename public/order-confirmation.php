@@ -28,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($articleItems as $articleId => $articleItem) {?>
+        <?php foreach($articleItem as $articleId => $articleItem) {?>
             <tr>
                 <td><img src="img/<?=$articleItem['img_url']?>" style="width:50px;height:auto;"></td>
                 <td><?=$articleItem['description']?></td>
