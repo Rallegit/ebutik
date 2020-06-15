@@ -129,7 +129,7 @@
                 throw new \PDOException($e->getMessage(), (int) $e->getCode());
             }
         if ($result) {
-            $msg = '<div class="success">User updated</div>';
+            $msg = '<div class="alert alert-success text-center">User updated</div>';
         } 
     }
     
