@@ -80,8 +80,11 @@
                 <form action="add-cart-item.php" method="POST">
                     <input type="hidden" name="articleId" value="<?=$article['id']?>">
                     <input type="number" name="quantity" class="form-control mb-3" value="1" min="0">
-                    <input type="submit" name="addToCart" class="form-control" value="Add to cart">
+                    <div>
+                    <input type="submit" name="addToCart" class="form-control" id="addBtn" value="Add to cart">
+                    </div>
                 </form>
+
             </div>
         <?php } ?>
     </div>

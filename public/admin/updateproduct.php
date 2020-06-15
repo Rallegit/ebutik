@@ -64,7 +64,6 @@
 ?>
 
 
-
 <?php include('layout/header.php'); ?>
 
 <div class="box">
