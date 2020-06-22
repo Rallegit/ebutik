@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanalei&display=swap');
+
+body {
+    background: url("") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+
+.logo {
+  font-family: 'Hanalei', cursive;
+  font-size: 130px;
+  text-shadow: 2px;
+  color:yellow;
+}

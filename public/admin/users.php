@@ -4,25 +4,7 @@
     checkLoginSession();
 
     require('../../src/dbconnect.php');
-
-    if (isset($_POST['deleteBtn'])) {
- 
-        if(empty($title)){
-            try {
-                $query = "
-                DELETE FROM users
-                WHERE id = :id;
-                ";
-      
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':id', $_POST['id']);
-                $stmt->execute();
-            }     catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode());
-            }
-        }
-    }
-
+    
     $first_name  = '';
     $last_name   = '';
     $phone       = '';
@@ -146,83 +128,88 @@
         <button class="contentBtn">Back</button>
     </form>
     
-    <div class="box">
-        <ul class="lists">
-            <?php foreach ($users as $key => $texterino) { ?>
-                <li class="userList">
-                    <h2>All users</h2>
-                    <section>
+    <div class="d-flex">
+           <h2>All users</h2>
+            <?php 
+                foreach (array_reverse($users) as $texterino) { 
+            ?>
+                <div class="border">
+                    
+                    <div class="col">
                         Username: <?=htmlentities($texterino['username'])?>
-                    </section>
-
-                    <section>
+                    </div>
+                    <br>
+                    <div class="col">
                         First name: <?=htmlentities($texterino['first_name'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                   <div class="col">
                         Last name:  <?=htmlentities($texterino['last_name'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                    <div class="col">
                         Email:  <?=htmlentities($texterino['email'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                    <div class="col">
                         Password: <?=htmlentities($texterino['password'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                    <div class="col">
                         Phone: <?=htmlentities($texterino['phone'])?>
-                    </section>
+                    </div>
 
                     <br>
+                    
 
-                    <section>
+                    <div class="col">
                         Street:  <?=htmlentities($texterino['street'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                    <div class="col">
                         Postal Code:  <?=htmlentities($texterino['postal_code'])?>
-                    </section>
+                    </div>
 
                     <br>
 
-                    <section>
+                    <div class="col">
                         City:  <?=htmlentities($texterino['city'])?>
-                    </section>
+                    </div>
                     
                     <br>
+                    
+                    <div class="col">
+                        Country: <?=htmlentities($texterino['country'])?>
+                    </div>
 
-                    <form action="" method="POST">
+                    <br>
+
+                    <form method="POST">
                         <input type="hidden" name="id" value="<?=$texterino['id']?>">
-                        <input type="submit" name="deleteBtn" value="Ta Bort" class="btn">
+                        <input type="submit" name="deleteUserBtn" value="Delete" class="delete-user-btn">
                     </form>
                     
                     <form action="updateuser.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$texterino['id']?>">
-                        <input type="submit" value="Uppdatera" class="btn">
+                        <input type="submit" value="Update" class="btn">
                     </form>
                 
-                </li>
-                
-                <br>
-                <br>
-                
+                </div>
+                <hr>
             <?php } ?> 
-        </ul> 
 
     </div>
     
     <hr>
 
-<?php include('layout/footer.php'); ?>
+<?php include('layout/footer.php'); ?> 

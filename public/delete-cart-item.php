@@ -1,6 +1,7 @@
 
 <?php
     require('../src/config.php');
+    require('../src/dbconnect.php');
 
     echo "<pre>";
     print_r($_POST);
@@ -12,15 +13,9 @@
         unset($_SESSION['items'][$_POST['articleId']]);
     }
 
-    header('Location: checkout.php');
-    exit;
-
-$data = [
-    'message' => $msg,
-    ''
-];
-
-echo json_encode($data)
+     header('Location: checkout.php');
+     exit;
 
 
+    
 ?>
