@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanalei&display=swap');
 
-body {
-    background: url("") no-repeat center center fixed;
+.indexPage {
+    background: url("../img/hero2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    color: white;
 }
 
+.bgHeader {
+    background: rgba(255, 255, 255, 0.4);
+}
 
 .logo {
-  font-family: 'Hanalei', cursive;
-  font-size: 130px;
-  text-shadow: 2px;
-  color:yellow;
+    font-family: 'Hanalei', cursive;
+    font-size: 130px;
+    text-shadow: 2px;
+    color:yellow;
+}
+
+.article_img{
+    width: 50px;
+    height:auto;
 }

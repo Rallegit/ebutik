@@ -43,9 +43,9 @@
     <title>Bacardi</title>
 </head>
 <body>
-	<div class="container-fluid p-0">
+	<div class="container-fluid p-0 indexPage">
 		<!-- Log in/ Log out -->
-		<div class="d-flex justify-content-end poop">
+		<div class="d-flex justify-content-end bgHeader text-white">
 			<div class="d-flex justify-content-end">
 				<form action="edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
@@ -72,7 +72,7 @@
 		</div>
 	
 		<!-- Navbar -->
-		<div class="d-flex justify-content-around text-center bg-white">
+		<div class="d-flex justify-content-around text-center bgHeader">
 			<div class="col">
 				<form action="index.php?">
 					<input type="submit" value="Home" class="btn">

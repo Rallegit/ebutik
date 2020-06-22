@@ -23,24 +23,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 
     <title>Bacardi</title>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid p-0">
 		<!-- Above header -->
 		<div class="d-flex justify-content-end">
 			<div class="col">
 				<form action="../edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
 					<input type="submit" value="My page" class="btn">
-				</form>
-			</div>
-
-			<div class="col">
-				<form action="admin/admin.php">
-					<input type="submit" value="Admin" class="btn">
 				</form>
 			</div>
 
