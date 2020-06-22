@@ -128,29 +128,21 @@
 	}
 
 /*------------------------------------------------------------*/
-
-	// function deleteUser($id) {
-    //     global $dbconnect;
-
-    //     if(empty($users)){
-    //         try {
-    //             $query = "
-    //             DELETE FROM users
-    //             WHERE id = :id;
-    //             ";
-      
-    //             $stmt = $dbconnect->prepare($query);
-    //             $stmt->bindValue(':id', $_POST['id']);
-    //             $result = $stmt->execute();
-    //       }     catch (\PDOException $e) {
-    //             throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    //       }
-    //         session_start();
-    //         $_SESSION["successmsg"]='User deleted!';
-    //         session_destroy();
-    //         redirect('../index.php'); /// hittar inte sökväg om users -> deleteBtn // mypage --> users deleteknapp
-    //     }
-	// } // FIXA OCH REFAKTURERA SEN, troligtvis enkel lösning att separera funktionerna från stycket "session_start();"
+    function deleteMyUser($id) {
+        global $dbconnect;
+        try { 
+            $query = "
+                DELETE FROM users
+                WHERE id = :id;
+            ";
+            $stmt = $dbconnect->prepare($query);
+            $stmt->bindValue(':id', $_SESSION['id']);
+            $result = $stmt->execute();
+            }     catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
+            return $result;
+        }
 
 /*------------------------------------------------------------*/
 // Används på show-content.php

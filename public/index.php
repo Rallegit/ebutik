@@ -4,8 +4,12 @@
 ?>
 
 <?php include('layout/header.php'); ?>
-	<div class="d-flex flex-column align-items-center">
-		<h1>Shop page</h1>
-		<p>test tests</p>
+	<!-- Page Content -->
+	<div class="container">
+		<div class="my-5">
+			<div class="p-5">
+				<h1 class="logo">Bacardi - Rum shop</h1>
+			</div>
+		</div>
 	</div>
 <?php include('layout/footer.php'); ?>

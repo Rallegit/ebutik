@@ -6,28 +6,20 @@
     require('../src/dbconnect.php');
 
     $msg       = '';
+
+
+    // Delete User
     if (isset($_POST['deleteBtn'])) {
- 
-        if(empty($users)){
-            try {
-                $query = "
-                DELETE FROM users
-                WHERE id = :id;
-                ";
-      
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':id', $_POST['id']);
-                $result = $stmt->execute();
-          }     catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode());
-          }
-            session_start();
-            $_SESSION["successmsg"]='User deleted!';
-            session_destroy();
-            header('Location: index.php');
-            exit;
-        }
+        $result = deleteMyUser($_SESSION['id']);
+        unset($_SESSION['username']);
     }
+
+    // output with JSON
+    $data = [
+        
+    ];
+
+    echo json_encode($data);
     
     $first_name  = '';
     $last_name   = '';
@@ -143,7 +135,7 @@
 
     <div class="d-flex justify-content-center">
 
-        <form action="#" method="POST">       
+        <form action="" method="POST">       
             <!-- Visa errormeddelanden -->
             <?=$msg?>  
             <form>
@@ -231,9 +223,9 @@
                     </div>
                     
                     <div class="col text-center">
-                        <form action="index.php?" method="POST">
+                        <form method="POST">
                             <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-                            <input type="submit" name="deleteBtn" value="Delete user">
+                            <input type="submit" name="deleteBtn" value="Delete user" class="delete-user-btn">
                         </form>
                     </div>
                 </div>

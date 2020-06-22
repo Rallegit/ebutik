@@ -5,22 +5,22 @@
 
     require('../../src/dbconnect.php');
 
-    if (isset($_POST['deleteBtn'])) {
-        if(empty($title)){
-            try {
-                $query = "
-                DELETE FROM products
-                WHERE id = :id;
-                ";
+    // if (isset($_POST['deleteBtn'])) {
+    //     if(empty($title)){
+    //         try {
+    //             $query = "
+    //             DELETE FROM products
+    //             WHERE id = :id;
+    //             ";
       
-                $stmt = $dbconnect->prepare($query);
-                $stmt->bindValue(':id', $_POST['id']);
-                $stmt->execute();
-            }     catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int) $e->getCode());
-            }
-        }
-    }
+    //             $stmt = $dbconnect->prepare($query);
+    //             $stmt->bindValue(':id', $_POST['id']);
+    //             $stmt->execute();
+    //         }     catch (\PDOException $e) {
+    //             throw new \PDOException($e->getMessage(), (int) $e->getCode());
+    //         }
+    //     }
+    // }
 
     $title          = '';
     $description    = '';
@@ -160,10 +160,11 @@
     </div> 
 
     <!-- Artiklar börjar här  -->
-    <div class="box">
+    <div class="d-flex flex-column">
         <ul class="lists">
+            <li class="articleList">
             <?php foreach ($products as $key => $article) { ?>
-                <li class="articlelist">
+                
 
                     <div class="article_img">
                         <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
@@ -190,21 +191,22 @@
                     
                     <form action="" method="POST">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" name="deleteBtn" value="Ta Bort" class="btn">
+                        <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn">
                     </form>
                     
                     <form action="updateproduct.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" value="Uppdatera" class="btn">
+                        <input type="submit" value="Update" class="btn">
                     </form>
                 
-                </li>
+              
                 
                 <br>
                 <br>
                 
                 <div class="bordertext"></div>
             <?php } ?> 
+            </li>
         </ul> 
     </div>
 
