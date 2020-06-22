@@ -32,29 +32,29 @@ $(document).ready(function () {
         
             for (texterino of data['users']) {
             html += 
-                    '<section>' + texterino["username"] + '</section>' +
-                    '<section>' + texterino["first_name"] + '</section>' +
-                    '<section>' + texterino["last_name"] + ' </section>' + 
-                    '<section>' + texterino["email"] + '</section>' +
-                    '<section>' + texterino["password"] + '</section>' +
-                    '<section>' + texterino["phone"] + '</section>' +
-                    '<section>' + texterino["street"] + '</section>' +
-                    '<section>' + texterino["postal_code"] + '</section>' + 
-                    '<section>' + texterino["city"] + '</section>' +
-                    '<section>' + texterino["register_date"] + ' </section>' +
-                    '<section>' + texterino["country"] + ' </section>' +
-                    '<section>' + texterino["id"] + ' </section>' + 
-                    
-                    '<form action="updateuser.php?" method="GET">' + 
-                    '<input type="submit" class="btn" name="id" value="Update">' + 
-                    '<input type="hidden" name="id" value="' + texterino["id"]+ '">' +
-                    '</form>' + 
-                    '<form method="POST">' + 
-                    '<input type="submit" class="delete-user-btn" name="deleteBtn" value="Delete">' +
-                    '<input type="hidden" name="id" value="' + texterino["id"] + '">' + 
-                    '</form>'; 
+                '<section>' + texterino["username"] + '</section>' +
+                '<section>' + texterino["first_name"] + '</section>' +
+                '<section>' + texterino["last_name"] + ' </section>' + 
+                '<section>' + texterino["email"] + '</section>' +
+                '<section>' + texterino["password"] + '</section>' +
+                '<section>' + texterino["phone"] + '</section>' +
+                '<section>' + texterino["street"] + '</section>' +
+                '<section>' + texterino["postal_code"] + '</section>' + 
+                '<section>' + texterino["city"] + '</section>' +
+                '<section>' + texterino["register_date"] + ' </section>' +
+                '<section>' + texterino["country"] + ' </section>' +
+                '<section>' + texterino["id"] + ' </section>' + 
+                
+                '<form action="updateuser.php?" method="GET">' + 
+                '<input type="submit" class="btn" name="id" value="Update">' + 
+                '<input type="hidden" name="id" value="' + texterino["id"]+ '">' +
+                '</form>' + 
+                '<form method="POST">' + 
+                '<input type="submit" class="delete-user-btn" name="deleteBtn" value="Delete">' +
+                '<input type="hidden" name="id" value="' + texterino["id"] + '">' + 
+                '</form>'; 
 
-                    };
+                };
                     userList.html(html);
              $('.delete-user-btn').on('click', deleteUserEvent)
 
@@ -93,22 +93,22 @@ $(document).ready(function () {
         
             for (article of data['products']) {
             html += 
-                '<div class="article_img">' + '<img src=' + article['img_url'] + '>' +  '</div>' +
-                    '<h2>' + article['title'] + '</h2>' +
-                    '<section>' + article['description'] + ' </section>' + 
-                    '<h3>' + article['price'] + '</h3>' +
+                '<tr>' + // '<th scope="row">' + '<img src=' + article['img_url'] + '>' +  '</th>' +
+                '<td>' + article['title'] + '</td>' +
+                '<td>' + article['description'] + ' </td>' + 
+                '<td>' + article['price'] + '</td>' + '<td>' +
 
-                    '<form action="updateproduct.php?" method="GET">' + 
-                    '<input type="submit" class="btn" value="Update">' + 
-                    '<input type="hidden" name="id" value="' + article['id']+ '">' +
-                    '</form>' + 
-                    '<form method="POST">' + 
-                    '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
-                    '<input type="hidden" name="id" value="' + article['id'] + '">' + 
-                    '</form>'; 
+                '<form action="updateproduct.php?" method="GET">' + 
+                '<input type="submit" class="btn" value="Update">' + 
+                '<input type="hidden" name="id" value="' + article['id']+ '">' +
+                '</form>' + '</td>' + '<td>' +
+                '<form method="POST">' + 
+                '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
+                '<input type="hidden" name="id" value="' + article['id'] + '">' + 
+                '</form>' + '</td>' + '</tr>'; 
 
-                    };
-                    articleList.html(html);
-                    $('.delete-product-btn').on('click', deleteProductEvent)
+                };
+                articleList.html(html);
+                $('.delete-product-btn').on('click', deleteProductEvent)
 
         };
