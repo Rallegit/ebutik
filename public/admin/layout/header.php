@@ -39,9 +39,7 @@
 			</div>
 
 			<div class="col">
-				<form action="admin/admin.php">
-					<input type="submit" value="Admin" class="btn">
-				</form>
+
 			</div>
 
 			<!-- Log in/ Log out -->

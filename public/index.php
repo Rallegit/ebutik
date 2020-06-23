@@ -5,10 +5,10 @@
 
 <?php include('layout/header.php'); ?>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container-fluid p-0 m-0 indexPage">
 		<div class="my-5">
-			<div class="p-5">
-				<h1 class="logo">Bacardi - Rum shop</h1>
+			<div class="d-flex justify-content-center pb-5 mb-5 logoContainer">
+				<img class="logo" src="img/rumshop.png" alt="">
 			</div>
 		</div>
 	</div>

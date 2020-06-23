@@ -1,12 +1,9 @@
 <?php 
     require('../src/config.php');
-    
     checkLoginSession(); //refakturerad
-
     require('../src/dbconnect.php');
 
     $msg       = '';
-
 
     // Delete User
     if (isset($_POST['deleteBtn'])) {
@@ -133,8 +130,7 @@
 
     <h1 class="text-center">Edit info</h1>
 
-    <div class="d-flex justify-content-center">
-
+    <div class="d-flex justify-content-center bg-dark text-light py-5">
         <form action="" method="POST">       
             <!-- Visa errormeddelanden -->
             <?=$msg?>  

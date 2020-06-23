@@ -1,17 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanalei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
 
 body {
-    background: url("") no-repeat center center fixed;
+    font-family: 'Mukta', sans-serif;
+    color: red !important;
+}
+
+/* Main page ---------------------------------*/
+.indexPage {
+    background: url("../img/hero2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    color: white;
+    min-height: 100rem;
+    position: relative;
+    margin-top: -18rem !important;
+    z-index: -99;
 }
 
-
 .logo {
-  font-family: 'Hanalei', cursive;
-  font-size: 130px;
-  text-shadow: 2px;
-  color:yellow;
+    text-align: center;
+    margin-top: 10rem;/*
+    font-family: 'Hanalei', cursive;*/
+    font-size: 130px;
+    text-shadow: 2px;
+}
+
+/* Header ---------------------------------*/
+.navBtn, .logInBtn {
+    color: white !important;
+    text-shadow: 1.5px 1.5px black !important;
+}
+
+/* Product page ---------------------------------*/
+.productPage {
+    background: url("../img/palmleaves.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    color: white;
+    min-height: 100rem;
+    position: relative;
+    margin-top: -18rem !important;
+    z-index: -99;
 }

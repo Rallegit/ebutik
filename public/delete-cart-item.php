@@ -13,9 +13,15 @@
         unset($_SESSION['items'][$_POST['articleId']]);
     }
 
-     header('Location: checkout.php');
-     exit;
+    header('Location: checkout.php');
+    exit;
 
+    $data = [
+        
+    ];
 
+    echo json_encode($data);
     
 ?>
+
+

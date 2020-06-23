@@ -45,15 +45,15 @@
 <body>
 	<div class="container-fluid p-0">
 		<!-- Log in/ Log out -->
-		<div class="d-flex justify-content-end poop">
+		<div class="d-flex justify-content-end bg-transparent">
 			<div class="d-flex justify-content-end">
 				<form action="edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-					<input type="submit" value="My page" class="btn">
+					<input type="submit" value="My page" class="btn logInBtn">
 				</form>
 
-				<form action="admin/admin.php">
-					<input type="submit" value="Admin" class="btn">
+				<form action="admin/admin.php?">
+					<input type="submit" value="Admin" class="btn logInBtn">
 				</form>
 			</div>
 			<div class="d-flex justify-content-end">
@@ -72,20 +72,20 @@
 		</div>
 	
 		<!-- Navbar -->
-		<div class="d-flex justify-content-around text-center bg-white">
+		<div class="d-flex justify-content-around text-center bg-transparent">
 			<div class="col">
 				<form action="index.php?">
-					<input type="submit" value="Home" class="btn">
+					<input type="submit" value="Home" class="btn navBtn">
 				</form>
 			</div>
-			<div class="col">		
+			<div class="col">
 				<form action="products.php?">
-					<input type="submit" value="Products" class="btn">
+					<input type="submit" value="Products" class="btn navBtn">
 				</form>
 			</div>
 			<div class="col">
 				<form action="contact.php?">
-					<input type="submit" value="Contact" class="btn">
+					<input type="submit" value="Contact" class="btn navBtn">
 				</form>
 			</div>
       	</div>
@@ -94,12 +94,10 @@
 		<div class="d-flex justify-content-end">
 			<div class="d-flex">
 				<a href="products.php" data-toggle="dropdown" role="button" aria-expanded="false">
-
-				<button type="button" class="btn bg-warning dropdown-toggle" data-toggle="dropdown-toggle">
-					<span class="fa fa-gift bigicon">View Cart</span>
-					<span class="badge badge-pill badge-danger"><?=$articleItemCount?></span>
-				</button>
-				
+					<button type="button" class="btn bg-warning dropdown-toggle" data-toggle="dropdown-toggle">
+						<span class="fa fa-gift bigicon">View Cart</span>
+						<span class="badge badge-pill badge-danger"><?=$articleItemCount?></span>
+					</button>
 				</a>
 				
 				<!-- Dropdown Menu -->

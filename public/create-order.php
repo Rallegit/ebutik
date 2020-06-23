@@ -99,7 +99,6 @@
 		throw new \PDOException($e->getMessage(), (int) $e->getCode());
 	}
 
-
 	// Create order_items
 	foreach ($_SESSION['items'] as $articleId => $articleItem) {
 		try {
