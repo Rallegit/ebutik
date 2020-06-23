@@ -57,7 +57,9 @@
 
     <?php include('layout/header.php'); ?>
     
+
     <div class="d-flex justify-content-center flex-wrap mt-5 productPage" id="exampleModal">
+
         <?php foreach ($products as $key => $article) { ?>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-5">
                 <form action="#" method="GET">
