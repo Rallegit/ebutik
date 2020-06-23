@@ -29,26 +29,25 @@
 </head>
 <body>
 	<div class="container-fluid p-0">
-		<!-- Above header -->
+		<!-- Log in/ Log out -->
 		<div class="d-flex justify-content-end">
-			<div class="col">
+			<div class="d-flex justify-content-end">
 				<form action="../edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
 					<input type="submit" value="My page" class="btn">
 				</form>
 			</div>
 
-			<!-- Log in/ Log out -->
 			<div class="d-flex justify-content-end">
-				<div class="col">
+				<div class="p-2 logInBtn">
 					<?php
 						if (isset($_SESSION['username'])) {
 							$loggedInUsername = htmlentities(ucfirst($_SESSION['username'])); 
-							$aboveNav = "Welcome $loggedInUsername | <a href='../logout.php'>Log out</a>";
+							$aboveNav = "Welcome $loggedInUsername | <a href='../logout.php'>Sign out</a>";
 						} else {
-							$aboveNav = "<a href='../signup.php'>Sign up</a> | <a href='../login.php'>Log in</a>";
+							$aboveNav = "<a href='../signup.php'>Sign up</a> | <a href='../login.php'>Sign in</a>";
 						}
-					echo $aboveNav;
+						echo $aboveNav;
 					?>
 				</div>	
 			</div>  
@@ -68,14 +67,8 @@
 				</form>
 			</div>
 
-			<!-- <div class="col">
-				<form action="createproducts.php?">
-					<input type="submit" value="Add Product" class="btn">
-				</form>
-			</div> -->
-
 			<div class="col">
-				<form action="contact.php?">
+				<form action="../../contact.php?">
 					<input type="submit" value="Contact" class="btn">
 				</form>
 			</div>

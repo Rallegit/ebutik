@@ -57,20 +57,20 @@
 
     <?php include('layout/header.php'); ?>
     
-    <div class="d-flex flex-wrap mt-5" id="exampleModal">
+    <div class="d-flex justify-content-center flex-wrap mt-5 productPage" id="exampleModal">
         <?php foreach ($products as $key => $article) { ?>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-5">
                 <form action="#" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
                 </form>
                 
-                <img src="admin/<?=$article['img_url']?>" style="width:100px;height:auto;">
+                <img class="productImg" src="admin/<?=$article['img_url']?>">
 
-                <p><?=htmlentities($article['title'])?></p>
+                <p class="text-dark"><?=htmlentities($article['title'])?></p>
                
-                <p> <?=substr(htmlentities ($article['description']),0, 30)?></p>
+                <p class="text-dark"> <?=substr(htmlentities ($article['description']),0, 30)?></p>
 
-                <p><?=htmlentities ($article['price'])?> SEK</p>
+                <p class="text-dark"><?=htmlentities ($article['price'])?> SEK</p>
  
                 <form action="show-content.php" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">

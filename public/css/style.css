@@ -1,5 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanalei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
 
+/*
+@import url('https://fonts.googleapis.com/css2?family=Hanalei&display=swap');
+*/
+
+body {
+    font-family: 'Mukta', sans-serif;
+}
+
+/* Header/ nav ---------------------------------*/
+.bgCart {
+    background: #ffde00;
+}
+
+.logInBtn {
+    color: #FF0078 !important;
+}
+
+.navBtn {text-transform: uppercase !important;}
+
+
+/* Mainpage ---------------------------------*/
 .indexPage {
     background: url("../img/hero2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -7,20 +29,65 @@
     background-size: cover;
     -o-background-size: cover;
     color: white;
-}
-
-.bgHeader {
-    background: rgba(255, 255, 255, 0.4);
+    min-height: 100rem;
+    position: relative;
+    margin-top: -18rem !important;
+    z-index: -99;
 }
 
 .logo {
-    font-family: 'Hanalei', cursive;
+    text-align: center;
+    margin-top: 10rem;/*
+    font-family: 'Hanalei', cursive;*/
     font-size: 130px;
     text-shadow: 2px;
-    color:yellow;
 }
 
-.article_img{
-    width: 50px;
+/* Products ---------------------------------*/
+/*.article_img {
+    width: 20px;
     height:auto;
+}*/
+
+.productPage {background: #f2eee8;}
+
+.productPage .productImg img {
+    width: 50px;
+    height: auto;
+}
+
+/* Admin pages ---------------------------------*/
+
+/* Create Products ---------------------------------*/
+.articleList .articleImg img {
+    width: 50px !important;
+    height: auto !important;
+}
+
+.bgCart {
+    background: #ffde00;
+}
+
+.productPage {
+    background: url('../img/palmleaves.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    color: white;
+    position: relative;
+    height: 100vh;
+    z-index: -99;
+}
+
+.contactPage {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('../img/palmbackground.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    color: white;
+    position: relative;
+    height: 100vh;
+    z-index: -99;
 }
