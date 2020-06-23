@@ -160,52 +160,54 @@
     </div> 
 
     <!-- Artiklar börjar här  -->
-     <h3>All products</h3>
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-            <tbody class="articleList">
-                <?php 
-                foreach (array_reverse($products) as $article) { 
-                ?>
-            
-                <tr>
-                    <th scope="row">
+    <div class="d-flex flex-column">
+        <ul class="lists">
+            <li class="articleList">
+            <?php foreach ($products as $key => $article) { ?>
+                
+
+                    <div class="article_img">
                         <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
-                    </th>
-                    <td>
+                   </div>
+
+                    <h2>
                         <?=htmlentities($article['title'])?>
-                    </td>
-                    <td>
+                    </h2>
+                    
+
+                    <br>
+
+                    <section>
                         <?=htmlentities($article['description'])?>
-                    </td>
-                    <td>
+                    </section>
+
+                    <br>
+
+                    <h3>
                         <?=htmlentities($article['price'])?>
-                    </td>
-                    <td>
-                        <form method="POST">
+                    </h3>
+
+                    <br>
+                    
+                    <form action="" method="POST">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn bg-white">
-                        </form>
-                    </td>
-                    <td>
-                        <form action="updateproduct.php?" method="GET">
+                        <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn">
+                    </form>
+                    
+                    <form action="updateproduct.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" value="Update" class="btn bg-white">
-                        </form>
-                    </td>
-                </tr>
-            
-            <?php } ?>
-        </tbody>
-    </table>
+                        <input type="submit" value="Update" class="btn">
+                    </form>
+                
+              
+                
+                <br>
+                <br>
+                
+                <div class="bordertext"></div>
+            <?php } ?> 
+            </li>
+        </ul> 
+    </div>
 
     <?php include('layout/footer.php'); ?>

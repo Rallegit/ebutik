@@ -13,8 +13,8 @@
         unset($_SESSION['items'][$_POST['articleId']]);
     }
 
-    header('Location: checkout.php');
-    exit;
+     header('Location: checkout.php');
+     exit;
 
 
     

@@ -23,31 +23,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Bacardi</title>
 </head>
 <body>
-	<div class="container-fluid p-0">
-		<!-- Log in/ Log out -->
+	<div class="container">
+		<!-- Above header -->
 		<div class="d-flex justify-content-end">
-			<div class="d-flex justify-content-end">
+			<div class="col">
 				<form action="../edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
 					<input type="submit" value="My page" class="btn">
 				</form>
 			</div>
 
+			<div class="col">
+				<form action="admin/admin.php">
+					<input type="submit" value="Admin" class="btn">
+				</form>
+			</div>
+
+			<!-- Log in/ Log out -->
 			<div class="d-flex justify-content-end">
-				<div class="p-2 logInBtn">
+				<div class="col">
 					<?php
 						if (isset($_SESSION['username'])) {
 							$loggedInUsername = htmlentities(ucfirst($_SESSION['username'])); 
-							$aboveNav = "Welcome $loggedInUsername | <a href='../logout.php'>Sign out</a>";
+							$aboveNav = "Welcome $loggedInUsername | <a href='../logout.php'>Log out</a>";
 						} else {
-							$aboveNav = "<a href='../signup.php'>Sign up</a> | <a href='../login.php'>Sign in</a>";
+							$aboveNav = "<a href='../signup.php'>Sign up</a> | <a href='../login.php'>Log in</a>";
 						}
-						echo $aboveNav;
+					echo $aboveNav;
 					?>
 				</div>	
 			</div>  
@@ -67,8 +74,14 @@
 				</form>
 			</div>
 
+			<!-- <div class="col">
+				<form action="createproducts.php?">
+					<input type="submit" value="Add Product" class="btn">
+				</form>
+			</div> -->
+
 			<div class="col">
-				<form action="../../contact.php?">
+				<form action="contact.php?">
 					<input type="submit" value="Contact" class="btn">
 				</form>
 			</div>
