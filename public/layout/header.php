@@ -45,7 +45,7 @@
 <body>
 	<div class="container-fluid p-0">
 		<!-- Log in/ Log out -->
-		<div class="d-flex justify-content-end">
+		<div class="d-flex justify-content-end poop">
 			<div class="d-flex justify-content-end">
 				<form action="edit.php?" method="GET">
 					<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
@@ -56,15 +56,14 @@
 					<input type="submit" value="Admin" class="btn">
 				</form>
 			</div>
-
 			<div class="d-flex justify-content-end">
-				<div class="p-2 logInBtn">
+				<div class="p-2">
 					<?php
 						if (isset($_SESSION['username'])) {
 							$loggedInUsername = htmlentities(ucfirst($_SESSION['username'])); 
-							$aboveNav = "Welcome $loggedInUsername | <a href='logout.php'>Sign out</a>";
+							$aboveNav = "Welcome $loggedInUsername | <a href='logout.php'>Log out</a>";
 						} else {
-							$aboveNav = "<a href='signup.php'>Sign up</a> | <a href='login.php'>Sign in</a>";
+							$aboveNav = "<a href='signup.php'>Sign up</a> | <a href='login.php'>Log in</a>";
 						}
 						echo $aboveNav;
 					?>
@@ -73,32 +72,32 @@
 		</div>
 	
 		<!-- Navbar -->
-		<div class="d-flex justify-content-around text-center">
+		<div class="d-flex justify-content-around text-center bg-white">
 			<div class="col">
 				<form action="index.php?">
-					<input type="submit" value="Home" class="btn navBtn">
+					<input type="submit" value="Home" class="btn">
 				</form>
 			</div>
 			<div class="col">		
 				<form action="products.php?">
-					<input type="submit" value="Products" class="btn navBtn">
+					<input type="submit" value="Products" class="btn">
 				</form>
 			</div>
 			<div class="col">
 				<form action="contact.php?">
-					<input type="submit" value="Contact" class="btn navBtn">
+					<input type="submit" value="Contact" class="btn">
 				</form>
 			</div>
       	</div>
 		
 		<!-- Cart -->
-		<div class="d-flex justify-content-end pb-5">
-			<div class="d-flex p-2">
+		<div class="d-flex justify-content-end">
+			<div class="d-flex">
 				<a href="products.php" data-toggle="dropdown" role="button" aria-expanded="false">
 
-				<button type="button" class="btn bgCart dropdown-toggle" data-toggle="dropdown-toggle">
+				<button type="button" class="btn bg-warning dropdown-toggle" data-toggle="dropdown-toggle">
 					<span class="fa fa-gift bigicon">View Cart</span>
-					<span class="badge badge-pill badge-danger"3<?=$articleItemCount?></span>
+					<span class="badge badge-pill badge-danger"><?=$articleItemCount?></span>
 				</button>
 				
 				</a>
@@ -110,7 +109,7 @@
 					  		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 						</div>
 
-						<div class="col total-section text-left ">
+						<div class="col total-section text-left">
 							<?php foreach ($_SESSION['items'] as $articleId => $articleItem) { ?>
 								<div class="row cart-detail">
 									<div class="col-lg-4 col-sm-4 col-4 cart-detail-img">

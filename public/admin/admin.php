@@ -8,26 +8,25 @@
 
     <?php include('layout/header.php'); ?>
 
-    <!-- <div class="d-flex justify-content-around text-center bg-dark"> -->
-    <div class="d-flex flex-column bg-dark">
+    <div class="d-flex justify-content-around text-center bg-light">
         <div class="col">
             <form action="createproducts.php?">
-                <input type="submit" value="Add Product" class="btn text-white">
+                <input type="submit" value="Add Product" class="btn">
             </form>
         </div>
         <div class="col">
             <form action="users.php">
-                <input type="submit" value="User-list" class="btn  text-white">
+                <input type="submit" value="User-list" class="btn">
             </form>
         </div>
         <div class="col">
             <form action="admincreate.php">
-                <input type="submit" value="Create user" class="btn  text-white">
+                <input type="submit" value="Create user" class="btn">
             </form>
         </div>
         <div class="col">
             <form action="../index.php">
-                <button class="btn contentBtn text-white">Back</button>
+                <button class="contentBtn">Back</button>
             </form>
         </div>
     </div>
