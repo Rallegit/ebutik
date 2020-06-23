@@ -162,8 +162,8 @@
     <!-- Artiklar börjar här  -->
     <div class="d-flex flex-column">
         <ul class="lists">
-            <li class="articleList">
             <?php foreach ($products as $key => $article) { ?>
+                <li class="articleList">
     
                     <div class="article_img">
                         <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
@@ -194,8 +194,8 @@
                 <br>
                 
                 <div class="bordertext"></div>
-            <?php } ?> 
             </li>
+            <?php } ?> 
         </ul> 
     </div>
 
