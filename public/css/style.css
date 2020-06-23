@@ -35,7 +35,7 @@ body {
 }
 
 /* Product page ---------------------------------*/
-.productPage {
+/*.productPage {
     background: url("../img/palmleaves.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -46,4 +46,4 @@ body {
     position: relative;
     margin-top: -18rem !important;
     z-index: -99;
-}
+}*/
