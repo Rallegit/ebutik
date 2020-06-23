@@ -8,6 +8,11 @@
     $error       = '';
     $msg         = '';
 
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "<pre>";
+    // die;
+
     if (isset($_POST['updateProductBtn'])) {
         $title       = trim($_POST['title']);
         $description = trim($_POST['description']);
@@ -40,7 +45,7 @@
                 $stmt->bindValue(':title', $title);
                 $stmt->bindValue(':description', $description);
                 $stmt->bindValue(':price', $price);
-                $stmt->bindValue(':id', $_GET['id']);
+                $stmt->bindValue(':id', $_POST['id']);
                 $products = $stmt->execute();
             }     catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int) $e->getCode());
@@ -61,9 +66,9 @@
         
     ];
 
-    echo "<pre>";
-    print_r($data);
-    echo "<pre>";
+    // echo "<pre>";
+    // print_r($data);
+    // echo "<pre>";
     
     echo json_encode($data);
 ?>

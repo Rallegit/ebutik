@@ -77,12 +77,13 @@ $(document).ready(function () {
     }
 
     function appendProductList(data){
-        let articleList = $('.articleList');
+        let lists = $('.lists');
         let html = '';
         
         for (article of data['products']) {
         html += 
-            '<div class="article_img">' + '<img src=' + article['img_url'] + '>' +  '</div>' +
+            '<li class="articleList">' +
+            '<div class="article_img">' + '<img src="' + article['img_url'] + '" width="50px">' +  '</div>' +
             '<input type="text" name="title" value="' + article['title'] + '">' + '<br>' +
             '<input type="text" name="description" value="' + article['description'] + '">' + '<br>' +
             '<input type="text" name="price" value="' + article['price'] + '">' + '<br>' +
@@ -93,10 +94,11 @@ $(document).ready(function () {
             '<form method="POST">' + 
                 '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
                 '<input type="hidden" name="id" value="' + article['id'] + '">' + 
-            '</form>'; 
+            '</form>' + 
+            '</li>';
 
                 };
-                articleList.html(html);
+                lists.html(html);
         $('.delete-product-btn').on('click', deleteProductEvent)
         $('.update-product-btn').on('click', updateProductEvent)
     };
@@ -122,16 +124,24 @@ $(document).ready(function () {
     function updateProductEvent(e) {
         e.preventDefault();
         let id              = $(this).parent().find('input[name="id"]');
-        let title           = $(this).data('input[name="title"]');
-        let description     = $(this).data('input[name="description"]');
-        let price           = $(this).data('input[name="price"]');
-        console.log(id.val());
+        let title           = $(this).parent().parent().find('input[name="title"]');
+        let description     = $(this).parent().parent().find('input[name="description"]');
+        let price           = $(this).parent().parent().find('input[name="price"]');
+        console.log({
+            updateProductBtn: true,
+            title: title.val(), 
+            description: description.val(), 
+            price: price.val(),
+            id: id.val()
+        });
         $.ajax({
             method: 'POST',
-            url: '../admin/updateproduct.php',
+            url: '../admin/updateproduct-ajax.php',
             data: {
                 updateProductBtn: true,
-                title: title, description: description, price: price,
+                title: title.val(), 
+                description: description.val(), 
+                price: price.val(),
                 id: id.val()
             },
             dataType: 'json',
