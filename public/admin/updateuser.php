@@ -1,8 +1,6 @@
 <?php 
     require('../../src/config.php');
-    
     checkLoginSession();
-
     require('../../src/dbconnect.php');
 
     // $msg       = '';
@@ -199,13 +197,13 @@
             </p>
 
             <?php
-            $countries = [
-                'trump' => 'Trumpnation',
-                'norway' => 'Norway',
-                'denmark' => 'Denmark',
-                'finland' => 'Finland',
-                'sweden' => 'Sweden',
-            ];
+                $countries = [
+                    'trump' => 'Trumpnation',
+                    'norway' => 'Norway',
+                    'denmark' => 'Denmark',
+                    'finland' => 'Finland',
+                    'sweden' => 'Sweden',
+                ];
             ?>
 
             <label for="country">Country</label>
@@ -220,7 +218,7 @@
             </select>
             
             <p>
-                <input action="users.php?" type="submit" name="signup" value="Uppdatera">
+                <input action="users.php" type="submit" name="signup" value="Uppdatera">
             </p>
             
             <form action="index.php?" method="POST">

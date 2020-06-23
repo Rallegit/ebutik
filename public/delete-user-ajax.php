@@ -2,7 +2,7 @@
     require('../src/dbconnect.php');
     require('../src/config.php');
     
-    if (isset($_POST['deleteBtn'])) {
+    if (isset($_POST['deleteUserBtn'])) {
 
         if(empty($title)){
             try {
@@ -22,7 +22,6 @@
 
     $users = fetchAllUsers(); 
 
-
     $data = [
 
         'users' => $users,
@@ -30,8 +29,5 @@
     ];
 
     echo json_encode($data);
-
-    
-
 
 ?>

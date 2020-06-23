@@ -41,7 +41,6 @@
 
     <div class="d-flex justify-content-center mt-5">
         <form method="POST" action="#">
-    
             <?=$msg?>
             
             <div class="col-6">

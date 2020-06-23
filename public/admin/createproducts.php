@@ -164,43 +164,32 @@
         <ul class="lists">
             <li class="articleList">
             <?php foreach ($products as $key => $article) { ?>
-                
-
+    
                     <div class="article_img">
                         <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
-                   </div>
+                    </div>
 
-                    <h2>
-                        <?=htmlentities($article['title'])?>
-                    </h2>
+                    <input type="text" name="title" value="<?=htmlentities($article['title'])?>">
                     
+                    <br>
+
+                    <input type="text" name="description" value="<?=htmlentities($article['description'])?>">
 
                     <br>
 
-                    <section>
-                        <?=htmlentities($article['description'])?>
-                    </section>
-
-                    <br>
-
-                    <h3>
-                        <?=htmlentities($article['price'])?>
-                    </h3>
+                    <input type="text" name="price" value="<?=htmlentities($article['price'])?>">
 
                     <br>
                     
-                    <form action="" method="POST">
+                    <form method="POST">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
                         <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn">
                     </form>
                     
-                    <form action="updateproduct.php?" method="GET">
+                    <form method="GET">
                         <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" value="Update" class="btn">
+                        <input type="submit" name="updateProductBtn " value="Update" class="btn bg-white update-product-btn">
                     </form>
-                
-              
-                
                 <br>
                 <br>
                 

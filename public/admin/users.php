@@ -117,24 +117,43 @@
 
 ?>
 
-	<div>
-		<form action="../edit.php?" method="GET">
-			<input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-			<input type="submit" value="My page" class="btn">
-		</form>
-	</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <form action="admin.php">
-        <button class="contentBtn">Back</button>
-    </form>
-    
-    <div class="d-flex">
-           <h2>All users</h2>
-            <?php 
-                foreach (array_reverse($users) as $texterino) { 
-            ?>
-                <div class="border">
-                    
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	
+    <title>Bacardi</title>
+</head>
+<body>
+	<div class="container-fluid p-0">
+
+        <div class="d-flex">
+            <div class="p-2">
+                <form action="../edit.php?" method="GET">
+                    <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
+                    <input type="submit" value="My page" class="btn">
+                </form>
+
+                <form action="admin.php">
+                    <button class="contentBtn btn">Back</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="d-flex">
+            <ul class="userList">
+                <h2>All users</h2>
+                <?php 
+                    foreach (array_reverse($users) as $texterino) { 
+                ?>
+                
                     <div class="col">
                         Username: <?=htmlentities($texterino['username'])?>
                     </div>
@@ -145,7 +164,7 @@
 
                     <br>
 
-                   <div class="col">
+                    <div class="col">
                         Last name:  <?=htmlentities($texterino['last_name'])?>
                     </div>
 
@@ -178,7 +197,7 @@
 
                     <div class="col">
                         Postal Code:  <?=htmlentities($texterino['postal_code'])?>
-                    </div>
+                    </div>  
 
                     <br>
 
@@ -204,12 +223,11 @@
                         <input type="submit" value="Update" class="btn">
                     </form>
                 
-                </div>
-                <hr>
-            <?php } ?> 
+                <?php } ?> 
 
+            </ul>
+        </div>
+        <hr>
     </div>
-    
-    <hr>
 
 <?php include('layout/footer.php'); ?> 
