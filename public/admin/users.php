@@ -205,8 +205,8 @@
                     </form>
                 
                 </div>
-                <hr>
-            <?php } ?> 
+            <hr>
+        <?php } ?> 
 
     </div>
     

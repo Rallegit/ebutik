@@ -12,6 +12,7 @@
     // debug($_SESSION);
 
     $msg = "";
+    
     if (isset($_GET['mustLogin'])) {
         $msg = '<div class="alert alert-danger" role="alert">Error! You need to log in to view this page. Please log in och sign up.</div>';
     }
