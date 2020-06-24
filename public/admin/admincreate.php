@@ -109,87 +109,107 @@
             }
         }
     }
-
 ?>
-    <form action="createproducts.php?">
-        <input type="submit" value="Add Product" class="btn">
-    </form>
+    <?php include('layout/header.php'); ?>
 
-    <form action="users.php">
-        <input type="submit" value="User-list" class="btn">
-    </form>
-    <form action="admincreate.php">
-        <input type="submit" value="Create user" class="btn">
-    </form>
-    <form action="admin.php">
-        <button class="contentBtn">Back</button>
-    </form>
-    <hr>
-     <div id="form"> 
-     
-        <form method="POST" action="#">       
-            
-            <?=$msg?>
-            
-            <p>
-                <label for="input1">Username:</label> <br>
-                <input type="text" class="text" name="username" value="<?=htmlentities($username)?>">
-            </p>
+    <div class="d-flex justify-content-around bg-dark mb-5">
+        <form action="createproducts.php?">
+            <input type="submit" value="Add Product" class="btn text-light">
+        </form>
 
-            <p>
-                <label for="input1">E-mail address:</label> <br>
-                <input type="text" class="text" name="email" value="<?=htmlentities($email)?>">
-            </p>
-
-            <p>
-                <label for="input2">Lösenord:</label> <br>
-                <input type="password" class="text" name="password">
-            </p>
-
-            <p>
-                <label for="input2">Bekräfta lösenord:</label> <br>
-                <input type="password" class="text" name="confirmPassword">
-            </p>
-            
-            <p>
-                <label for="input3">First name:</label> <br>
-                <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name)?>">
-            </p>
-            
-            <p>
-               <label for="input4">Last name:</label> <br>
-               <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name)?>">
-           </p>
-           <p>
-                <label for="input8">Phone:</label> <br>
-                <input type="text" class="text" name="phone" value="<?=htmlentities($phone)?>">
-            </p>  
-           <p>
-               <label for="input5">Street:</label> <br>
-               <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
-           </p>
-
-            <p>
-                <label for="input6">City</label> <br>
-                <input type="text" class="text" name="city" value="<?=htmlentities($city)?>">
-            </p>  
-
-            <p>
-                <label for="input7">Postal code</label> <br>
-                <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
-            </p>
-
-            <p>
-                <label for="input9">Country</label> <br>
-                <input type="text" class="text" name="country"value="<?=htmlentities($country)?>">
-            </p>
-              
-           
-
-                <input type="submit" name="signup" value="Register">
-            
+        <form action="users.php">
+            <input type="submit" value="User-list" class="btn text-light">
+        </form>
+        <form action="admincreate.php">
+            <input type="submit" value="Create user" class="btn text-light">
+        </form>
+        <form action="admin.php">
+            <button class="contentBtn">Back</button>
         </form>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <?=$msg?>
+    </div>
+    <div class="d-flex justify-content-center">
+        <table class="table-light card p-5 rounded border-0 shadow">
+            <tr>
+            <form method="POST" action="#">       
+                
+                <td>
+                    <label for="input1">Username:</label> <br>
+                    <input type="text" class="text" name="username" value="<?=htmlentities($username)?>">
+                </td>
+
+                <td>
+                    <label for="input1">E-mail address:</label> <br>
+                    <input type="text" class="text" name="email" value="<?=htmlentities($email)?>">
+                </td>
+
+            </tr>
+            <tr>    
+                <td>
+                    <label for="input2">Password:</label> <br>
+                    <input type="password" class="text" name="password">
+                </td>
+
+                <td>
+                    <label for="input2">Confirm password:</label> <br>
+                    <input type="password" class="text" name="confirmPassword">
+                </td>
+                
+                <tr>
+                    <td>
+                        <label for="input3">First name:</label> <br>
+                        <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name)?>">
+                    </td>
+                
+                <td>
+                    <label for="input4">Last name:</label> <br>
+                    <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name)?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="input8">Phone:</label> <br>
+                    <input type="text" class="text" name="phone" value="<?=htmlentities($phone)?>">
+                </td>
+
+                <td>
+                    <label for="input5">Street:</label> <br>
+                    <input type="text" class="text" name="street" value="<?=htmlentities($street)?>">         
+                </td>
+            </tr>
+            </tr>
+
+                <td>
+                    <label for="input6">City</label> <br>
+                    <input type="text" class="text" name="city" value="<?=htmlentities($city)?>">
+                </td>  
+
+                <td>
+                    <label for="input7">Postal code</label> <br>
+                    <input type="text" class="text" name="postal_code"value="<?=htmlentities($postal_code)?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="country">Country</label><br>
+                    <select id="country" name="country">
+                        <option value="trump">TrumpNation</option>
+                        <option value="norway">Norway</option>
+                        <option value="denmark">Denmark</option>
+                        <option value="finland">Finland</option>
+                        <option value="sweden">Sweden</option>
+                    </select> 
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="signup" value="Add new user" class="btn bg-dark text-light mt-2"> 
+                </td>
+            </tr>   
+            </form>
+        </table>
+    </div>
 <?php include('layout/footer.php'); ?>
 

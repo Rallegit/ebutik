@@ -2,10 +2,6 @@
     require('../src/dbconnect.php');
     require('../src/config.php');
 
-    //echo "<pre>";
-    //print_r($_POST);
-    //echo "</pre>";
-
     if (isset($_POST['deleteBtn'])) {
         deleteProduct($_POST['id']); //refakturerad
     }
@@ -22,21 +18,21 @@
         $description = trim(substr(($_POST['description']),0 , 10));
         $price = trim($_POST['price']);
 
-        if (empty($title)) {
-            $error .= "<li>Title is mandatory</li>";
-        }
+        // if (empty($title)) {
+        //     $error .= "<li>Title is mandatory</li>";
+        // }
 
-        if (empty($description)) {
-            $error .= "<li>Description is mandatory</li>";
-        }
+        // if (empty($description)) {
+        //     $error .= "<li>Description is mandatory</li>";
+        // }
 
-        if (empty($price)) {
-            $error .= "<li>Price is mandatory</li>";
-        }
+        // if (empty($price)) {
+        //     $error .= "<li>Price is mandatory</li>";
+        // }
 
-        if ($error) {
-            $msg = "<ul class='warningerror'>{$error}</ul>";
-        }
+        // if ($error) {
+        //     $msg = "<ul class='warningerror'>{$error}</ul>";
+        // }
 
         if (empty($error)) {
 
@@ -64,36 +60,29 @@
 
     <?php include('layout/header.php'); ?>
 
-    <div class="d-flex flex-column pt-4 pb-4 border">
+    <div class="d-flex flex-column mt-5 ml-5" id="productPage">
         <form action="#" method="POST">
-            <div class="d-flex align-content-center shadow-sm p-3 bg-white rounded">
-                <div class="col-2">
+            <div class="d-flex justify-content-center ml-5">
+                <div class="col">
                     <img src="admin/<?=$product['img_url']?>" style="width:90px;height:auto;">
                 </div>
 
-                <div class="d-flex ">
-                    <div class="col-10">
+                <div class="d-flex flex-column">
+                    <div class="col-7">
                         <h1><?=htmlentities($product['title'])?></h1> <br>
                         <p><?=htmlentities($product['description'])?></p>
                     </div>
-                </div>
                 
-                <div class="wp-100"></div>
-                
-
-                <div class="col-2">
-                    <?=htmlentities ($product['price'])?>
+                    <div class="col-5 font-weight-bold">
+                        <h3><?=htmlentities ($product['price'])?>SEK</h3>
+                    </div>
                 </div>
-
-                <div class="wp-100"></div>
-
             </div>   
         </form>
 
         <form action="products.php">
-            <div class="col-2">
-                <!-- <button class="contentBtn">Back to products</button> -->
-                <input type="submit" class="form-control" value="Back to products">
+            <div class="col-2 mt-3">
+               <input type="submit" class="form-control" value="Back to products">
             </div>
         </form>
     </div>

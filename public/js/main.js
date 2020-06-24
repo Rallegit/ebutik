@@ -27,27 +27,48 @@ $(document).ready(function () {
         
         for (texterino of data['users']) {
         html += 
-                '<section>' + texterino["username"] + '</section>' +
-                '<section>' + texterino["first_name"] + '</section>' +
-                '<section>' + texterino["last_name"] + ' </section>' + 
-                '<section>' + texterino["email"] + '</section>' +
-                '<section>' + texterino["password"] + '</section>' +
-                '<section>' + texterino["phone"] + '</section>' +
-                '<section>' + texterino["street"] + '</section>' +
-                '<section>' + texterino["postal_code"] + '</section>' + 
-                '<section>' + texterino["city"] + '</section>' +
-                '<section>' + texterino["register_date"] + ' </section>' +
-                '<section>' + texterino["country"] + ' </section>' +
-                '<section>' + texterino["id"] + ' </section>' + 
-                
-                '<form action="updateuser.php?" method="GET">' + 
-                '<input type="submit" class="btn" name="id" value="Update">' + 
-                '<input type="hidden" name="id" value="' + texterino["id"]+ '">' +
-                '</form>' + 
-                '<form method="POST">' + 
-                '<input type="submit" class="delete-user-btn" name="deleteUserBtn" value="Delete">' +
-                '<input type="hidden" name="id" value="' + texterino["id"] + '">' + 
-                '</form>'; 
+                '<table>' +
+                    '<thead>' + 
+                        '<tr>' +
+                            '<td>Username:</td>' +
+                            '<td>First name:</td>' +
+                            '<td>Last name:</td>' +
+                            '<td>E-mail:</td>' +
+                            '<td>Password:</td>' +
+                            '<td>Phone:</td>' +
+                            '<td>Street:</td>' +
+                            '<td>Postal code:</td>' +
+                            '<td>City:</td>' +
+                            '<td>Country:</td>' +
+                            '<td>Register date:</td>' +
+                        '</tr>' +
+                    '</thead>' + 
+                    '<tbody>' + 
+                        '<td>' + texterino["username"] + '</td>' +
+                        '<td>' + texterino["first_name"] + '</td>' +
+                        '<td>' + texterino["last_name"] + ' </td>' + 
+                        '<td>' + texterino["email"] + '</td>' +
+                        '<td>' + texterino["password"] + '</td>' +
+                        '<td>' + texterino["phone"] + '</td>' +
+                        '<td>' + texterino["street"] + '</td>' +
+                        '<td>' + texterino["postal_code"] + '</td>' + 
+                        '<td>' + texterino["city"] + '</td>' +
+                        '<td>' + texterino["country"] + ' </td>' +
+                        '<td>' + texterino["register_date	"] + ' </td>' +
+                        '<td>' +
+                            '<form method="POST">' +
+                                '<input type="submit" class="delete-user-btn btn bg-light text-dark mb-2" name="deleteUserBtn" value="Delete">' +
+                                '<input type="hidden" name="id" value="' + texterino["id"] + '">' +
+                            '</form>' +
+                        '</td>' +
+                        '<td>' +
+                            '<form action="updateuser.php?" method="GET">' + 
+                                '<input type="submit" class="btn bg-light text-dark mb-2" name="id" value="Update">' + 
+                                '<input type="hidden" name="id" value="' + texterino["id"]+ '">' +
+                            '</form>' + 
+                        '</td>' +
+                    '</tbody>' +
+                '</table>'; 
                 
                 };
                 userList.html(html);
@@ -82,23 +103,37 @@ $(document).ready(function () {
         
         for (article of data['products']) {
         html += 
-            '<li class="articleList">' +
-            '<div class="article_img">' + '<img src="' + article['img_url'] + '" width="50px">' +  '</div>' +
-            '<input type="text" name="title" value="' + article['title'] + '">' + '<br>' +
-            '<input type="text" name="description" value="' + article['description'] + '">' + '<br>' +
-            '<input type="text" name="price" value="' + article['price'] + '">' + '<br>' +
-            '<form method="GET">' + 
-                '<input type="submit" name="updateProductBtn class="btn bg-white update-product-btn" value="Update">' + 
-                '<input type="hidden" name="id" value="' + article['id'] + '">' +
-            '</form>' + 
-            '<form method="POST">' + 
-                '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
-                '<input type="hidden" name="id" value="' + article['id'] + '">' + 
-            '</form>' + 
-            '</li>';
+            '<tbody class="articleList">' +
+                '<tr>' +
+                    '<td scope="row articleImg">' +
+                        '<img src="' + article['img_url'] + '" width="50px">' + '</div>' +
+                    '</td>' +
+                    '<td>' +
+                        '<input type="text" name="title" value="' + article['title'] + '">' + 'class="bg-dark border-0 text-white" >' + 
+                    '</td>' +
+                    '<td>' +
+                        '<input type="text" name="description" value="' + article['description'] + '">' + 'class="bg-dark border-0 text-white" >' +
+                    '</td>' +
+                    '<td>' +
+                        '<input type="text" name="price" value="' + article['price'] + '">' +
+                    '</td>' +
+                    '<td>' +
+                        '<form method="POST">' +
+                            '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
+                            '<input type="hidden" name="id" value="' + article['id'] + '">' +
+                        '</form>' +
+                    '</td>' +
+                    '<td>' +
+                        '<form method="GET">' +
+                            '<input type="submit" name="updateProductBtn class="btn bg-white update-product-btn" value="Update">' +
+                            '<input type="hidden" name="id" value="' + article['id'] + '">' +
+                        '</form>' +
+                    '</td>' +
+                '</tr>' +
+            '</tbody>';
 
-                };
-                lists.html(html);
+            };
+            lists.html(html);
         $('.delete-product-btn').on('click', deleteProductEvent)
         $('.update-product-btn').on('click', updateProductEvent)
     };
@@ -123,10 +158,10 @@ $(document).ready(function () {
     $('.update-product-btn').on('click', updateProductEvent);
     function updateProductEvent(e) {
         e.preventDefault();
-        let id              = $(this).parent().find('input[name="id"]');
-        let title           = $(this).parent().parent().find('input[name="title"]');
-        let description     = $(this).parent().parent().find('input[name="description"]');
-        let price           = $(this).parent().parent().find('input[name="price"]');
+        let id = $(this).parent().find('input[name="id"]');
+        let title = $(this).parent().parent().find('input[name="title"]');
+        let description = $(this).parent().parent().find('input[name="description"]');
+        let price = $(this).parent().parent().find('input[name="price"]');
         console.log({
             updateProductBtn: true,
             title: title.val(), 
@@ -148,7 +183,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 appendUpdateProductList(data);
-                
             },
         });
     };

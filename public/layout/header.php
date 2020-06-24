@@ -57,11 +57,11 @@
 				</form>
 			</div>
 			<div class="d-flex justify-content-end">
-				<div class="p-2">
+				<div class="p-2 logInBtn">
 					<?php
 						if (isset($_SESSION['username'])) {
 							$loggedInUsername = htmlentities(ucfirst($_SESSION['username'])); 
-							$aboveNav = "Welcome $loggedInUsername | <a href='logout.php'>Log out</a>";
+							$aboveNav = "Welcome <span>$loggedInUsername </span> | <a href='logout.php'>Log out</a>";
 						} else {
 							$aboveNav = "<a href='signup.php'>Sign up</a> | <a href='login.php'>Log in</a>";
 						}
@@ -72,7 +72,7 @@
 		</div>
 	
 		<!-- Navbar -->
-		<div class="d-flex justify-content-around text-center bg-transparent">
+		<div class="d-flex justify-content-center text-center bg-transparent pb-4">
 			<div class="col">
 				<form action="index.php?">
 					<input type="submit" value="Home" class="btn navBtn">
@@ -88,13 +88,9 @@
 					<input type="submit" value="Contact" class="btn navBtn">
 				</form>
 			</div>
-      	</div>
-		
-		<!-- Cart -->
-		<div class="d-flex justify-content-end">
-			<div class="d-flex">
+			<div class="d-flex justify-content-end mr-2">
 				<a href="products.php" data-toggle="dropdown" role="button" aria-expanded="false">
-					<button type="button" class="btn bg-warning dropdown-toggle" data-toggle="dropdown-toggle">
+					<button type="button" class="btn dropdown-toggle cartBtn" data-toggle="dropdown-toggle">
 						<span class="fa fa-gift bigicon">View Cart</span>
 						<span class="badge badge-pill badge-danger"><?=$articleItemCount?></span>
 					</button>
@@ -103,8 +99,8 @@
 				<!-- Dropdown Menu -->
 				<div class="dropdown-menu">
 					<div class="d-flex flex-column">
-					  	<div class="col">
-					  		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						<div class="col">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 						</div>
 
 						<div class="col total-section text-left">
@@ -140,4 +136,6 @@
 					</div>
 				</div>
 			</div>
+			
+			
 		</div>

@@ -128,106 +128,92 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-	
-    <title>Bacardi</title>
 </head>
 <body>
 	<div class="container-fluid p-0">
 
-        <div class="d-flex">
+        <div class="d-flex justify-content-center">
             <div class="p-2">
                 <form action="../edit.php?" method="GET">
                     <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-                    <input type="submit" value="My page" class="btn">
+                    <input type="submit" value="My page" class="btn bg-dark text-light">
                 </form>
-
+            </div>
+            <div class="p-2">
                 <form action="admin.php">
-                    <button class="contentBtn btn">Back</button>
+                    <button class="contentBtn btn bg-dark text-light">Back</button>
                 </form>
             </div>
         </div>
         
-        <div class="d-flex">
-            <ul class="userList">
-                <h2>All users</h2>
-                <?php 
-                    foreach (array_reverse($users) as $texterino) { 
-                ?>
+    
+    <h2>All users</h2>
+    <table class="table table-dark userList">
+        <thead>
+            <tr>
+                <td>Username</td>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>E-mail</td>
+                <td>Password</td>
+                <td>Phone</td>
+                <td>Street</td>
+                <td>Postal code</td>
+                <td>City</td>
+                <td>Country</td>
+                <td>Register date</td>
+            </tr>
+        </thead>
+        <?php foreach (array_reverse($users) as $texterino) { ?>
+        <tbody>
+            </tr>
+                <td>
+                    <?=htmlentities($texterino['username'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['first_name'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['last_name'])?>
+                </td>
+                <td>   
+                    <?=htmlentities($texterino['email'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['password'])?>
                 
-                    <div class="col">
-                        Username: <?=htmlentities($texterino['username'])?>
-                    </div>
-                    <br>
-                    <div class="col">
-                        First name: <?=htmlentities($texterino['first_name'])?>
-                    </div>
-
-                    <br>
-
-                    <div class="col">
-                        Last name:  <?=htmlentities($texterino['last_name'])?>
-                    </div>
-
-                    <br>
-
-                    <div class="col">
-                        Email:  <?=htmlentities($texterino['email'])?>
-                    </div>
-
-                    <br>
-
-                    <div class="col">
-                        Password: <?=htmlentities($texterino['password'])?>
-                    </div>
-
-                    <br>
-
-                    <div class="col">
-                        Phone: <?=htmlentities($texterino['phone'])?>
-                    </div>
-
-                    <br>
-                    
-
-                    <div class="col">
-                        Street:  <?=htmlentities($texterino['street'])?>
-                    </div>
-
-                    <br>
-
-                    <div class="col">
-                        Postal Code:  <?=htmlentities($texterino['postal_code'])?>
-                    </div>  
-
-                    <br>
-
-                    <div class="col">
-                        City:  <?=htmlentities($texterino['city'])?>
-                    </div>
-                    
-                    <br>
-                    
-                    <div class="col">
-                        Country: <?=htmlentities($texterino['country'])?>
-                    </div>
-
-                    <br>
-
+                </td>
+                <td>
+                    <?=htmlentities($texterino['phone'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['street'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['postal_code'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['city'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['country'])?>
+                </td>
+                <td>
+                    <?=htmlentities($texterino['register_date'])?>
+                </td>
+                <td>   
                     <form method="POST">
                         <input type="hidden" name="id" value="<?=$texterino['id']?>">
-                        <input type="submit" name="deleteUserBtn" value="Delete" class="delete-user-btn">
+                        <input type="submit" name="deleteUserBtn" value="Delete" class="delete-user-btn btn bg-light text-dark mb-2">
                     </form>
-                    
+                </td>
+                <td>
                     <form action="updateuser.php?" method="GET">
                         <input type="hidden" name="id" value="<?=$texterino['id']?>">
-                        <input type="submit" value="Update" class="btn">
+                        <input type="submit" value="Update" class="btn bg-light text-dark mb-2">
                     </form>
-                
-                <?php } ?> 
-
-            </ul>
-        </div>
-        <hr>
-    </div>
-
+                </td>
+            <?php } ?> 
+        </tbody>               
+    </table>
 <?php include('layout/footer.php'); ?> 

@@ -24,7 +24,7 @@
 
 <?php include('layout/header.php'); ?>
 
-<table class="table table-borderless">
+<table class="table table-borderless mx-5">
     <thead>
             <tr>
                 <th style="width: 15%">Article</th>

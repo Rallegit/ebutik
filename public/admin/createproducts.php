@@ -1,26 +1,7 @@
 <?php
     require('../../src/config.php');
-    
-    checkLoginSession(); //refakturerad å klar
-
+    checkLoginSession();
     require('../../src/dbconnect.php');
-
-    // if (isset($_POST['deleteBtn'])) {
-    //     if(empty($title)){
-    //         try {
-    //             $query = "
-    //             DELETE FROM products
-    //             WHERE id = :id;
-    //             ";
-      
-    //             $stmt = $dbconnect->prepare($query);
-    //             $stmt->bindValue(':id', $_POST['id']);
-    //             $stmt->execute();
-    //         }     catch (\PDOException $e) {
-    //             throw new \PDOException($e->getMessage(), (int) $e->getCode());
-    //         }
-    //     }
-    // }
 
     $title          = '';
     $description    = '';
@@ -103,7 +84,6 @@
     }
 
     if (empty($error)) {
-
         try {
             $query = "
                 INSERT INTO products (title, description, price, img_url)
@@ -131,7 +111,7 @@
     <?php include('layout/header.php'); ?>
 
     <!-- Add new products -->
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column bg-light py-4">
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="col">
                 <h5>Add product</h5>
@@ -140,7 +120,7 @@
                 <div class="wp-100"></div>
 
                 <form action="products.php?" method="POST">
-                    <input type="file" name="upload" value=""/> 
+                    <input type="file" class="btn py-2 px-0" name="upload" value=""/> 
                 </form>
 
                 <div class="wp-100"></div>
@@ -150,6 +130,7 @@
                 <div class="wp-100"></div>
 
                 <input type="text" name="price" placeholder="Price">
+                <!-- <button class="btn-dark text-white" name="add">Add product</button> -->
                 <button class="btn1" name="add">Add product</button>
             </div>
         </form>
@@ -160,43 +141,59 @@
     </div> 
 
     <!-- Artiklar börjar här  -->
-    <div class="d-flex flex-column">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
         <ul class="lists">
             <?php foreach ($products as $key => $article) { ?>
-                <li class="articleList">
-    
-                    <div class="article_img">
-                        <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
-                    </div>
+                <tbody class="articleList">
+                    <tr>
+                        <td scope="row articleImg">
+                            <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
+                        </td>
+                        <td>
+                            <input type="text" name="title" value="<?=htmlentities($article['title'])?>" class="bg-dark border-0 text-white">
+                        </td>
 
-                    <input type="text" name="title" value="<?=htmlentities($article['title'])?>">
-                    
-                    <br>
+                        <td>
+                            <input type="text" name="description" value="<?=substr(htmlentities ($article['description']) ,0, 10)?>"class="bg-dark border-0 text-white">
+                        </td>
 
-                    <input type="text" name="description" value="<?=htmlentities($article['description'])?>">
-
-                    <br>
-
-                    <input type="text" name="price" value="<?=htmlentities($article['price'])?>">
-
-                    <br>
-                    
-                    <form method="POST">
-                        <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn">
-                    </form>
-                    
-                    <form method="GET">
-                        <input type="hidden" name="id" value="<?=$article['id']?>">
-                        <input type="submit" name="updateProductBtn " value="Update" class="btn bg-white update-product-btn">
-                    </form>
-                <br>
-                <br>
-                
-                <div class="bordertext"></div>
-            </li>
+                        <td>
+                            <input type="text" name="price" value="<?=htmlentities($article['price'])?>">
+                        </td>
+                        
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="id" value="<?=$article['id']?>">
+                                <input type="submit" name="deleteProductBtn" value="Delete" class="delete-product-btn btn bg-light">
+                            </form>
+                        </td>
+                        
+                        <td>
+                            <form method="GET">
+                                <input type="hidden" name="id" value="<?=$article['id']?>">
+                                <input type="submit" name="updateProductBtn" value="Update" class="update-product-btn btn bg-white">
+                            </form>
+                        </td>
+                    </tr>
             <?php } ?> 
-        </ul> 
-    </div>
+                </tbody>
+            </ul>
+        </table>
+        
 
     <?php include('layout/footer.php'); ?>
+
+
+
+        
+        
