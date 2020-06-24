@@ -17,9 +17,7 @@ body {
     -o-background-size: cover;
     color: white;
     min-height: 100rem;
-    position: relative;
     margin-top: -18rem !important;
-    z-index: -99;
 }
 
 .logo {
@@ -50,7 +48,7 @@ body {
     background-size: contain;
     -o-background-size: contain;
     width: auto;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .innerProductPage {

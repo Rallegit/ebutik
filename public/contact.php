@@ -1,4 +1,8 @@
-	<?php include('layout/header.php'); ?>
+<?php
+    require('../src/config.php');
+?>	
+    
+    <?php include('layout/header.php'); ?>
     
     <div class="container-fluid p-0"  id="productPage">
         <div class="d-flex flex-column">

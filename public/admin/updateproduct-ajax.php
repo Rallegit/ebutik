@@ -8,11 +8,6 @@
     $error       = '';
     $msg         = '';
 
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "<pre>";
-    // die;
-
     if (isset($_POST['updateProductBtn'])) {
         $title       = trim($_POST['title']);
         $description = trim($_POST['description']);
@@ -63,11 +58,6 @@
         
         'products' => $products,
         
-    ];
-
-    // echo "<pre>";
-    // print_r($data);
-    // echo "<pre>";
-    
+    ];  
     echo json_encode($data);
 ?>

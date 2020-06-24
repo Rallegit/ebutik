@@ -141,7 +141,7 @@
     </div> 
 
     <!-- Artiklar börjar här  -->
-    <table class="table table-dark">
+    <table class="table table-dark lists">
         <thead>
             <tr>
                 <th scope="col"></th>
@@ -152,7 +152,7 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <ul class="lists">
+        
             <?php foreach ($products as $key => $article) { ?>
                 <tbody class="articleList">
                     <tr>
@@ -160,11 +160,11 @@
                             <img src="<?=$article['img_url']?>" style="width:50px;height:auto;">
                         </td>
                         <td>
-                            <input type="text" name="title" value="<?=htmlentities($article['title'])?>" class="bg-dark border-0 text-white">
+                            <input type="text" class="bg-dark border-0 text-white" name="title" value="<?=htmlentities($article['title'])?>">
                         </td>
 
                         <td>
-                            <input type="text" name="description" value="<?=substr(htmlentities ($article['description']) ,0, 10)?>"class="bg-dark border-0 text-white">
+                            <input type="text" class="bg-dark border-0 text-white" name="description" value="<?=substr(htmlentities ($article['description']) ,0, 10)?>">
                         </td>
 
                         <td>
@@ -187,8 +187,7 @@
                     </tr>
             <?php } ?> 
                 </tbody>
-            </ul>
-        </table>
+    </table>
         
 
     <?php include('layout/footer.php'); ?>

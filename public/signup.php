@@ -109,82 +109,80 @@
 <?php include('layout/header.php'); ?>
 
     <div class="d-flex justify-content-center mt-5">
-    <table class="table-light card p-5 rounded border-0 shadow">
+        <table class="table-light card p-5 rounded border-0 shadow">
             <form method="POST" action="#">
-
                 <?=$msg?>
-            <tr>
-                <td>
-                    <label for="input1">Username:</label><br>
-                    <input type="text" class="text form-control" name="username" value="<?=htmlentities($username)?>">
-                </td>
-                <td>
-                    <label for="input2">E-mail address:</label><br>
-                    <input type="text" class="text form-control" name="email" value="<?=htmlentities($email)?>">
-                </td>
-                
-            </tr>
-            <tr>    
-                <td>
-                    <label for="input3">Lösenord:</label><br>
-                    <input type="password" class="text form-control" name="password">
-                </td>
+                <tr>
+                    <td>
+                        <label for="input1">Username:</label><br>
+                        <input type="text" class="text form-control" name="username" value="<?=htmlentities($username)?>">
+                    </td>
+                    <td>
+                        <label for="input2">E-mail address:</label><br>
+                        <input type="text" class="text form-control" name="email" value="<?=htmlentities($email)?>">
+                    </td>
+                    
+                </tr>
+                <tr>    
+                    <td>
+                        <label for="input3">Lösenord:</label><br>
+                        <input type="password" class="text form-control" name="password">
+                    </td>
 
-                <td>
-                    <label for="input4">Bekräfta lösenord:</label><br>
-                    <input type="password" class="text form-control" name="confirmPassword">
+                    <td>
+                        <label for="input4">Bekräfta lösenord:</label><br>
+                        <input type="password" class="text form-control" name="confirmPassword">
+                    </td>
+            
+                <tr>    
+                    <td>
+                        <label for="input5">First name:</label><br>
+                        <input type="text" class="text form-control" name="first_name" value="<?=htmlentities($first_name)?>">
+                    </td>
+                    <td>
+                    <label for="input6">Last name:</label><br>
+                    <input type="text" class="text form-control" name="last_name" value="<?=htmlentities($last_name)?>">
                 </td>
-           
-            <tr>    
+                </tr>
+                <tr>
                 <td>
-                    <label for="input5">First name:</label><br>
-                    <input type="text" class="text form-control" name="first_name" value="<?=htmlentities($first_name)?>">
-                </td>
-                <td>
-                   <label for="input6">Last name:</label><br>
-                   <input type="text" class="text form-control" name="last_name" value="<?=htmlentities($last_name)?>">
-               </td>
-            </tr>
-            <tr>
-               <td>
                     <label for="input7">Phone:</label><br>
                     <input type="text" class="text form-control" name="phone" value="<?=htmlentities($phone)?>">
                 </td>
-                <td>
-                   <label for="input8">Street:</label><br>
-                   <input type="text" class="text form-control" name="street" value="<?=htmlentities($street)?>">
-               </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="input9">City</label><br>
-                    <input type="text" class="text form-control" name="city" value="<?=htmlentities($city)?>">
+                    <td>
+                    <label for="input8">Street:</label><br>
+                    <input type="text" class="text form-control" name="street" value="<?=htmlentities($street)?>">
                 </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="input9">City</label><br>
+                        <input type="text" class="text form-control" name="city" value="<?=htmlentities($city)?>">
+                    </td>
 
-                <td>
-                    <label for="input7">Postal code</label><br>
-                    <input type="text" class="text form-control" name="postal_code"value="<?=htmlentities($postal_code)?>">
+                    <td>
+                        <label for="input7">Postal code</label><br>
+                        <input type="text" class="text form-control" name="postal_code"value="<?=htmlentities($postal_code)?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="country">Country</label><br>
+                        <select id="country" name="country" class="form-control">
+                            <option value="norway">Norway</option>
+                            <option value="denmark">Denmark</option>
+                            <option value="finland">Finland</option>
+                            <option value="sweden">Sweden</option>
+                        </select>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="country">Country</label><br>
-                    <select id="country" name="country" class="form-control">
-                        <option value="trump">TrumpNation</option>
-                        <option value="norway">Norway</option>
-                        <option value="denmark">Denmark</option>
-                        <option value="finland">Finland</option>
-                        <option value="sweden">Sweden</option>
-                    </select>
-            </td>
-            </tr>
-            <br>
-            <tr>
-                <td>
-                    <input type="submit" name="signup" value="Sign Up" class="btn btn-dark text-light mt-4 d-block">
-                </td>
-            <tr>
-        </table>
+                </tr>
+                <br>
+                <tr>
+                    <td>
+                        <input type="submit" name="signup" value="Sign Up" class="btn btn-dark text-light mt-4 d-block">
+                    </td>
+                <tr>
+            </table>
             </form>
         </div>
     </div>

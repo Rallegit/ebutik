@@ -62,29 +62,29 @@
 
     <div class="d-flex flex-column mt-5 ml-5" id="productPage">
         <form action="#" method="POST">
-            <div class="d-flex justify-content-center ml-5">
-                <div class="col">
+            <div class="d-flex justify-content-center">
+                <div class="col-3">
                     <img src="admin/<?=$product['img_url']?>" style="width:90px;height:auto;">
                 </div>
 
                 <div class="d-flex flex-column">
-                    <div class="col-7">
+                    <div class="col">
                         <h1><?=htmlentities($product['title'])?></h1> <br>
                         <p><?=htmlentities($product['description'])?></p>
                     </div>
                 
-                    <div class="col-5 font-weight-bold">
-                        <h3><?=htmlentities ($product['price'])?>SEK</h3>
+                    <div class="col">
+                        <h3 class="font-weight-bold"><?=htmlentities ($product['price'])?>SEK</h3>
                     </div>
                 </div>
             </div>   
         </form>
 
-        <form action="products.php">
-            <div class="col-2 mt-3">
-               <input type="submit" class="form-control" value="Back to products">
-            </div>
-        </form>
+        <div class="d-flex justify-content-center">
+            <form action="products.php">
+                <input type="submit" class="form-control btn-dark btn text-light mx-auto" value="Back to products">
+            </form>
+        </div>
     </div>
 
 

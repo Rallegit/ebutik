@@ -6,8 +6,8 @@
 		$stmt = $dbconnect->query($query);
 		$users = $stmt->fetchAll();
 		}   catch (\PDOException $e) {
-			throw new \PDOException($e->getMessage(), (int) $e->getCode());
-		}
+		throw new \PDOException($e->getMessage(), (int) $e->getCode());
+	}
 		
 ?>
 
@@ -25,7 +25,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <title>Bacardi</title>
+    <title>The rum shop</title>
 </head>
 <body>
 	<div class="container-fluid p-0 m-0">
@@ -64,11 +64,6 @@
 				</form>
 			</div>
 
-			<!-- <div class="col">
-				<form action="createproducts.php?">
-					<input type="submit" value="Add Product" class="btn">
-				</form>
-			</div> -->
 
 			<div class="col">
 				<form action="contact.php?">

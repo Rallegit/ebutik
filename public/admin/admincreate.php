@@ -196,7 +196,6 @@
                 <td>
                     <label for="country">Country</label><br>
                     <select id="country" name="country">
-                        <option value="trump">TrumpNation</option>
                         <option value="norway">Norway</option>
                         <option value="denmark">Denmark</option>
                         <option value="finland">Finland</option>

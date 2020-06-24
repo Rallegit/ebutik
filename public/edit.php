@@ -6,17 +6,27 @@
     $msg       = '';
 
     // Delete User
+    // if (isset($_POST['deleteBtn'])) {
+    //     $result = deleteMyUser($_SESSION['id']);
+    //     unset($_SESSION['username']);
+    // }
     if (isset($_POST['deleteBtn'])) {
-        $result = deleteMyUser($_SESSION['id']);
-        unset($_SESSION['username']);
+
+        if(empty($title)){
+            try {
+                $query = "
+                    DELETE FROM users
+                    WHERE id = :id;
+                ";
+    
+                $stmt = $dbconnect->prepare($query);
+                $stmt->bindValue(':id', $_POST['id']);
+                $stmt->execute();
+            }     catch (\PDOException $e) {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
+        }
     }
-
-    // output with JSON
-    $data = [
-        
-    ];
-
-    echo json_encode($data);
     
     $first_name  = '';
     $last_name   = '';
@@ -186,7 +196,6 @@
                     <div class="form-group col-md-6">
                         <?php
                         $countries = [
-                            'trump' => 'Trumpnation',
                             'norway' => 'Norway',
                             'denmark' => 'Denmark',
                             'finland' => 'Finland',
@@ -221,7 +230,7 @@
                     <div class="col text-center">
                         <form method="POST">
                             <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-                            <input type="submit" name="deleteBtn" value="Delete user" class="delete-user-btn">
+                            <input type="submit" name="deleteBtn" value="Delete user" class="deleteBtn>
                         </form>
                     </div>
                 </div>

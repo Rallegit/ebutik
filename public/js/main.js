@@ -106,13 +106,13 @@ $(document).ready(function () {
             '<tbody class="articleList">' +
                 '<tr>' +
                     '<td scope="row articleImg">' +
-                        '<img src="' + article['img_url'] + '" width="50px">' + '</div>' +
+                        '<img src="' + article['img_url'] + '" width="50px">' +
                     '</td>' +
                     '<td>' +
-                        '<input type="text" name="title" value="' + article['title'] + '">' + 'class="bg-dark border-0 text-white" >' + 
+                        '<input type="text" class="bg-dark border-0 text-white" name="title" value="' + article['title'] + '">' + 
                     '</td>' +
                     '<td>' +
-                        '<input type="text" name="description" value="' + article['description'] + '">' + 'class="bg-dark border-0 text-white" >' +
+                        '<input type="text" class="bg-dark border-0 text-white" name="description" value="' + article['description'] + '">' +
                     '</td>' +
                     '<td>' +
                         '<input type="text" name="price" value="' + article['price'] + '">' +
@@ -159,9 +159,9 @@ $(document).ready(function () {
     function updateProductEvent(e) {
         e.preventDefault();
         let id = $(this).parent().find('input[name="id"]');
-        let title = $(this).parent().parent().find('input[name="title"]');
-        let description = $(this).parent().parent().find('input[name="description"]');
-        let price = $(this).parent().parent().find('input[name="price"]');
+        let title = $(this).parent().parent().parent().find('input[name="title"]');
+        let description = $(this).parent().parent().parent().find('input[name="description"]');
+        let price = $(this).parent().parent().parent().find('input[name="price"]');
         console.log({
             updateProductBtn: true,
             title: title.val(), 

@@ -2,38 +2,34 @@
 	require('../src/dbconnect.php');
 	require('../src/config.php');
 	
-	// echo "<pre>";
-	// print_r($_POST);
-	// echo "<pre>";
-	// exit;
 
-	if (isset($_POST['createOrderBtn'])) {
-		$firstName 		= trim($_POST['firstName']);
-		$lastName 		= trim($_POST['lastName']);
-		$username 		= trim($_POST['username']);
-		$email 	   		= trim($_POST['email']);
-		$password 		= trim($_POST['password']);
-		$phone 			= trim($_POST['phone']);
-		$street 		= trim($_POST['street']);
-		$city 			= trim($_POST['city']);
-		$postalCode 	= trim($_POST['postalCode']);
-		$country 		= trim($_POST['country']);
-		$totalPrice 	= trim($_POST['totalPrice']);
+
+if (isset($_POST['createOrderBtn'])) {
+	$firstName 		= trim($_POST['firstName']);
+	$lastName 		= trim($_POST['lastName']);
+	$username 		= trim($_POST['username']);
+	$email 	   		= trim($_POST['email']);
+	$password 		= trim($_POST['password']);
+	$phone 			= trim($_POST['phone']);
+	$street 		= trim($_POST['street']);
+	$city 			= trim($_POST['city']);
+	$postalCode 	= trim($_POST['postalCode']);
+	$country 		= trim($_POST['country']);
+	$totalPrice 	= trim($_POST['totalPrice']);
 	
-		// Check if user already exist in our DB
-		try {
-			$query = "
-				SELECT * FROM users
-				WHERE email = :email
-			";
-			
-			$stmt = $dbconnect->prepare($query);
-			$stmt->bindValue(':email', $email);
-			$stmt->execute();
-			$user = $stmt->fetch();
-		} catch (\PDOException $e) {
-			throw new \PDOException($e->getMessage(), (int) $e->getCode());
-		}
+	// Check if user already exist in our DB
+	try {
+		$query = "
+			SELECT * FROM users
+			WHERE email = :email
+		";
+		
+		$stmt = $dbconnect->prepare($query);
+		$stmt->bindValue(':email', $email);
+		$stmt->execute();
+		$user = $stmt->fetch();
+	} catch (\PDOException $e) {
+		throw new \PDOException($e->getMessage(), (int) $e->getCode());
 	}
 	
 	if ($user) { //If users already exists in our DB
@@ -63,20 +59,7 @@
 	    }
 	}
 
-	// echo "<pre>";
-	// print_r($_POST);
-	// echo "<pre>";
 
-	//  echo "<pre>";
-	//  print_r($user);
-	//  echo "<pre>";
-
-
-	//  echo "<pre>";
-	//  print_r($userId);
-	//  echo "<pre>";
-	//  exit;
-	
 
 	// Create order
 	try {
@@ -118,16 +101,13 @@
 			throw new \PDOException($e->getMessage(), (int) $e->getCode());
 		}
 	}
-	//echo "<pre>";
-	//print_r($_SESSION);
-	//echo "<pre>";
-	//exit;
-
-	//unset($_SESSION['items']);
+	
 	header('Location: order-confirmation.php');
 	exit;
-	
-	header('Location: checkout.php');
-	exit;
+}
+
+header('Location: checkout.php');
+exit;
+
 
 ?>
