@@ -1,14 +1,23 @@
 <?php
     require('../src/config.php');
-    require('../src/dbconnect.php');
+    // require('../src/dbconnect.php');
 
-    if (empty($_SESSION['articleItems'])) {
-        header('Location: index.php'); 
+     $articleItemCount = count($_SESSION['items']);
+
+     $articleTotalSum = 0; // count($_SESSION['items']);
+
+     foreach ($_SESSION['items'] as $articleId => $articleItem) {
+         $articleTotalSum += $articleItem['price'] * $articleItem['quantity'];
+     }
+
+    if (empty($_SESSION['items'])) {
+        header('Location: index.php');
         exit;
     }
 
-    $articleItem = $_SESSION['articleItems'];
-    unset($_SESSION['articleItems']);
+    $articleItem = $_SESSION['items'];
+
+
 ?>
 
 <?php include('layout/header.php'); ?>
@@ -28,12 +37,14 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($articleItem as $articleId => $articleItem) {?>
+        <?php 
+        foreach($_SESSION['items'] as $articleId => $articleItem) 
+        {?>
             <tr>
                 <td><img src="img/<?=$articleItem['img_url']?>" style="width:50px;height:auto;"></td>
-                <td><?=$articleItem['description']?></td>
-                <td><?=$articleItem['quantity']?></td>
-                <td><?=$articleItem['price']?> kr</td>
+                <td><?=htmlentities($articleItem['description'])?></td>
+                <td><?=htmlentities($articleItem['quantity'])?></td>
+                <td><?=htmlentities($articleItem['price'])?> kr</td>
             </tr>
         <?php } ?>
 
@@ -45,3 +56,11 @@
         </tr>
     </tbody>
 </table>
+     <div class="d-flex justify-content-center">       
+        <form action="products.php">
+            <input type="submit" name="" value="Back" class="btn btn-dark text-light">
+        </form>
+    </div>
+<?php 
+    unset($_SESSION['items']);
+?>

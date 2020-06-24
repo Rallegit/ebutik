@@ -15,21 +15,21 @@
         $description = trim(($_POST['description']));
         $price       = trim($_POST['price']);
   
-        if (empty($title)) {
-            $error .= "<li>Rubrik är obligatoriskt</li>";
-        }
+        // if (empty($title)) {
+        //     $error .= "<li>Rubrik är obligatoriskt</li>";
+        // }
 
-        if (empty($description)) {
-            $error .= "<li>Inlägg är obligatoriskt</li>";
-        }
+        // if (empty($description)) {
+        //     $error .= "<li>Inlägg är obligatoriskt</li>";
+        // }
 
-        if (empty($price)) {
-            $error .= "<li>Pris är obligatoriskt</li>";
-        }
+        // if (empty($price)) {
+        //     $error .= "<li>Pris är obligatoriskt</li>";
+        // }
 
-        if ($error) {
-            $msg = "<ul class='warningerror'>{$error}</ul>";
-        }
+        // if ($error) {
+        //     $msg = "<ul class='warningerror'>{$error}</ul>";
+        // }
 
         if (empty($error)) {
 
@@ -57,29 +57,31 @@
 
     <?php include('layout/header.php'); ?>
     
-    <div class="d-flex flex-wrap mt-5" id="exampleModal">
+    <div class="d-flex flex-wrap justify-content-center" id="productPage">
         <?php foreach ($products as $key => $article) { ?>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-5">
+            <div class="col-xs-12 col-md-4 col-lg-3 mt-5 mx-3 innerProductPage">
                 <form action="#" method="GET">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
                 </form>
                 
-                <img src="admin/<?=$article['img_url']?>" style="width:100px;height:auto;">
+                <img class="rounded mx-auto d-block" src="admin/<?=$article['img_url']?>" style="width:70px;height:200px;">
 
-                <p><?=htmlentities($article['title'])?></p>
+                <div class="col-lg-9 mx-auto mt-4">
+                    <h5 class="m-0"><?=substr(htmlentities ($article['title']),0, 20)?></h5> <br>
                
-                <p> <?=substr(htmlentities ($article['description']),0, 30)?></p>
+                    <?=substr(htmlentities ($article['description']),0, 30)?> <br>
 
-                <p><?=htmlentities ($article['price'])?> SEK</p>
+                    <h6 class="mb-4 align-self-end"><?=htmlentities ($article['price'])?> SEK</h6>
+                </div>
  
-                <form action="show-content.php" method="GET">
+                <form action="show-content.php" method="GET" class="col-lg-9 mx-auto">
                     <input type="hidden" name="id" value="<?=$article['id']?>">
-                    <input type="submit" class="form-control mt-3" value="Read more">
+                    <input type="submit" class="form-control" value="Read more">
                 </form>
    
-                <form action="add-cart-item.php" method="POST">
+                <form action="add-cart-item.php" method="POST" class="col-lg-9 mx-auto">
                     <input type="hidden" name="articleId" value="<?=$article['id']?>">
-                    <input type="number" name="quantity" class="form-control mb-3" value="1" min="0">
+                    <input type="number" name="quantity" class="form-control" value="1" min="0">
                     <div>
                     <input type="submit" name="addToCart" class="form-control" id="addBtn" value="Add to cart">
                     </div>

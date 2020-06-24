@@ -198,7 +198,6 @@
 
             <?php
                 $countries = [
-                    'trump' => 'Trumpnation',
                     'norway' => 'Norway',
                     'denmark' => 'Denmark',
                     'finland' => 'Finland',
