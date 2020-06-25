@@ -26,7 +26,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 	
-    <title>Bacardi</title>
+    <title>The Rum shop</title>
 </head>
 <body>
 	<div class="container-fluid p-0">
@@ -111,6 +111,4 @@
 					</div>
 				</div>
 			</div>
-			
-			
 		</div>

@@ -168,7 +168,7 @@
                         </td>
 
                         <td>
-                            <input type="text" name="price" value="<?=htmlentities($article['price'])?>">
+                            <input type="text" name="price" value="<?=htmlentities($article['price'])?>">SEK
                         </td>
                         
                         <td>

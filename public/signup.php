@@ -93,7 +93,7 @@
                 'last_name'     => $last_name,
             ];
 
-            $result = add($userData); // refakturerad
+            $result = add($userData);
 
             if ($result) {
                 $msg = '<div class="alert alert-success" role="alert">The account was successfully created</div>';
@@ -108,10 +108,12 @@
 
 <?php include('layout/header.php'); ?>
 
+    <div class="d-flex justify-content-center ">
+        <?=$msg?>
+    </div>
     <div class="d-flex justify-content-center mt-5">
         <table class="table-light card p-5 rounded border-0 shadow">
             <form method="POST" action="#">
-                <?=$msg?>
                 <tr>
                     <td>
                         <label for="input1">Username:</label><br>
@@ -133,26 +135,26 @@
                         <label for="input4">Bekräfta lösenord:</label><br>
                         <input type="password" class="text form-control" name="confirmPassword">
                     </td>
-            
+                </tr>
                 <tr>    
                     <td>
                         <label for="input5">First name:</label><br>
                         <input type="text" class="text form-control" name="first_name" value="<?=htmlentities($first_name)?>">
                     </td>
                     <td>
-                    <label for="input6">Last name:</label><br>
-                    <input type="text" class="text form-control" name="last_name" value="<?=htmlentities($last_name)?>">
-                </td>
+                        <label for="input6">Last name:</label><br>
+                        <input type="text" class="text form-control" name="last_name" value="<?=htmlentities($last_name)?>">
+                    </td>
                 </tr>
                 <tr>
-                <td>
-                    <label for="input7">Phone:</label><br>
-                    <input type="text" class="text form-control" name="phone" value="<?=htmlentities($phone)?>">
-                </td>
                     <td>
-                    <label for="input8">Street:</label><br>
-                    <input type="text" class="text form-control" name="street" value="<?=htmlentities($street)?>">
-                </td>
+                        <label for="input7">Phone:</label><br>
+                        <input type="text" class="text form-control" name="phone" value="<?=htmlentities($phone)?>">
+                    </td>
+                        <td>
+                        <label for="input8">Street:</label><br>
+                        <input type="text" class="text form-control" name="street" value="<?=htmlentities($street)?>">
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -174,7 +176,7 @@
                             <option value="finland">Finland</option>
                             <option value="sweden">Sweden</option>
                         </select>
-                </td>
+                    </td>
                 </tr>
                 <br>
                 <tr>

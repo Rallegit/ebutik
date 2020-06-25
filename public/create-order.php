@@ -32,7 +32,7 @@ if (isset($_POST['createOrderBtn'])) {
 		throw new \PDOException($e->getMessage(), (int) $e->getCode());
 	}
 	
-	if ($user) { //If users already exists in our DB
+	if ($user) { 
 		$userId = $user['id'];
 	} else {
 		try {
@@ -58,8 +58,6 @@ if (isset($_POST['createOrderBtn'])) {
 	        throw new \PDOException($e->getMessage(), (int) $e->getCode());
 	    }
 	}
-
-
 
 	// Create order
 	try {

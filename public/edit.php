@@ -1,15 +1,10 @@
 <?php 
     require('../src/config.php');
-    checkLoginSession(); //refakturerad
+    checkLoginSession();
     require('../src/dbconnect.php');
 
-    $msg       = '';
+    $msg = '';
 
-    // Delete User
-    // if (isset($_POST['deleteBtn'])) {
-    //     $result = deleteMyUser($_SESSION['id']);
-    //     unset($_SESSION['username']);
-    // }
     if (isset($_POST['deleteBtn'])) {
 
         if(empty($title)){
@@ -132,7 +127,7 @@
         } 
     }
     
-    $konto = fetchAccountById($_GET['id']); // refakturerad
+    $konto = fetchAccountById($_GET['id']);
 
 ?>
 
@@ -141,8 +136,7 @@
     <h1 class="text-center">Edit info</h1>
 
     <div class="d-flex justify-content-center bg-dark text-light py-5">
-        <form action="" method="POST">       
-            <!-- Visa errormeddelanden -->
+        <form action="" method="POST">      
             <?=$msg?>  
             <form>
                 <div class="form-row">

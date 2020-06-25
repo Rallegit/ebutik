@@ -1,5 +1,5 @@
 <?php
-	// My functions
+	// Functions
 	function redirect($location) {
 	    header("Location: {$location}");
 	    exit;

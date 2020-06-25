@@ -25,7 +25,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <title>The rum shop</title>
+    <title>The Rum shop</title>
 </head>
 <body>
 	<div class="container-fluid p-0 m-0">
@@ -63,7 +63,6 @@
 					<input type="submit" value="Products" class="btn">
 				</form>
 			</div>
-
 
 			<div class="col">
 				<form action="contact.php?">
