@@ -3,7 +3,7 @@
     require('../src/config.php');
 
     if (isset($_POST['deleteBtn'])) {
-        deleteProduct($_POST['id']); //refakturerad
+        deleteProduct($_POST['id']);
     }
     
     $title          = '';
@@ -17,22 +17,6 @@
         $title = trim($_POST['title']);
         $description = trim(substr(($_POST['description']),0 , 10));
         $price = trim($_POST['price']);
-
-        // if (empty($title)) {
-        //     $error .= "<li>Title is mandatory</li>";
-        // }
-
-        // if (empty($description)) {
-        //     $error .= "<li>Description is mandatory</li>";
-        // }
-
-        // if (empty($price)) {
-        //     $error .= "<li>Price is mandatory</li>";
-        // }
-
-        // if ($error) {
-        //     $msg = "<ul class='warningerror'>{$error}</ul>";
-        // }
 
         if (empty($error)) {
 
@@ -54,7 +38,7 @@
         }
     }
     
-    $product = fetchProductById($_GET['id']);//refakturerad
+    $product = fetchProductById($_GET['id']);
     
 ?>
 

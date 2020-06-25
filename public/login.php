@@ -2,15 +2,6 @@
     require('../src/config.php');
     require('../src/dbconnect.php');
 
-    // // echo $_GET
-    // debug($_GET);
-
-    // // echo $_POST
-    // debug($_POST);
-
-    // // echo $_SESSION
-    // debug($_SESSION);
-
     $msg = "";
     if (isset($_GET['mustLogin'])) {
         $msg = '<div class="alert alert-danger" role="alert">Error! You need to log in to view this page. Please log in och sign up.</div>';
@@ -24,12 +15,12 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $user = fetchByUsername($username); //refakturerad
+        $user = fetchByUsername($username);
 
         if ($user && $password === $user['password']) {
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            redirect('index.php'); // refakturerad å KLAR!!! 
+            redirect('index.php');
 
         } else {
             $msg = '<div class="alert alert-danger" role="alert">Fel inloggningsuppgifter. Var snäll och försök igen.</div>';

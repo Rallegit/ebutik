@@ -14,22 +14,6 @@
         $title       = trim($_POST['title']);
         $description = trim(($_POST['description']));
         $price       = trim($_POST['price']);
-  
-        // if (empty($title)) {
-        //     $error .= "<li>Rubrik är obligatoriskt</li>";
-        // }
-
-        // if (empty($description)) {
-        //     $error .= "<li>Inlägg är obligatoriskt</li>";
-        // }
-
-        // if (empty($price)) {
-        //     $error .= "<li>Pris är obligatoriskt</li>";
-        // }
-
-        // if ($error) {
-        //     $msg = "<ul class='warningerror'>{$error}</ul>";
-        // }
 
         if (empty($error)) {
 
@@ -51,7 +35,7 @@
         }
     }
 
-    $products = fetchAllProducts(); // refakturerat
+    $products = fetchAllProducts();
    
 ?>
 

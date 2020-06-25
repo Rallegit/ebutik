@@ -76,116 +76,116 @@ $(document).ready(function () {
     };
 });
    
-    // Delete Product Ajax -------------------------------------------//
-    $('.delete-product-btn').on('click', deleteProductEvent);
-    function deleteProductEvent(e) {
-        e.preventDefault();
-        let id = $(this).parent().find('input[name="id"]');
-        console.log(id.val());
-        $.ajax({
-        method: 'POST',
-        url: '../delete-product-ajax.php',
-        data: { 
-            deleteProductBtn: true, 
-            id: id.val() 
+// Delete Product Ajax -------------------------------------------//
+$('.delete-product-btn').on('click', deleteProductEvent);
+function deleteProductEvent(e) {
+    e.preventDefault();
+    let id = $(this).parent().find('input[name="id"]');
+    console.log(id.val());
+    $.ajax({
+    method: 'POST',
+    url: '../delete-product-ajax.php',
+    data: { 
+        deleteProductBtn: true, 
+        id: id.val() 
+    },
+    dataType: 'json',
+    success: function(data) {
+        appendProductList(data);
+        console.log(data); 
         },
-        dataType: 'json',
-        success: function(data) {
-            appendProductList(data);
-            console.log(data); 
-            },
-        });
-    }
-
-    function appendProductList(data){
-        let lists = $('.lists');
-        let html = '';
-        
-        for (article of data['products']) {
-        html += 
-            '<tbody class="articleList">' +
-                '<tr>' +
-                    '<td scope="row articleImg">' +
-                        '<img src="' + article['img_url'] + '" width="50px">' +
-                    '</td>' +
-                    '<td>' +
-                        '<input type="text" class="bg-dark border-0 text-white" name="title" value="' + article['title'] + '">' + 
-                    '</td>' +
-                    '<td>' +
-                        '<input type="text" class="bg-dark border-0 text-white" name="description" value="' + article['description'] + '">' +
-                    '</td>' +
-                    '<td>' +
-                        '<input type="text" name="price" value="' + article['price'] + '">' +
-                    '</td>' +
-                    '<td>' +
-                        '<form method="POST">' +
-                            '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
-                            '<input type="hidden" name="id" value="' + article['id'] + '">' +
-                        '</form>' +
-                    '</td>' +
-                    '<td>' +
-                        '<form method="GET">' +
-                            '<input type="submit" name="updateProductBtn class="btn bg-white update-product-btn" value="Update">' +
-                            '<input type="hidden" name="id" value="' + article['id'] + '">' +
-                        '</form>' +
-                    '</td>' +
-                '</tr>' +
-            '</tbody>';
-
-            };
-            lists.html(html);
-        $('.delete-product-btn').on('click', deleteProductEvent)
-        $('.update-product-btn').on('click', updateProductEvent)
-    };
-
-    // Update Btn Ajax  -------------------------------------------//
-    $('.update-cart-form input[name="quantity"]').on('change', function() {
-
-        let quantity = $(this).val();
-        let cartId = $(this).data('id');
-
-        $.ajax({
-            method: 'POST',
-            url: '../update-cart-item-ajax.php',
-            data: {quantity: quantity, cartId: cartId},
-            success: function() {
-
-            },
-        })
     });
+}
+
+function appendProductList(data){
+    let lists = $('.lists');
+    let html = '';
     
-    // Update Product Ajax  -------------------------------------------//
-    $('.update-product-btn').on('click', updateProductEvent);
-    function updateProductEvent(e) {
-        e.preventDefault();
-        let id = $(this).parent().find('input[name="id"]');
-        let title = $(this).parent().parent().parent().find('input[name="title"]');
-        let description = $(this).parent().parent().parent().find('input[name="description"]');
-        let price = $(this).parent().parent().parent().find('input[name="price"]');
-        console.log({
+    for (article of data['products']) {
+    html += 
+        '<tbody class="articleList">' +
+            '<tr>' +
+                '<td scope="row articleImg">' +
+                    '<img src="' + article['img_url'] + '" width="50px">' +
+                '</td>' +
+                '<td>' +
+                    '<input type="text" class="bg-dark border-0 text-white" name="title" value="' + article['title'] + '">' + 
+                '</td>' +
+                '<td>' +
+                    '<input type="text" class="bg-dark border-0 text-white" name="description" value="' + article['description'] + '">' +
+                '</td>' +
+                '<td>' +
+                    '<input type="text" name="price" value="' + article['price'] + '">' +
+                '</td>' +
+                '<td>' +
+                    '<form method="POST">' +
+                        '<input type="submit" class="delete-product-btn" name="deleteProductBtn" value="Delete">' +
+                        '<input type="hidden" name="id" value="' + article['id'] + '">' +
+                    '</form>' +
+                '</td>' +
+                '<td>' +
+                    '<form method="GET">' +
+                        '<input type="submit" name="updateProductBtn class="btn bg-white update-product-btn" value="Update">' +
+                        '<input type="hidden" name="id" value="' + article['id'] + '">' +
+                    '</form>' +
+                '</td>' +
+            '</tr>' +
+        '</tbody>';
+
+        };
+        lists.html(html);
+    $('.delete-product-btn').on('click', deleteProductEvent)
+    $('.update-product-btn').on('click', updateProductEvent)
+};
+
+// Update Btn Ajax  -------------------------------------------//
+$('.update-cart-form input[name="quantity"]').on('change', function() {
+
+    let quantity = $(this).val();
+    let cartId = $(this).data('id');
+
+    $.ajax({
+        method: 'POST',
+        url: '../update-cart-item-ajax.php',
+        data: {quantity: quantity, cartId: cartId},
+        success: function() {
+
+        },
+    })
+});
+
+// Update Product Ajax  -------------------------------------------//
+$('.update-product-btn').on('click', updateProductEvent);
+function updateProductEvent(e) {
+    e.preventDefault();
+    let id = $(this).parent().find('input[name="id"]');
+    let title = $(this).parent().parent().parent().find('input[name="title"]');
+    let description = $(this).parent().parent().parent().find('input[name="description"]');
+    let price = $(this).parent().parent().parent().find('input[name="price"]');
+    console.log({
+        updateProductBtn: true,
+        title: title.val(), 
+        description: description.val(), 
+        price: price.val(),
+        id: id.val()
+    });
+    $.ajax({
+        method: 'POST',
+        url: '../admin/updateproduct-ajax.php',
+        data: {
             updateProductBtn: true,
             title: title.val(), 
             description: description.val(), 
             price: price.val(),
             id: id.val()
-        });
-        $.ajax({
-            method: 'POST',
-            url: '../admin/updateproduct-ajax.php',
-            data: {
-                updateProductBtn: true,
-                title: title.val(), 
-                description: description.val(), 
-                price: price.val(),
-                id: id.val()
-            },
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                appendUpdateProductList(data);
-            },
-        });
-    };
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            appendUpdateProductList(data);
+        },
+    });
+};
 
     
         

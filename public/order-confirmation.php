@@ -1,10 +1,9 @@
 <?php
     require('../src/config.php');
-    // require('../src/dbconnect.php');
 
      $articleItemCount = count($_SESSION['items']);
 
-     $articleTotalSum = 0; // count($_SESSION['items']);
+     $articleTotalSum = 0;
 
      foreach ($_SESSION['items'] as $articleId => $articleItem) {
          $articleTotalSum += $articleItem['price'] * $articleItem['quantity'];
@@ -56,11 +55,13 @@
         </tr>
     </tbody>
 </table>
-     <div class="d-flex justify-content-center">       
-        <form action="products.php">
-            <input type="submit" name="" value="Back" class="btn btn-dark text-light">
-        </form>
-    </div>
+
+<div class="d-flex justify-content-center">       
+    <form action="products.php">
+        <input type="submit" name="" value="Back" class="btn btn-dark text-light">
+    </form>
+</div>
+
 <?php 
     unset($_SESSION['items']);
 ?>

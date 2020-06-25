@@ -3,7 +3,6 @@
     require('../src/config.php');
     
     if (isset($_POST['deleteUserBtn'])) {
-
         if(empty($title)){
             try {
                 $query = "
